@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_place
   before_action :set_item, only: [:show, :edit, :update, :destroy, :vote]
 
   # GET /items
@@ -26,15 +27,11 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @item }
+        redirect_to @place, notice: 'Item was successfully created.'
       else
-        format.html { render action: 'new' }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        render action: 'new'
       end
-    end
   end
 
   # PATCH/PUT /items/1
@@ -82,6 +79,10 @@ class ItemsController < ApplicationController
 
 
   private
+    def set_place
+      @place = Place.find(params[:place_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
