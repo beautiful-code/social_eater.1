@@ -1,4 +1,6 @@
 SocialEater::Application.routes.draw do
+  resources :items
+
   resources :places
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords", omniauth_callbacks: "users/omniauth_callbacks"}, skip: [:sessions, :registrations]
