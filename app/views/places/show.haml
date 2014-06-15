@@ -13,6 +13,11 @@
   - @place.items.each do |item|
     .item
       %span.name=item.name
+      - if current_user.voted_for? item
+        %span.like_it
+          You liked it
+      - else
+        = link_to 'I like too', vote_place_item_path(@place,item)
 
 .form-group
   = link_to 'Back', places_path, :class => 'btn btn-default'

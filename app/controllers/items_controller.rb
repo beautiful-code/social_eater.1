@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_place
   before_action :set_item, only: [:show, :edit, :update, :destroy, :vote]
 
@@ -61,20 +62,9 @@ class ItemsController < ApplicationController
 
   #->Prelang (voting/acts_as_votable)
   def vote
+    current_user.likes @item
 
-    direction = params[:direction]
-
-    # Make sure we've specified a direction
-    raise "No direction parameter specified to #vote action." unless direction
-
-    # Make sure the direction is valid
-    unless ["like", "bad"].member? direction
-      raise "Direction '#{direction}' is not a valid direction for vote method."
-    end
-
-    @item.vote_by voter: current_user, vote: direction
-
-    redirect_to action: :index
+    redirect_to request.referrer
   end
 
 

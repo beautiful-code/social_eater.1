@@ -15,7 +15,7 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.id %></td>
-        <td><%= place.name %></td>
+        <td><%= link_to(place.name,place) %></td>
         <td><%=l place.created_at, format: :long %></td>
         <td>
           <%= link_to place_path(place), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
