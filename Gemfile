@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'haml'
 
+gem "koala"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -57,4 +59,5 @@ gem 'bootstrap-sass-extras'
 
 group :development, :test do
   gem 'dotenv-rails'
+  gem 'debugger'
 end

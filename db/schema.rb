@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615065336) do
+ActiveRecord::Schema.define(version: 20140615121235) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -42,8 +42,13 @@ ActiveRecord::Schema.define(version: 20140615065336) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
+    t.text     "provider_pic"
     t.string   "uid"
     t.string   "name"
+    t.text     "token"
+    t.integer  "token_expires"
+    t.text     "friend_fb_ids"
+    t.text     "friend_ids"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

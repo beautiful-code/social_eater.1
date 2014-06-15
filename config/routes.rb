@@ -24,4 +24,6 @@ SocialEater::Application.routes.draw do
     get    "account" => "devise/registrations#edit",   as: :edit_user_registration
   end
 
+  root :to => 'places#index'
+
 end
