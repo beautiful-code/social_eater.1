@@ -1,5 +1,11 @@
 SocialEater::Application.routes.draw do
-  resources :items
+  resources :items do
+  #->Prelang (voting/acts_as_votable)
+  member do
+    get "vote"
+  end
+end
+
 
   resources :places
 
