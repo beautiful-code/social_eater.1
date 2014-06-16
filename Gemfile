@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -40,10 +39,7 @@ end
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'unicorn'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -56,8 +52,15 @@ gem 'validates_formatting_of'
 gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
 gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'
+gem 'dotenv-rails'
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'debugger'
+  gem 'capistrano-rails'
+end
+
+group :deploy do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
 end

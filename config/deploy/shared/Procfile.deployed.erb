@@ -1,0 +1,12 @@
+<%
+  services = {
+    app:    'bundle exec unicorn -c config/unicorn.rb',
+  }
+
+  exported_services = host.roles.to_a.collect { |r|
+    fetch(:services_for_role)[r]
+  }.flatten.uniq.compact
+%>
+<% exported_services.each do |name| %>
+<%= name %>: <%= services[name] %>
+<% end %>
