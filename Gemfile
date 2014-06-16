@@ -41,6 +41,8 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
+gem 'foreman'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'bundler'
