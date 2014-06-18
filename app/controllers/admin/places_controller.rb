@@ -57,7 +57,7 @@ class Admin::PlacesController < Admin::MainController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to [:admin,:places], 'Place was destroyed successfully' }
+      format.html { redirect_to [:admin,:places], notice: 'Place was destroyed successfully' }
       format.json { head :no_content }
     end
   end
