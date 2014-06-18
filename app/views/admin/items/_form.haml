@@ -1,4 +1,4 @@
-= form_for [@place, @item], :html => { :class => 'form-horizontal form-model' } do |f|
+= form_for [:admin,@place, @item], :html => { :class => 'form-horizontal form-model' } do |f|
   .form-group
     = f.label :name, :class => 'control-label col-md-2'
     .col-md-10
@@ -8,4 +8,4 @@
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, :class => 'btn btn-primary'
-      = link_to 'Cancel', place_path(@place), :class => 'btn btn-default'
+      = link_to 'Cancel', [:admin,@place], :class => 'btn btn-default'

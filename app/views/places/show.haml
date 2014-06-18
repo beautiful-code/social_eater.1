@@ -9,15 +9,12 @@
 
 #items
   %h3 Items
-  = link_to 'Add Item', new_place_item_path(@place)
   - @place.items.each do |item|
     .item
       %span.name="#{item.name} (#{item.votes_for.size})"
       - if current_user.voted_for? item
         %span.like_it
           You liked it
-          
-          
       - else
         = link_to 'I like too', vote_place_item_path(@place,item)
 
@@ -30,6 +27,3 @@
 
 .form-group
   = link_to 'Back', places_path, :class => 'btn btn-default'
-  = link_to 'Edit', edit_place_path(@place), :class => 'btn btn-default'
-  = link_to 'Destroy', place_path(@place), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
-

@@ -48,6 +48,7 @@ gem 'foreman'
 gem 'bundler'
 
 gem 'devise', github: 'plataformatec/devise'
+gem 'rolify'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'validates_formatting_of'
@@ -57,7 +58,6 @@ gem 'bootstrap-sass-extras'
 gem 'dotenv-rails'
 
 group :development, :test do
-  gem 'debugger'
   gem 'capistrano-rails'
 end
 
@@ -66,3 +66,4 @@ group :deploy do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
 end
+gem 'quiet_assets'

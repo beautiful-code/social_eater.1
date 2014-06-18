@@ -1,6 +1,6 @@
 SocialEater::Application.routes.draw do
-  resources :places do
-    resources :items do
+  resources :places, except: [:destroy,:new,:create,:update] do
+    resources :items,except: [:destroy,:new,:create,:update] do
       member do
         get "vote"
       end
@@ -8,10 +8,16 @@ SocialEater::Application.routes.draw do
   end
 
 
-
-
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords", omniauth_callbacks: "users/omniauth_callbacks"}, skip: [:sessions, :registrations]
-  
+
+
+  namespace :admin do
+    resources :places do
+      resources :items
+    end
+  end
+
+
   #->Prelang (user_login:devise/stylized_paths)
   devise_scope :user do
     get    "login"   => "devise/sessions#new",         as: :new_user_session
