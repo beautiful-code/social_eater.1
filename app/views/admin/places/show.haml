@@ -17,6 +17,13 @@
         = link_to [:edit,:admin,@place,item], :class => 'btn btn-xs', :title => "#{ t('.show',
         :default => t('helpers.links.show')) }" do
           = glyph 'pencil'
+        = link_to [:admin,@place,item], :class => 'btn btn-xs',method: :delete, :title => "#{ t('.show',
+        :default => t('helpers.links.show')) }" do
+          = glyph 'remove'
+
+
+
+
 
 
 .form-group

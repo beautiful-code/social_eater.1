@@ -53,7 +53,7 @@ class Admin::ItemsController < Admin::MainController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to [:admin,:items] }
+      format.html { redirect_to [:admin,@item.place], notice: 'Item was deleted successfully' }
       format.json { head :no_content }
     end
   end
