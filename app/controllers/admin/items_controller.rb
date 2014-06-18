@@ -1,4 +1,4 @@
-class Admin::ItemsController < ApplicationController
+class Admin::ItemsController < Admin::MainController
   before_action :set_place
   before_action :set_item, only: [:show, :edit, :update, :destroy, :vote]
 
