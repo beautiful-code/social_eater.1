@@ -10,19 +10,22 @@
 #items
   %h3 Items
   = link_to 'Add Item', [:new,:admin,@place,:item]
-  - @place.items.each do |item|
-    .item
-      %span.name="#{item.name} (#{item.votes_for.size})"
-      %span.desc=item.desc
-      %span.price=item.price
-      %span.price=item.cold_votes
-      %span.name
-        = link_to [:edit,:admin,@place,item], :class => 'btn btn-xs', :title => "#{ t('.show',
-        :default => t('helpers.links.show')) }" do
-          = glyph 'pencil'
-        = link_to [:admin,@place,item], :class => 'btn btn-xs',method: :delete, :title => "#{ t('.show',
-        :default => t('helpers.links.show')) }" do
-          = glyph 'remove'
+
+  - @place.ordered_items.each do |cat_id, items|
+    %h5= @place.categories.find(cat_id).name
+    - items.each do |item|
+      .item
+        %span.name="#{item.name} (#{item.votes_for.size})"
+        %span.desc=item.desc
+        %span.price=item.price
+        %span.price=item.cold_votes
+        %span.name
+          = link_to [:edit,:admin,@place,item], :class => 'btn btn-xs', :title => "#{ t('.show',
+          :default => t('helpers.links.show')) }" do
+            = glyph 'pencil'
+          = link_to [:admin,@place,item], :class => 'btn btn-xs',method: :delete, :title => "#{ t('.show',
+          :default => t('helpers.links.show')) }" do
+            = glyph 'remove'
 
 
 #categories
