@@ -13,6 +13,9 @@
   - @place.items.each do |item|
     .item
       %span.name="#{item.name} (#{item.votes_for.size})"
+      %span.desc=item.desc
+      %span.price=item.price
+      %span.price=item.cold_votes
       %span.name
         = link_to [:edit,:admin,@place,item], :class => 'btn btn-xs', :title => "#{ t('.show',
         :default => t('helpers.links.show')) }" do

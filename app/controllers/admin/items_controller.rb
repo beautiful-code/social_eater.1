@@ -70,6 +70,6 @@ class Admin::ItemsController < Admin::MainController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name, :place_id)
+    params.require(:item).permit(:place_id, :name, :desc, :price, :cold_votes)
   end
 end

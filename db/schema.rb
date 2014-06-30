@@ -15,6 +15,9 @@ ActiveRecord::Schema.define(version: 20140618060322) do
 
   create_table "items", force: true do |t|
     t.string   "name"
+    t.text     "desc"
+    t.float    "price"
+    t.integer  "cold_votes"
     t.integer  "place_id"
     t.datetime "created_at"
     t.datetime "updated_at"

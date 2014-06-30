@@ -44,7 +44,7 @@ gem 'unicorn'
 gem 'foreman'
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 gem 'bundler'
 
 gem 'devise', github: 'plataformatec/devise'
