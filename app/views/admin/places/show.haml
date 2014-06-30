@@ -25,6 +25,18 @@
           = glyph 'remove'
 
 
+#categories
+  %h3 Categories
+  = link_to 'Add Category', [:new,:admin,@place,:category]
+  - @place.categories.each do |category|
+    .category
+      %span.name=category.name
+      %span.position=category.position
+      %span.name
+        = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
+          = glyph 'pencil'
+        = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
+          = glyph 'remove'
 
 
 

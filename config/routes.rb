@@ -1,4 +1,5 @@
 SocialEater::Application.routes.draw do
+
   resources :places, except: [:destroy,:new,:create,:update] do
     resources :items,except: [:destroy,:new,:create,:update] do
       member do
@@ -14,6 +15,7 @@ SocialEater::Application.routes.draw do
   namespace :admin do
     resources :places do
       resources :items
+      resources :categories
     end
   end
 
