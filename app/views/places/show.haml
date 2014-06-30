@@ -4,7 +4,7 @@
 #items
   %h3 Items
   - @place.ordered_items.each do |cat_id, items|
-    %h5= @place.categories.find(cat_id).name
+    %h4= @place.categories.find(cat_id).name
     - items.each do |item|
       .item
         %span.name="#{item.name} (#{item.votes_for.size})"
