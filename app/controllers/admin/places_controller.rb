@@ -2,18 +2,14 @@ class Admin::PlacesController < Admin::MainController
 
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
-  # GET /places
-  # GET /places.json
   def index
     @places = Place.all
   end
 
-  # GET /places/1
-  # GET /places/1.json
   def show
+    @item = Item.new
   end
 
-  # GET /places/new
   def new
     @place = Place.new
   end
