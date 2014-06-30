@@ -7,6 +7,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :cold_votes
 
       t.references :place, index: true
+      t.references :category, index: true
 
       t.timestamps
     end

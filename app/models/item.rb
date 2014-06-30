@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   belongs_to :place
+  belongs_to :category
   acts_as_votable 
 
   def voter_ids
