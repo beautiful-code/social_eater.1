@@ -14,6 +14,10 @@ SocialEater::Application.routes.draw do
 
   namespace :admin do
     resources :places do
+      member do 
+        get "notes"
+        post "notes"
+      end
       resources :items
       resources :categories
     end

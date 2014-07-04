@@ -1,0 +1,3 @@
+%h4= category_name
+- items.each do |item|
+  = render :partial => 'admin/items/form', :locals => {:item => item}

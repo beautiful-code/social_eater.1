@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
   belongs_to :category
   acts_as_votable 
 
-  validates_presence_of :name, :category_id
+  validates_presence_of :name
 
   after_initialize do |item|
     item.cold_votes ||= 1

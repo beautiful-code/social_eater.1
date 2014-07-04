@@ -1,5 +1,5 @@
 #items {
-  margin-left: 50px;
+  margin-left: 10px;
   margin-bottom: 10px;
 
   .like_it {
@@ -21,6 +21,50 @@
   }
 }
 
+.edit-item {
+  input {
+    &.desc {
+      width: 300px;
+    }
+    &.price{
+      width: 60px;
+    }
+    &.cold_votes{
+      width: 20px;
+    }
+  }
+}
+
 #categories {
-  margin-left: 50px;
+  margin-left: 10px;
+}
+
+#notes {
+  margin: 20px;
+  form {
+    margin-bottom: 20px;
+    input {
+      padding: 10px;
+      size: 200%;
+
+      &.item {
+        width: 500px;
+        font-size: 150%;
+      }
+      &.cold-votes {
+        width: 30px;
+      }
+    }
+  }
+
+  #list {
+    .note {
+      margin: 5px;
+      input {
+        padding: 3px;
+        width: 300px;
+      }
+    }
+  }
+
 }

@@ -1,0 +1,27 @@
+.row
+  .col-md-6.col-md-offset-3
+    #notes{"ng-controller" => "NotesListCtrl", :align => 'center'}
+      #add_note
+        = form_tag do
+          %input.item{"type"=> "text", "ng-model" => 'new_note_item', "placeholder" => 'Enter item and press enter'}
+          .hidden
+            %input.cold-votes{"type"=> "text", "ng-model" => 'new_note_cold_votes'}
+            = submit_tag 'Add Item', "ng-click" => "addItem()"
+          :javascript
+            $('#add_note form').submit(function(e){
+              e.preventDefault();
+            });
+
+      #list
+        = form_tag do
+          .note{"ng-repeat" => 'note in notes', "ng-controller" => 'NoteCtrl'}
+            %input.item{"type"=> "text", "ng-model" => 'note[0]', "name" => "item_{{$index}}"}
+            %input.hidden{"type"=> "text", "ng-model" => 'note[1]', "name" => "count_{{$index}}"}
+            %span.cold-votes
+              {{note[1]}}
+            %a.btn{"ng-click" => "upVote()"}= glyph 'plus'
+            %a.btn{"ng-click" => "downVote()"}= glyph 'minus'
+            %a.btn{"ng-click" => "deleteNote()"}= glyph 'trash'
+            
+
+          = submit_tag 'Add Items', {"ng-show" => 'show_submit_button()'}

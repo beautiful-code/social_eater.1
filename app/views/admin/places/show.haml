@@ -1,45 +1,37 @@
 - model_class = Place
 %h1=@place.name
 
+%h3
+  = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
+
+
 #items
   .row
-    .col-md-6
-      #items
-        %h3 Items
-        = link_to 'Add Item', [:new,:admin,@place,:item]
+    #items
+      %h3 Items
+      = link_to 'Add Item', [:new,:admin,@place,:item]
 
-        - @place.ordered_items.each do |cat_id, items|
-          %h4= @place.categories.find(cat_id).name
-          - items.each do |item|
-            .item
-              %span.name="#{item.name} (#{item.votes_for.size})"
-              %span.desc=item.desc
-              %span.price=item.price
-              %span.price=item.cold_votes
-              %span.name
-                = link_to [:edit,:admin,@place,item], :class => 'btn btn-xs', :title => "#{ t('.show',
-                :default => t('helpers.links.show')) }" do
-                  = glyph 'pencil'
-                = link_to [:admin,@place,item], :class => 'btn btn-xs',method: :delete, :title => "#{ t('.show',
-                :default => t('helpers.links.show')) }" do
-                  = glyph 'remove'
+      - @place.ordered_items.each do |cat_id, items|
+        = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
+      = render :partial => 'category_items', :locals => {:category_name => 'Uncategorized', :items => @place.uncategorized_items}
 
 
-      #categories
-        %h3 Categories
-        = link_to 'Add Category', [:new,:admin,@place,:category]
-        - @place.categories.each do |category|
-          .category
-            %span.name=category.name
-            %span.position=category.position
-            %span.name
-              = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
-                = glyph 'pencil'
-              = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
-                = glyph 'remove'
+    #categories
+      %h3 Categories
+      = link_to 'Add Category', [:new,:admin,@place,:category]
+      - @place.categories.each do |category|
+        .category
+          %span.name=category.name
+          %span.position=category.position
+          %span.name
+            = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
+              = glyph 'pencil'
+            = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
+              = glyph 'remove'
 
-    .col-md-6
-      = render 'admin/items/form'
+    - if false
+      .col-md-6
+        = render 'admin/items/form'
 
 
 

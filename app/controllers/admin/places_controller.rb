@@ -1,6 +1,7 @@
 class Admin::PlacesController < Admin::MainController
 
-  before_action :set_place, only: [:show, :edit, :update, :destroy]
+  before_action :set_place, only: [:show, :notes, :edit, :update, :destroy]
+  
 
   def index
     @places = Place.all
@@ -12,6 +13,13 @@ class Admin::PlacesController < Admin::MainController
 
   def new
     @place = Place.new
+  end
+
+  def notes
+    if request.post?
+      save_uncategorized_items
+      redirect_to [:admin,@place], notice: 'Uncategorized items added'
+    end
   end
 
   # GET /places/1/edit
@@ -67,5 +75,17 @@ class Admin::PlacesController < Admin::MainController
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit(:name)
+    end
+
+    def save_uncategorized_items
+      (0..99).each do |index|
+       if params["item_#{index}"].present?
+        Item.create!(
+          :place => @place,
+          :name => params["item_#{index}"], 
+          :cold_votes => params["count_#{index}"]
+          )
+       end
+      end
     end
 end

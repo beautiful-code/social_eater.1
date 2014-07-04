@@ -1,52 +1,40 @@
-= form_for [:admin,@place, @item], :html => { :class => 'form-horizontal form-model' } do |f|
+= form_for [:admin,@place, item] do |f|
 
-  - if @item.errors.any?
+  - if item.errors.any?
     #error_explanation
       %h2
-        =pluralize(@item.errors.count, "error") 
+        =pluralize(item.errors.count, "error") 
         prohibited this item from being saved:
       %ul
-        - @item.errors.full_messages.each do |msg|
+        - item.errors.full_messages.each do |msg|
           %li= msg
 
-  .form-group
-    = f.label :name, :class => 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :name, :class => 'text-field form-control'
-
-    = f.label :desc, :class => 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :desc, :class => 'text-field form-control'
-      
-    = f.label :price, :class => 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :price, :class => 'text-field form-control'
-
-    = f.label :cold_votes, :class => 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :cold_votes, :class => 'text-field form-control'
-
-    .row
-      = f.label :flags, :class => 'control-label col-md-2'
-      .col-md-10
-        %span.flag
-          = f.check_box :seasonal
-          = f.label :seasonal
-
-        %span.flag
-          = f.check_box :non_veg
-          = f.label :non_veg
-
-    .row
-      = f.label :category, :class => 'control-label col-md-2'
-      .col-md-10
-        - @place.categories.each do |cat|
-          = f.radio_button :category_id, cat.id
-          = f.label cat.name
-
+ 
+  .edit-item
+    = f.text_field :name, :class => 'name'
+    |
+    = f.text_field :desc, :class => 'desc'
+    |
+    = f.text_field :price, :class => 'price', :value => item.price.to_i
+    |
+    = f.text_field :cold_votes, :class => 'cold_votes'
+    |
+    %span.flag
+      = f.check_box :seasonal
+      = f.label :seasonal
+    %span.flag
+      = f.check_box :non_veg
+      = f.label :non_veg
+    |
+    - @place.categories.each do |cat|
+      = f.radio_button :category_id, cat.id
+      = f.label cat.name
     = hidden_field :item, :place_id, :value => @place.id
 
-  .form-group
-    .col-md-offset-2.col-md-10
-      = f.submit nil, :class => 'btn btn-primary'
-      = link_to 'Cancel', [:admin,@place], :class => 'btn btn-default'
+    |
+    = link_to [:admin,@place,item],method: :delete, :confirm => 'Are you sure?' do
+      = glyph 'remove'
+
+    |
+    = f.submit 'Update'
+
