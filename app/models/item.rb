@@ -6,7 +6,9 @@ class Item < ActiveRecord::Base
   validates_presence_of :name, :category_id
 
   after_initialize do |item|
-    item.cold_votes ||=0
+    item.cold_votes ||= 1
+    item.non_veg = false unless item.non_veg
+    item.seasonal = false unless item.seasonal
   end
 
   def voter_ids

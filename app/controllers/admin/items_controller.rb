@@ -50,6 +50,6 @@ class Admin::ItemsController < Admin::MainController
   end
 
   def item_params
-    params.require(:item).permit(:place_id, :name, :desc, :price, :cold_votes, :category_id)
+    params.require(:item).permit(:place_id, :name, :desc, :price, :cold_votes, :seasonal, :non_veg, :category_id)
   end
 end
