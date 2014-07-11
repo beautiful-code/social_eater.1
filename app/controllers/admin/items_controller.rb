@@ -28,10 +28,11 @@ class Admin::ItemsController < Admin::MainController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+    sleep 1.5
     if @item.update(item_params)
-      redirect_to [:admin,@item.place], notice: 'Item was successfully updated.'
+      render json: @item
     else
-      render action: 'edit'
+      render json: @item.errors
     end
   end
 

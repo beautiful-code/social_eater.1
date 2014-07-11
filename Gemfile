@@ -12,7 +12,7 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-#gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -45,7 +45,7 @@ gem 'unicorn'
 gem 'foreman'
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+gem 'debugger'
 gem 'bundler'
 
 gem 'devise', github: 'plataformatec/devise'
@@ -57,6 +57,7 @@ gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
 gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'dotenv-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'capistrano-rails'
@@ -68,3 +69,4 @@ group :deploy do
   gem 'capistrano-rvm'
 end
 gem 'quiet_assets'
+

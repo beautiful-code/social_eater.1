@@ -1,43 +1,46 @@
 - model_class = Place
-%h1=@place.name
+.lnr
+  %h1=@place.name
+  .updated-item.alert-success.alert-dismissable
+  .updated-item-progress.alert-danger.alert-dismissable
 
-%h3
-  = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
-
-
-#items
-  .row
-    #items
-      %h3 Items
-      = link_to 'Add Item', [:new,:admin,@place,:item]
-
-      - @place.ordered_items.each do |cat_id, items|
-        = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
-      = render :partial => 'category_items', :locals => {:category_name => 'Uncategorized', :items => @place.uncategorized_items}
+  %h3
+    = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
 
 
-    #categories
-      %h3 Categories
-      = link_to 'Add Category', [:new,:admin,@place,:category]
-      - @place.categories.each do |category|
-        .category
-          %span.name=category.name
-          %span.position=category.position
-          %span.name
-            = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
-              = glyph 'pencil'
-            = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
-              = glyph 'remove'
+  #items
+    .row
+      #items
+        %h3 Items
+        = link_to 'Add Item', [:new,:admin,@place,:item]
 
-    - if false
-      .col-md-6
-        = render 'admin/items/form'
+        - @place.ordered_items.each do |cat_id, items|
+          = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
+        = render :partial => 'category_items', :locals => {:category_name => 'Uncategorized', :items => @place.uncategorized_items}
 
 
+      #categories
+        %h3 Categories
+        = link_to 'Add Category', [:new,:admin,@place,:category]
+        - @place.categories.each do |category|
+          .category
+            %span.name=category.name
+            %span.position=category.position
+            %span.name
+              = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
+                = glyph 'pencil'
+              = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
+                = glyph 'remove'
 
-.form-group
-  = link_to 'Back', [:admin,:places], :class => 'btn btn-default'
-  = link_to 'Edit', [:edit,:admin,@place], :class => 'btn btn-default'
-  = link_to 'Destroy', [:admin,@place], :method => 'delete', :data => { :confirm => t('.confirm',
-  :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+      - if false
+        .col-md-6
+          = render 'admin/items/form'
+
+
+
+  .form-group
+    = link_to 'Back', [:admin,:places], :class => 'btn btn-default'
+    = link_to 'Edit', [:edit,:admin,@place], :class => 'btn btn-default'
+    = link_to 'Destroy', [:admin,@place], :method => 'delete', :data => { :confirm => t('.confirm',
+    :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 
