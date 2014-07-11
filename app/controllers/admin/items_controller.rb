@@ -28,7 +28,6 @@ class Admin::ItemsController < Admin::MainController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    sleep 1.5
     if @item.update(item_params)
       render json: @item
     else
