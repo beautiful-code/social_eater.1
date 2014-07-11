@@ -1,0 +1,14 @@
+!!!
+%html{"ng-app" => "eaterApp"}
+  %head
+    %title SocialEater
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+  %body
+    .container-fluid
+      = bootstrap_flash
+      = yield
+
+

@@ -27,3 +27,6 @@
 
 .idea/
 .ruby-version
+
+# OS X Files
+*.DS_Store
