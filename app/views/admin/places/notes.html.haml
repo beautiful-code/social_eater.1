@@ -12,7 +12,7 @@
             %input.name{"type"=> "text", "ng-model" => 'item[0]', "name" => "item_{{$index}}"}
             %input.hidden{"type"=> "text", "ng-model" => 'item[1]', "name" => "count_{{$index}}"}
             %span.cold-votes
-              {{note[1]}}
+              {{item[1]}}
             %a.btn{"ng-click" => "upVote()"}= glyph 'plus'
             %a.btn{"ng-click" => "downVote()"}= glyph 'minus'
             %a.btn{"ng-click" => "deleteNote()"}= glyph 'trash'

@@ -4,14 +4,14 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
 
   $scope.addItem = function() {
-    $scope.items.push([$scope.new_item, $scope.new_item_cold_votes]);
+    $scope.items.push([$scope.new_item.titleize(), $scope.new_item_cold_votes]);
 
     $scope.new_item = '';
     $scope.new_item_cold_votes = 1;
   };
 
   $scope.addCategory = function() {
-    $scope.categories.push([$scope.new_category_name, $scope.new_category_position]);
+    $scope.categories.push([$scope.new_category_name.titleize(), $scope.new_category_position]);
 
     $scope.new_category_name = '';
     $scope.new_category_position = 0;
