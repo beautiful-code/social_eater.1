@@ -19,10 +19,10 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
   $scope.doNothing = function() {};
 
-  $scope.items = [];
+  $scope.items = PageConfig.items;
   $scope.new_item_cold_votes = 1;
 
-  $scope.categories = [];
+  $scope.categories = PageConfig.categories;
   $scope.new_category_position = 0;
   
 }]);

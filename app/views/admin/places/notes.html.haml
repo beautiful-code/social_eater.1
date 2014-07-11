@@ -1,3 +1,8 @@
+:javascript
+  var PageConfig = {
+    items: #{@place.items.collect{|item| [item.name, item.cold_votes]}},
+    categories: #{@place.categories.collect {|cat| [cat.name, cat.position]}},
+  };
 #notes{"ng-controller" => "NotesCtrl", :align => 'center'}
   = form_tag do
     .row

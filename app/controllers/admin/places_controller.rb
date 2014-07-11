@@ -80,22 +80,27 @@ class Admin::PlacesController < Admin::MainController
     def save_notes
       (0..99).each do |index|
        if params["item_#{index}"].present?
-        Item.create!(
+        item = @place.items.find_or_initialize_by(name: params["item_#{index}"])
+        item.update_attributes({
           :place => @place,
           :name => params["item_#{index}"], 
           :cold_votes => params["count_#{index}"]
-          )
+        })
        end
       end
 
       (0..99).each do |index|
        if params["category_#{index}"].present?
-        Category.create!(
+
+        category = @place.categories.find_or_initialize_by(name: params["category_#{index}"])
+        category.update_attributes({
           :place => @place,
           :name => params["category_#{index}"], 
           :position => params["position_#{index}"]
-          )
+        })
+
        end
+
       end
     end
 end
