@@ -17,8 +17,8 @@ class Admin::PlacesController < Admin::MainController
 
   def notes
     if request.post?
-      save_uncategorized_items
-      redirect_to [:admin,@place], notice: 'Uncategorized items added'
+      save_notes
+      redirect_to [:admin,@place], notice: 'Notes added'
     end
   end
 
@@ -77,13 +77,23 @@ class Admin::PlacesController < Admin::MainController
       params.require(:place).permit(:name)
     end
 
-    def save_uncategorized_items
+    def save_notes
       (0..99).each do |index|
        if params["item_#{index}"].present?
         Item.create!(
           :place => @place,
           :name => params["item_#{index}"], 
           :cold_votes => params["count_#{index}"]
+          )
+       end
+      end
+
+      (0..99).each do |index|
+       if params["category_#{index}"].present?
+        Category.create!(
+          :place => @place,
+          :name => params["category_#{index}"], 
+          :position => params["position_#{index}"]
           )
        end
       end

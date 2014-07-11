@@ -1,41 +1,70 @@
 var app = angular.module('eaterApp', []);
 
-app.controller('NotesListCtrl', ['$scope',function ($scope) {
+app.controller('NotesCtrl', ['$scope',function ($scope) {
 
 
   $scope.addItem = function() {
-    $scope.notes.push([$scope.new_note_item, $scope.new_note_cold_votes]);
+    $scope.items.push([$scope.new_item, $scope.new_item_cold_votes]);
 
-    $scope.new_note_item = '';
-    $scope.new_note_cold_votes = 1;
+    $scope.new_item = '';
+    $scope.new_item_cold_votes = 1;
   };
 
-  $scope.show_submit_button = function() {
-    return ($scope.notes.length > 0);
+  $scope.addCategory = function() {
+    $scope.categories.push([$scope.new_category_name, $scope.new_category_position]);
+
+    $scope.new_category_name = '';
+    $scope.new_category_position = 0;
   };
 
-  $scope.notes = [];
-  $scope.new_note_cold_votes = 1;
+  $scope.doNothing = function() {};
+
+  $scope.items = [];
+  $scope.new_item_cold_votes = 1;
+
+  $scope.categories = [];
+  $scope.new_category_position = 0;
   
 }]);
 
 
-app.controller('NoteCtrl', ['$scope',function ($scope) {
+app.controller('ItemCtrl', ['$scope',function ($scope) {
 
   $scope.upVote = function() {
-    var note_index = $scope.$index;
-    $scope.notes[note_index][1]++;
+    $scope.items[$scope.$index][1]++;
   };
 
   $scope.downVote = function() {
-    var note_index = $scope.$index;
-    $scope.notes[note_index][1]--;
+    var item_index = $scope.$index;
+    $scope.items[$scope.$index][1]--;
   };
 
   $scope.deleteNote = function() {
-    var index = $scope.$index;
-    $scope.notes.splice($scope.$index, 1);
+    $scope.items.splice($scope.$index, 1);
   };
 
   
 }]);
+
+
+app.controller('CategoryCtrl', ['$scope',function ($scope) {
+
+  $scope.deleteCategory = function() {
+    $scope.categories.splice($scope.$index, 1);
+  };
+  
+}]);
+
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});

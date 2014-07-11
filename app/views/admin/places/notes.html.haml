@@ -1,22 +1,16 @@
-.row
-  .col-md-6.col-md-offset-3
-    #notes{"ng-controller" => "NotesListCtrl", :align => 'center'}
-      #add_note
-        = form_tag do
-          %input.item{"type"=> "text", "ng-model" => 'new_note_item', "placeholder" => 'Enter item and press enter'}
+#notes{"ng-controller" => "NotesCtrl", :align => 'center'}
+  = form_tag do
+    .row
+      .col-md-6
+        #add_item.big-inputs
+          %input.item{"type"=> "text", "ng-model" => 'new_item', "ng-enter" => "addItem()", "placeholder" => 'Item'}
           .hidden
-            %input.cold-votes{"type"=> "text", "ng-model" => 'new_note_cold_votes'}
-            = submit_tag 'Add Item', "ng-click" => "addItem()"
-          :javascript
-            $('#add_note form').submit(function(e){
-              e.preventDefault();
-            });
+            %input.cold-votes{"type"=> "text", "ng-model" => 'new_item_cold_votes'}
 
-      #list
-        = form_tag do
-          .note{"ng-repeat" => 'note in notes', "ng-controller" => 'NoteCtrl'}
-            %input.item{"type"=> "text", "ng-model" => 'note[0]', "name" => "item_{{$index}}"}
-            %input.hidden{"type"=> "text", "ng-model" => 'note[1]', "name" => "count_{{$index}}"}
+        #item_list
+          .item{"ng-repeat" => 'item in items', "ng-controller" => 'ItemCtrl'}
+            %input.name{"type"=> "text", "ng-model" => 'item[0]', "name" => "item_{{$index}}"}
+            %input.hidden{"type"=> "text", "ng-model" => 'item[1]', "name" => "count_{{$index}}"}
             %span.cold-votes
               {{note[1]}}
             %a.btn{"ng-click" => "upVote()"}= glyph 'plus'
@@ -24,4 +18,17 @@
             %a.btn{"ng-click" => "deleteNote()"}= glyph 'trash'
             
 
-          = submit_tag 'Add Items', {"ng-show" => 'show_submit_button()'}
+
+      .col-md-6
+        #add_category.big-inputs
+          %input.category-name{"type"=> "text", "ng-model" => 'new_category_name', "ng-enter" => "addCategory()", "placeholder" => 'Category'}
+          %input.position{"type"=> "text", "ng-model" => 'new_category_position', "ng-enter" => "addCategory()"}
+
+        #category_list
+          .category{"ng-repeat" => 'category in categories', "ng-controller" => 'CategoryCtrl'}
+            %input.name{"type"=> "text", "ng-model" => 'category[0]', "name" => "category_{{$index}}"}
+            %input.position{"type"=> "text", "ng-model" => 'category[1]', "name" => "position_{{$index}}"}
+            %a.btn{"ng-click" => "deleteCategory()"}= glyph 'trash'
+
+    .row
+      = submit_tag 'Add Notes'

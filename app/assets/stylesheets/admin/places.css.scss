@@ -1,0 +1,49 @@
+#notes {
+  margin: 20px;
+  form {
+    margin-bottom: 20px;
+    .big-inputs {
+      input {
+        padding: 10px;
+        size: 200%;
+        font-size: 150%;
+
+        &.item {
+          width: 500px;
+        }
+        &.cold-votes {
+          width: 30px;
+        }
+        &.position {
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  #item_list {
+    .item {
+      margin: 5px;
+      input {
+        padding: 3px;
+        width: 300px;
+      }
+    }
+  }
+
+  #category_list {
+    .category {
+      margin: 5px;
+      input.name {
+        padding: 3px;
+        width: 150px;
+      }
+
+      input.position {
+        padding: 3px;
+        width: 40px;
+      }
+    }
+  }
+
+}
