@@ -3,23 +3,13 @@
 
 #items
   %h3 Items
-  - @place.ordered_items.each do |cat_id, items|
-    %h4= @place.categories.find(cat_id).name
-    - items.each do |item|
-      .item
-        %span.name="#{item.name} (#{item.votes_for.size})"
-        - if current_user.voted_for? item
-          %span.like_it
-            You liked it
-        - else
-          = link_to 'I like too', vote_place_item_path(@place,item)
 
-        - friend_likes = current_user.friends_like_item(item)
-        - if friend_likes.present?
-          %span.friend_likes
-            ="#{friend_likes.count} friend likes"
-            - friend_likes.each do |friend|
-              = image_tag friend.provider_pic
+
+  - @place.ordered_items.each do |cat_id, items|
+    = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
+  - if @place.uncategorized_items.present?
+    = render :partial => 'category_items', :locals => {:category_name => 'Others', :items => @place.uncategorized_items}
+
 
 .form-group
   = link_to 'Back', places_path, :class => 'btn btn-default'
