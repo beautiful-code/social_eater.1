@@ -4,14 +4,16 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
 
   $scope.addItem = function() {
-    $scope.items.push([$scope.new_item.titleize(), $scope.new_item_cold_votes]);
+    $scope.items.push([$scope.new_item.trim().titleize(), $scope.new_item_cold_votes]);
+    $scope.items = $scope.items.sort(compare);
 
     $scope.new_item = '';
     $scope.new_item_cold_votes = 1;
   };
 
   $scope.addCategory = function() {
-    $scope.categories.push([$scope.new_category_name.titleize(), $scope.new_category_position]);
+    $scope.categories.push([$scope.new_category_name.trim().titleize(), $scope.new_category_position]);
+    $scope.categories = $scope.categories.sort(compare);
 
     $scope.new_category_name = '';
     $scope.new_category_position = 0;
@@ -19,10 +21,10 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
   $scope.doNothing = function() {};
 
-  $scope.items = PageConfig.items;
+  $scope.items = PageConfig.items.sort(compare);
   $scope.new_item_cold_votes = 1;
 
-  $scope.categories = PageConfig.categories;
+  $scope.categories = PageConfig.categories.sort(compare);
   $scope.new_category_position = 0;
   
 }]);

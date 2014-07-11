@@ -6,3 +6,12 @@ String.prototype.titleize = function() {
   }
   return array.join(' ')
 };
+
+//Sorting function based on the first item in an array
+function compare(a,b) {
+  if (a[0] < b[0])
+     return -1;
+  if (a[0] > b[0])
+    return 1;
+  return 0;
+}
