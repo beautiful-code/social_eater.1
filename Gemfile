@@ -45,7 +45,7 @@ gem 'unicorn'
 gem 'foreman'
 
 # Use debugger
-gem 'debugger'
+#gem 'debugger'
 gem 'bundler'
 
 gem 'devise', github: 'plataformatec/devise'
@@ -57,7 +57,6 @@ gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
 gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'dotenv-rails'
-gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'capistrano-rails'
