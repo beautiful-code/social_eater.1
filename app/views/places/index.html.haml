@@ -1,1 +1,19 @@
+.row#places_index
+  .col-xs-12
+    .header
+      .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+        .container
+          .navbar-header
+            %a.navbar-brand{:href => "/"}
+              = image_tag 'logo.png',alt: 'SocialEater logo'
+            %form{:role => "form"}
+              %input.form-control{:placeholder => "Search Restaurants", :type => "text",:id => "search_places",:name => "query"}
+
+
+    .content
+      %ul.list-group
+        - @places.each do |place|
+          %li.list-group-item
+            %h4= link_to place.name, place
+            %span Address
 

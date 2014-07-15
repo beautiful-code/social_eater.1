@@ -1,0 +1,107 @@
+#places_index {
+  .col-xs-12 {
+    padding: 0px;
+  }
+
+  .header {
+    // Navbar overrides starts
+    .navbar {
+      .navbar-header {
+        .navbar-brand {
+          padding: 8px 0px 15px 15px;
+          img {
+            height: 100%;
+          }
+        }
+
+        // Form style begin
+        form {
+          width: 80%;
+          padding: 5px 2px 5px 8px;
+          display: inline-block;
+
+          // Input style begin
+          input {
+            height: 40px;
+            font-size: 18px;
+            font-weight: 400;
+            border-radius: 5px;
+            color: #fff;
+            border: 2px solid #171717;
+            /* Attach a search icon to the background of the text box */
+            background: #4C4C4C url(<%= asset_path 'search.png' %>) center left no-repeat;
+            background-size: 12%;
+            padding-left:35px;
+
+            &:focus, &:active {
+              font-weight: 200;
+              border: 1px solid #171717;
+              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(203, 203, 203, 0.6);
+            }
+
+            &::-webkit-input-placeholder { /* WebKit browsers */
+                color: #D0CECD;
+            }
+            &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color: #D0CECD;
+                opacity: 1;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color: #D0CECD;
+                opacity: 1;
+            }
+            &:-ms-input-placeholder { /* Internet Explorer 10+ */
+                color: #D0CECD;
+            }
+          }
+          // Input style ends
+
+        }
+        // From style ends
+
+      }
+    }
+  }
+  // Navbar override ends
+
+  .content {
+    background-color: #E8E8E8;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+
+    .list-group {
+      padding: 0px;
+      margin: 0px;
+      .list-group-item {
+        background-color: #E8E8E8;
+        border-color:#BBBBBB;
+        border-right: 0px;
+        border-left: 0px;
+        padding-left: 25px;
+
+        h4 {
+          margin: 0px;
+          font-weight: 300;
+          font-size: 22px;
+        }
+
+        a{
+          color: #E60000;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        span {
+          color: #9F9F9F;
+        }
+
+        &:last-child {
+          border-bottom: 0px;
+        }
+      }
+    }
+  }
+
+}
