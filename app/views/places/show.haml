@@ -28,6 +28,7 @@
 
         - categories.each do |category|
           %div.tab-pane{id: "#{category.name}"}
+            %h4.heading= category.name
             - category.items.each do |item|
               .row
                 = render 'item', item: item
