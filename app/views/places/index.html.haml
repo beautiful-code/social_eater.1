@@ -8,12 +8,16 @@
               = image_tag 'logo.png',alt: 'SocialEater logo'
             %form{:role => "form"}
               %input.form-control{:placeholder => "Search Restaurants", :type => "text",:id => "search_places",:name => "query"}
-
+      = bootstrap_flash
 
     .content
       %ul.list-group
         - @places.each do |place|
-          %li.list-group-item
+          %li.list-group-item{place: place.id}
             %h4= link_to place.name, place
             %span Address
 
+:javascript
+  $('.list-group').delegate('li','click',function() {
+    window.location = '/places/'+ $(this).attr('place') ;
+  });

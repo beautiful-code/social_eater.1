@@ -1,4 +1,8 @@
 #homePage {
+  .col-xs-12 {
+    padding: 0px;
+  }
+
   &:after {
     content: '';
     background: linear-gradient(rgba(1, 0, 0, 0.75),rgba(1, 0, 0, 0.75)),url(<%= asset_path 'bg.png' %>) no-repeat 0 0;
@@ -15,10 +19,12 @@
     .logo {
       margin-top: 5%;
       width: 45%;
+      padding-left: 15px;
     }
   }
 
   .content {
+    padding: 0px 15px;
     text-align: center;
     margin-top: 41%;
 
