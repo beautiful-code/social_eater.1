@@ -112,3 +112,159 @@
 
 }
 
+/* Places show screen styles */
+
+#places_show{
+  background-color: #E8E8E8;
+  min-height: 100vh;
+  .col-xs-12 {
+    padding: 0px;
+  }
+
+  .header {
+    height: 60px;
+    background-color: #E8E8E8;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #AAAAAA;
+    h2 {
+      margin: 0px;
+      color: #E60000;
+      font-weight: 300;
+      font-size: 26px;
+    }
+    span {
+      color: #110A11;
+      font-size: 16px;
+    }
+    .col-xs-1 {
+      padding: 0px 0px 0px 10px;
+
+      .back-link {
+        font-size: 40px;
+        color: #AAAAAA;
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .col-xs-11 {
+      padding: 5px;
+    }
+  }
+
+  .content {
+    background-color: #E8E8E8;
+    h4.heading {
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-align: center;
+      color: #424141;
+      font-weight: 400;
+    }
+
+    .nav-tabs {
+      padding: 0px 15px 10px 15px;
+      border: 0px;
+      li {
+        a{
+          margin-bottom: 10px;
+          padding: 5px 15px;
+          border-color: #B4B4B4;
+          background-color: #D8D8D8;
+          color: #181619;
+          margin-right: 10px;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+
+        &.active a {
+          background-color: #F30000;
+          color: #fff;
+        }
+      }
+    }
+
+    .tab-content {
+      .tab-pane {
+        padding: 0px 10px 30px 15px;
+        .row {
+          margin: 0px;
+          width: 100%;
+        }
+        .item {
+          border: 1px solid #AAAAAA;
+          border-radius: 2px;
+          padding:8px 0px;
+          margin-bottom: 4px;
+          background-color: #FFF;
+
+          .col-xs-9 {
+            padding: 0px 10px;
+
+            p {
+              display: block;
+              width: 100%;
+              color: #4A4A4A;
+            }
+          }
+          .name {
+            float: left;
+            font-size: 22px;
+            font-weight: 200;
+          }
+
+          .desc {
+            font-size: 16px;
+            font-style: italic;
+          }
+
+          .price {
+            font-size: 16px;
+            .muted {
+              font-size: 12px;
+              color: #B0B0B0;
+            }
+          }
+
+          .friend_likes {
+            margin: 0px;
+            img.fb-pic {
+              height: 35px;
+              width: 35px;
+              border: 1px solid #B0B0B0;
+              margin-right: 3px;
+            }
+          }
+
+          .col-xs-3 {
+            text-align: center;
+            padding-left: 0px;
+            padding-bottom: 10px;
+            p {
+              margin: 0px;
+              img {
+                &.like {height: 40px;}
+                &.unlike {height: 40px;}
+              }
+            }
+
+            .votes {
+              padding-bottom: 10px;
+              color: #4A4A4A;
+              font-weight: 500;
+              font-size: 16px;
+              span {
+                color: #4A4A4A;
+                font-weight: 200;
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+}

@@ -16,4 +16,7 @@ class Place < ActiveRecord::Base
     items.select {|i| !i.category.present?}
   end
 
+  def top5
+    items.order(:cold_votes).limit(5)
+  end
 end

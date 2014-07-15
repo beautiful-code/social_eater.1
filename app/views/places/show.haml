@@ -1,15 +1,35 @@
-- model_class = Place
-%h1=@place.name
+.row#places_show
+  .col-xs-12
+    .header
+      .col-xs-12
+        .col-xs-1
+          = link_to places_path, class: 'back-link' do
+            %i.fa.fa-angle-left
+        .col-xs-11
+          %h2=@place.name
+          %span Address
 
-#items
-  %h3 Items
+    .content
+      - categories = @place.categories
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#top5", :role => "tab"} Top 5
+        - categories.each do |category|
+          %li
+            %a{"data-toggle" => "tab", :href => "##{category.name}", :role => "tab"}
+              = category.name
+
+      .tab-content
+        #top5.tab-pane.fade.in.active
+          %h4.heading Top Dishes
+          - @place.top5.each do |item|
+            .row
+              = render 'item',item: item
+
+        - categories.each do |category|
+          %div.tab-pane{id: "#{category.name}"}
+            - category.items.each do |item|
+              .row
+                = render 'item', item: item
 
 
-  - @place.ordered_items.each do |cat_id, items|
-    = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
-  - if @place.uncategorized_items.present?
-    = render :partial => 'category_items', :locals => {:category_name => 'Others', :items => @place.uncategorized_items}
-
-
-.form-group
-  = link_to 'Back', places_path, :class => 'btn btn-default'
