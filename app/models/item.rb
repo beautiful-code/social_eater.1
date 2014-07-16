@@ -14,4 +14,8 @@ class Item < ActiveRecord::Base
   def voter_ids
     votes_for.collect(&:voter_id)
   end
+
+  def total_votes
+    cold_votes + votes_for.size
+  end
 end

@@ -17,7 +17,7 @@
         ="#{friend_likes.count} friend likes"
   .col-xs-3
     %p.votes
-      = item.votes_for.size
+      = item.total_votes
       %span Likes
     - if current_user.voted_for? item
       %p.like_it
