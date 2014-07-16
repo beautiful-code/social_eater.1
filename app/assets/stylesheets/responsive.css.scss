@@ -1,0 +1,172 @@
+@media (min-width: 320px) and (max-width: 320px) {
+  /* Landing page */
+  #homePage {
+    .header {
+      .logo {
+        padding-left: 0px;
+      }
+    }
+
+    .content {
+      margin-top: 28%;
+
+      .tagline h1 {
+        font-size: 26px;
+      }
+
+      .loginButton {
+        padding: 0px;
+
+        .btn {
+          height: 40px;
+          font-size: 24px;
+          padding-top: 0px;
+          span {
+            font-size: 26px;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+
+@media (min-width: 360px) and (max-width: 360px) {
+  #homePage {
+
+    .content {
+
+      .tagline h1 {
+        font-size: 28px;
+      }
+
+      .loginButton {
+        padding: 0px;
+
+        .btn {
+          height: 45px;
+          font-size: 26px;
+          padding-top: 0px;
+          span {
+            font-size: 28px;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 360px) {
+  /* places list/search */
+  #places_index {
+    .header {
+      .navbar {
+        height: 45px;
+        .navbar-header {
+          .navbar-brand {
+            width: 25%;
+          }
+          form {
+            width: 74%;
+            padding-left: 0px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media (min-width: 480px) and (max-width: 480px) {
+  #homePage {
+    .header {
+      .logo {
+        margin-top: 2%;
+        width: 25%;
+      }
+    }
+
+    .content {
+      margin-top: 10%;
+
+      .loginButton {
+        padding: 0px 55px;
+
+        .btn {
+          padding-top: 0px;
+          height: 45px;
+          font-size: 24px;
+
+          span {
+            font-size: 26px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+@media (min-width: 480px) and (max-width: 640px) {
+  /* places list/search */
+  #places_index {
+    .header {
+      .navbar {
+        .navbar-header {
+          .navbar-brand {
+            width: 18%;
+          }
+          form {
+            width: 79%;
+            padding-left: 0px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media (min-width: 640px) and (max-width: 640px) {
+  #places_index .header .navbar .navbar-header{
+    form input {
+      background-size: 7%;
+    }
+    .navbar-brand img {
+      height: 125%;
+    }
+  }
+
+  #homePage {
+    .header {
+      .logo {
+        margin-top: 2%;
+        width: 25%;
+      }
+    }
+
+    .content {
+      margin-top: 10%;
+
+      .loginButton {
+        padding: 0px 85px;
+
+        .btn {
+          padding-top: 0px;
+          height: 45px;
+          font-size: 26px;
+
+          span {
+            font-size: 26px;
+          }
+        }
+      }
+    }
+  }
+}
+

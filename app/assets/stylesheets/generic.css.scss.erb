@@ -1,0 +1,76 @@
+// Generic styles
+
+.alert {
+  position: relative;
+  top: 50px;
+  margin: 0px -15px;
+  border-radius: 0px;
+  text-align: center;
+}
+
+
+@media (min-width: 320px) and (max-width: 768px) {
+  body {
+    .container-fluid {
+      display: block;
+    }
+    .desktop {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  body {
+    .container-fluid {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+
+
+.desktop {
+  &:after {
+    content: '';
+    background: linear-gradient(rgba(1, 0, 0, 0.75),rgba(1, 0, 0, 0.75)),url(<%= asset_path 'big-bg.jpg' %>) no-repeat 0 0;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  .header {
+    .logo {
+      margin-top: 5%;
+      width: 25%;
+    }
+    span {
+      color: #f8f8f8;
+      font-weight: 100;
+    }
+  }
+
+  .content {
+    padding: 0px 15px;
+    text-align: center;
+
+    .tagline {
+      margin-top: 5%;
+      font-weight: 100;
+      color: #fff;
+      font-size: 54px;
+    }
+    .message {
+      margin-top: 8%;
+      color: #fff;
+      font-weight: 100;
+    }
+  }
+}
+
