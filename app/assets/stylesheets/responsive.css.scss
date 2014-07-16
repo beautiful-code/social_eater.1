@@ -82,6 +82,12 @@
 }
 
 @media (min-width: 480px) and (max-width: 480px) {
+  #places_index .header .navbar .navbar-header{
+    form input {
+      background-size: 9%;
+    }
+  }
+
   #homePage {
     .header {
       .logo {
