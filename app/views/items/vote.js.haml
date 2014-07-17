@@ -1,4 +1,4 @@
 - if @activity
   $("#places_show #item_#{@item.id} p.votes").html("#{@item.total_votes} <span> Likes</span>");
 
-  $("#places_show #item_#{@item.id} p.like_it").html('<a href="#{unvote_place_item_path(@place,@item)}" data-method="post" data-remote="true"><img alt="Unlike button" class="unlike" src="/assets/unlike.png"></a>');
+  $("#places_show #item_#{@item.id} p.like_it").html('<a href="#{unvote_place_item_path(@place,@item)}" data-method="post" data-remote="true"><img alt="Unlike button" class="unlike" src="#{image_path('unlike.png')}"></a>');
