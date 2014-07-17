@@ -4,6 +4,7 @@ SocialEater::Application.routes.draw do
     resources :items,except: [:destroy,:new,:create,:update] do
       member do
         get "vote"
+        get "unvote"
       end
     end
   end

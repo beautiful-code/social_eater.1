@@ -21,7 +21,8 @@
       %span Likes
     - if current_user.voted_for? item
       %p.like_it
-        = image_tag 'unlike.png',alt: 'Unlike button',class: 'unlike'
+        = link_to unvote_place_item_path(@place,item) do
+          = image_tag 'unlike.png',alt: 'Unlike button',class: 'unlike'
     - else
       %p
         = link_to vote_place_item_path(@place,item) do

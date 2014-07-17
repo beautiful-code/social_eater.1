@@ -70,5 +70,4 @@ class User < ActiveRecord::Base
     User.find(friend_ids & item.voter_ids)
   end
 
-
 end

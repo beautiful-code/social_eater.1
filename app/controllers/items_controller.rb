@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_place
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :vote, :unvote]
 
   def index
     @items = Item.all
@@ -57,6 +57,12 @@ class ItemsController < ApplicationController
   #->Prelang (voting/acts_as_votable)
   def vote
     current_user.likes @item
+
+    redirect_to request.referrer
+  end
+
+  def unvote
+    current_user.unvote_for @item
 
     redirect_to request.referrer
   end
