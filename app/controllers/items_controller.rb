@@ -57,15 +57,21 @@ class ItemsController < ApplicationController
   #->Prelang (voting/acts_as_votable)
   def vote
     current_user.likes @item
-
-    redirect_to request.referrer
+    @activity = current_user.voted_for? @item
+    respond_to do |format|
+      format.html { redirect_to request.referrer }
+      format.js
+    end
   end
 
   def unvote
     current_user.unvote_for @item
-
-    redirect_to request.referrer
-  end
+    @activity = current_user.voted_for? @item
+    respond_to do |format|
+      format.html { redirect_to request.referrer }
+      format.js
+    end
+ end
 
 
   private

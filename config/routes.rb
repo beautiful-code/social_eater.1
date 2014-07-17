@@ -3,8 +3,8 @@ SocialEater::Application.routes.draw do
   resources :places, except: [:destroy,:new,:create,:update] do
     resources :items,except: [:destroy,:new,:create,:update] do
       member do
-        get "vote"
-        get "unvote"
+        post "vote"
+        post "unvote"
       end
     end
   end

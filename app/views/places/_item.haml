@@ -15,16 +15,16 @@
         - friend_likes.each do |friend|
           = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'
         ="#{friend_likes.count} friend likes"
-  .col-xs-3
+  .col-xs-3{id: "item_#{item.id}"}
     %p.votes
       = item.total_votes
       %span Likes
     - if current_user.voted_for? item
       %p.like_it
-        = link_to unvote_place_item_path(@place,item) do
+        = link_to unvote_place_item_path(@place,item),remote: true, method: :post do
           = image_tag 'unlike.png',alt: 'Unlike button',class: 'unlike'
     - else
-      %p
-        = link_to vote_place_item_path(@place,item) do
+      %p.like_it
+        = link_to vote_place_item_path(@place,item),remote: true, method: :post do
           = image_tag 'like.png',alt: 'Like button',class: 'like'
 
