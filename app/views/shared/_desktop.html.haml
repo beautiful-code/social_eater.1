@@ -9,5 +9,11 @@
         %h1.tagline
           Discover awesome food around you
 
-        -#%h1.message
-          Access the site from the mobile
+        .loginButton
+          - unless user_signed_in?
+            = link_to '/users/auth/facebook',class: 'btn btn-primary btn-block' do
+              Login with
+              %span facebook
+
+          - else
+            = link_to 'Dashboard',admin_places_path, class: 'btn btn-info btn-block'
