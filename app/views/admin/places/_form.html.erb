@@ -7,6 +7,20 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :image, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.file_field :image, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :remote_image_url,'or Image URL', :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :remote_image_url, :class => 'text-field form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <div class='col-md-offset-2 col-md-10'>
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

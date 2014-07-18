@@ -44,8 +44,6 @@ gem 'unicorn'
 
 gem 'foreman'
 
-# Use debugger
-#gem 'debugger'
 gem 'bundler'
 
 gem 'devise', github: 'plataformatec/devise'
@@ -58,9 +56,13 @@ gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
+gem 'carrierwave'
+gem 'rmagick', :require => 'RMagick'
+gem "fog"
 
 group :development, :test do
   gem 'capistrano-rails'
+  gem 'debugger'
 end
 
 group :deploy do

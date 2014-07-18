@@ -1,15 +1,17 @@
 - model_class = Place
-.lnr
+.col-xs-12
   %h1=@place.name
   .updated-item.alert-success.alert-dismissable
   .updated-item-progress.alert-danger.alert-dismissable
+
+  = image_tag @place.image_url if @place.image?
 
   %h3
     = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
 
 
   #items
-    .row
+    .row.col-xs-12
       #items
         %h3 Items
         = link_to 'Add Item', [:new,:admin,@place,:item]

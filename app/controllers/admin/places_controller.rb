@@ -74,7 +74,7 @@ class Admin::PlacesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name)
+      params.require(:place).permit(:name,:image,:remote_image_url)
     end
 
     def save_notes

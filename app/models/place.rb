@@ -1,6 +1,11 @@
 class Place < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
+
   has_many :items
   has_many :categories, :order => "position ASC"
+
+
+  validates_presence_of :name
 
   def ordered_items
     categorized_items = items.select {|i| i.category.present?}
@@ -8,8 +13,6 @@ class Place < ActiveRecord::Base
     ret.each do |cat_id, items|
       items.sort! {|a,b| b.total_votes <=> a.total_votes}
     end
-
-
     ret
   end
 
