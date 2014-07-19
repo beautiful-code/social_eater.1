@@ -1,8 +1,10 @@
 - model_class = Place
 .col-xs-12
-  %h1
-    =@place.name
-    = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
+  #heading
+    %span.name=@place.name
+    %span.short-address= "( #{@place.short_address} )"
+    %span.actions
+      = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
   .updated-item.alert-success.alert-dismissable
   .updated-item-progress.alert-danger.alert-dismissable
 
@@ -12,8 +14,8 @@
   #items
     .row.col-xs-12
       #items
-        %h3 
-          Items
+        .items-header
+          %span.title Items
           = link_to 'Add Item', [:new,:admin,@place,:item]
 
         - @place.ordered_items.each do |cat_id, items|
