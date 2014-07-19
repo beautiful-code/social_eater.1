@@ -18,6 +18,8 @@
     |
     = f.text_field :cold_votes, :class => 'cold_votes'
     |
+    = item.aggregated_cold_votes
+    |
     %span.flag
       = f.check_box :seasonal
       = f.label :seasonal

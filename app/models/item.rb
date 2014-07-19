@@ -15,7 +15,15 @@ class Item < ActiveRecord::Base
     votes_for.collect(&:voter_id)
   end
 
+  def aggregated_cold_votes
+    if category.present?
+      (cold_votes + (category.cold_votes * (cold_votes.to_f / category.total_item_cold_votes))).round
+    else
+      cold_votes
+    end
+  end
+
   def total_votes
-    cold_votes + votes_for.size
+    aggregated_cold_votes + votes_for.size
   end
 end
