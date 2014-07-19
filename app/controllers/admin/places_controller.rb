@@ -96,7 +96,8 @@ class Admin::PlacesController < Admin::MainController
         category.update_attributes({
           :place => @place,
           :name => params["category_#{index}"], 
-          :position => params["position_#{index}"]
+          :position => params["position_#{index}"],
+          :cold_votes => params["cat_cv_#{index}"],
         })
 
        end

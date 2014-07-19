@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::MainController
 
   before_action :set_place
   before_action :set_category, only: [:show, :edit, :update, :destroy]
@@ -52,6 +52,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:place_id, :name, :position)
+    params.require(:category).permit(:place_id, :name, :position, :cold_votes)
   end
 end

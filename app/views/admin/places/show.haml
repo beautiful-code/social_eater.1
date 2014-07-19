@@ -28,6 +28,10 @@
           .category
             %span.name=category.name
             %span.position=category.position
+            %span.cold_votes
+              ( CV
+              =category.cold_votes
+              )
             %span.name
               = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
                 = glyph 'pencil'

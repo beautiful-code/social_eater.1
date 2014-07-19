@@ -9,14 +9,16 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
     $scope.new_item = '';
     $scope.new_item_cold_votes = 1;
+    $scope.new_item_cold_votes = 1;
   };
 
   $scope.addCategory = function() {
-    $scope.categories.push([$scope.new_category_name.trim().titleize(), $scope.new_category_position]);
+    $scope.categories.push([$scope.new_category_name.trim().titleize(), $scope.new_category_position, $scope.new_category_cold_votes]);
     $scope.categories = $scope.categories.sort(compare);
 
     $scope.new_category_name = '';
     $scope.new_category_position = 0;
+    $scope.new_category_cold_votes = 0;
   };
 
   $scope.doNothing = function() {};
@@ -26,6 +28,7 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
   $scope.categories = PageConfig.categories.sort(compare);
   $scope.new_category_position = 0;
+  $scope.new_category_cold_votes = 0;
   
 }]);
 
@@ -50,6 +53,15 @@ app.controller('ItemCtrl', ['$scope',function ($scope) {
 
 
 app.controller('CategoryCtrl', ['$scope',function ($scope) {
+
+  $scope.upVote = function() {
+    $scope.categories[$scope.$index][2]++;
+  };
+
+  $scope.downVote = function() {
+    var item_index = $scope.$index;
+    $scope.categories[$scope.$index][2]--;
+  };
 
   $scope.deleteCategory = function() {
     $scope.categories.splice($scope.$index, 1);
