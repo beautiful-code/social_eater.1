@@ -53,7 +53,21 @@
   }
 }
 
+form.even {
+  background-color: white;
+}
+
 .edit-item {
+  padding: 2px;
+  input.desc{
+    width: 400px;
+  }
+  input.price {
+    width: 40px;
+  }
+  input.cold_votes{
+    width: 40px;
+  }
   .progress-spin {
     padding: 2px;
     display: inline;

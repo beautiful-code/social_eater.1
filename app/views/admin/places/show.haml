@@ -1,20 +1,20 @@
 - model_class = Place
 .col-xs-12
-  %h1=@place.name
+  %h1
+    =@place.name
+    = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
   .updated-item.alert-success.alert-dismissable
   .updated-item-progress.alert-danger.alert-dismissable
 
-  = image_tag @place.image_url if @place.image?
 
-  %h3
-    = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'
 
 
   #items
     .row.col-xs-12
       #items
-        %h3 Items
-        = link_to 'Add Item', [:new,:admin,@place,:item]
+        %h3 
+          Items
+          = link_to 'Add Item', [:new,:admin,@place,:item]
 
         - @place.ordered_items.each do |cat_id, items|
           = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
@@ -42,6 +42,7 @@
         .col-md-6
           = render 'admin/items/form'
 
+  = image_tag @place.image_url if @place.image?
 
 
   .form-group
