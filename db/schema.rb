@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140719103000) do
     t.datetime "updated_at"
     t.string   "image"
     t.string   "short_address"
+    t.string   "phone"
   end
 
   create_table "roles", force: true do |t|
