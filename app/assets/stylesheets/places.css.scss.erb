@@ -122,38 +122,45 @@
   }
 
   .header {
-    height: 60px;
-    background-color: #E8E8E8;
+    height: 180px;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #AAAAAA;
+
     h2 {
       margin: 0px;
-      color: #E60000;
-      font-weight: 300;
+      color: #fff;
+      font-weight: 400;
       font-size: 26px;
+      text-shadow: 2px 2px 2px #333;
     }
     span {
-      color: #110A11;
-      font-size: 16px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 300;
+      text-shadow: 2px 2px 1px #333;
     }
-    .col-xs-1 {
-      padding: 0px 0px 0px 10px;
+    .col-xs-12:first-of-type {
+      padding: 0px;
+      clear: both;
 
       .back-link {
-        font-size: 40px;
-        color: #AAAAAA;
-        &:hover {
-          color: #333;
+        padding: 0px 15px 0px 8px;
+        font-size: 44px;
+        color: #F30000;
+        border: 0px;
+        background: none;
+        text-shadow: 2px 2px 2px #fff;
+        &:hover, &:active, &:focus {
+          border: 0px;
+          color: #D32;
+          box-shadow: none;
         }
       }
     }
 
-    .col-xs-11 {
-      padding: 5px;
-      span {
-        font-weight: 300;
-      }
+    .col-xs-12:last-of-type {
+      padding: 10px;
+      margin-top: 40px;
     }
   }
 
@@ -169,7 +176,7 @@
     }
 
     .nav-tabs {
-      padding: 0px 15px 0px 15px;
+      padding: 0px 10px;
       border: 0px;
       li {
         a{
@@ -193,7 +200,7 @@
 
     .tab-content {
       .tab-pane {
-        padding: 0px 10px 30px 15px;
+        padding: 0px 10px 30px 10px;
         .row {
           margin: 0px;
           width: 100%;
@@ -206,7 +213,7 @@
           background-color: #FFF;
 
           .col-xs-9 {
-            padding: 0px 10px;
+            padding: 5px 10px 0px 10px;
 
             p {
               display: block;
@@ -216,14 +223,16 @@
           }
           .name {
             float: left;
-            font-size: 22px;
-            font-weight: 300;
+            font-size: 18px;
+            font-weight: 600;
+
+            span.price {
+              font-size: 14px;
+              padding-left: 10px;
+              font-weight: 300;
+            }
           }
 
-          .desc {
-            font-size: 16px;
-            font-style: italic;
-          }
 
           .price {
             font-size: 16px;
@@ -233,30 +242,32 @@
             }
           }
 
-          .friend_likes {
-            margin: 0px;
-            img.fb-pic {
-              height: 35px;
-              width: 35px;
-              border: 1px solid #B0B0B0;
-              margin-right: 3px;
-            }
-          }
 
           .col-xs-3 {
+            padding: 0px;
             text-align: center;
             padding-left: 0px;
             padding-bottom: 10px;
             p {
               margin: 0px;
+              display: inline;
               img {
-                &.like {height: 40px;}
-                &.unlike {height: 40px;}
+                display: inline;
+                &.like {height: 25px;}
+                &.unlike {height: 25px;}
               }
             }
 
+            .like_it {
+              position: absolute;
+              top: 0px;
+            }
+
             .votes {
-              padding-bottom: 10px;
+              position: absolute;
+              left: 20px;
+              top: 6px;
+              //padding-bottom: 10px;
               color: #4A4A4A;
               font-weight: 500;
               font-size: 16px;
@@ -266,6 +277,35 @@
               }
             }
           }
+
+          .item_desc {
+            padding: 8px 5px 0px 10px;
+            margin: 0px;
+            border-top: 1px solid #ddd;
+            .desc {
+              margin: 0px;
+              font-size: 14px;
+              font-weight: 300;
+            }
+          }
+
+          .fb_info {
+            padding: 6px 10px 0px 10px;
+            border-top: 1px solid #ddd;
+            .friend_likes {
+              margin: 0px;
+              font-size: 14px;
+              font-weight: 300;
+              img.fb-pic {
+                height: 35px;
+                width: 35px;
+                border: 1px solid #B0B0B0;
+                margin-right: 3px;
+              }
+            }
+          }
+
+
         }
 
       }

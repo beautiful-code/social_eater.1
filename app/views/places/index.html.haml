@@ -15,7 +15,13 @@
         - @places.each do |place|
           %li.list-group-item{place: place.id}
             %h4= link_to place.name, place
-            %span Address
+            %span
+              - if place.short_address.present?
+                %i.fa.fa-map-marker
+                = place.short_address
+              - else
+                %i.fa.fa-map-marker
+                Address
 
 :javascript
   $('.list-group').delegate('li','click',function() {
