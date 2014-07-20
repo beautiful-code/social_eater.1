@@ -8,6 +8,7 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory  = ENV['S3_BUCKET_NAME']
+  config.fog_public = true
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
 
 end
