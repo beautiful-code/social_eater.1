@@ -122,7 +122,7 @@
   }
 
   .header {
-    height: 180px;
+    height: 160px;
     margin-bottom: 10px;
     padding-bottom: 10px;
 
@@ -130,38 +130,47 @@
       margin: 0px;
       color: #fff;
       font-weight: 600;
-      font-size: 26px;
+      font-size: 22px;
       text-shadow: 2px 2px 2px #333;
     }
-    span {
+    p {
       color: #fff;
+      margin: 0px;
       font-size: 14px;
       font-weight: 400;
       text-shadow: 2px 2px 1px #333;
     }
-    .col-xs-12:first-of-type {
-      padding: 0px;
-      clear: both;
+    .col-xs-12 {
+      &:first-of-type {
+        padding: 0px;
+        clear: both;
+      }
+
+      &:last-of-type {
+        height: 60%;
+        padding: 10px;
+        margin-top: 8px;
+        box-shadow: 0 -52px 50px rgba(141, 141, 141, 0.7)inset;
+      }
 
       .back-link {
         padding: 0px 15px 0px 8px;
-        font-size: 44px;
         color: #F30000;
         border: 0px;
         background: none;
-        text-shadow: 2px 2px 2px #fff;
+        text-shadow: 2px 2px 2px #8E8E8E;
         &:hover, &:active, &:focus {
           border: 0px;
           color: #D32;
           box-shadow: none;
         }
+
+        i {
+          font-size: 62px;
+        }
       }
     }
 
-    .col-xs-12:last-of-type {
-      padding: 10px;
-      margin-top: 40px;
-    }
   }
 
   .content {
@@ -205,15 +214,17 @@
           margin: 0px;
           width: 100%;
         }
+
+
         .item {
           border: 1px solid #AAAAAA;
           border-radius: 2px;
-          padding:8px 0px;
+          padding:8px 0px 0px;
           margin-bottom: 4px;
           background-color: #FFF;
 
-          .col-xs-9 {
-            padding: 5px 10px 0px 10px;
+          .col-xs-10 {
+            padding: 5px 0px;
 
             p {
               display: block;
@@ -223,13 +234,29 @@
           }
           .name {
             float: left;
+            margin: 0px;
             font-size: 18px;
             font-weight: 600;
 
             span.price {
               font-size: 14px;
-              padding-left: 10px;
+              padding-left: 12px;
               font-weight: 300;
+            }
+
+            span.desc {
+              padding-left: 8px;
+              padding-top: 5px;
+              a {
+                &.less { display: none;}
+                font-weight: 400;
+                font-size: 12px;
+                color: #F30000;
+                &:hover {
+                  cursor: pointer;
+                  text-decoration: none;
+                }
+              }
             }
           }
 
@@ -243,8 +270,7 @@
           }
 
 
-          .col-xs-3 {
-            padding: 0px;
+          .col-xs-2 {
             text-align: center;
             padding-left: 0px;
             padding-bottom: 10px;
@@ -261,16 +287,22 @@
             .like_it {
               position: absolute;
               top: 0px;
+              i.fa {
+                font-size: 25px;
+                margin-top: 5px;
+                color: #7D7D7D;
+              }
             }
 
             .votes {
               position: absolute;
-              left: 20px;
-              top: 6px;
+              left: 0px;
+              top: 5px;
               //padding-bottom: 10px;
               color: #4A4A4A;
-              font-weight: 600;
-              font-size: 16px;
+              font-weight: 400;
+              font-size: 18px;
+              color: #F30000;
               span {
                 color: #4A4A4A;
                 font-weight: 200;
@@ -279,9 +311,15 @@
           }
 
           .item_desc {
-            padding: 5px 5px 5px 10px;
-            margin: 0px;
-            border-top: 1px solid #ddd;
+            display: none;
+            padding: 5px 0px 0px;
+
+            -webkit-transition: .125s linear;
+            -moz-transition: .125s linear;
+            -ms-transition: .125s linear;
+            -o-transition: .125s linear;
+            transition: .125s linear;
+
             .desc {
               margin: 0px;
               font-size: 14px;
@@ -289,18 +327,29 @@
             }
           }
 
+          .col-xs-12 {
+            width: 94%;
+            margin: 0px 10px;
+
+
+            &:last-child{
+              padding-bottom: 8px;
+            }
+          }
+
           .fb_info {
-            padding: 6px 10px 0px 10px;
-            border-top: 1px solid #ddd;
+            margin: 0px 10px;
+            padding: 6px 0px 0px;
             .friend_likes {
               margin: 0px;
               font-size: 14px;
               font-weight: 300;
+              color: #979797;
               img.fb-pic {
                 height: 35px;
                 width: 35px;
                 border: 1px solid #B0B0B0;
-                margin-right: 3px;
+                margin-right: 1px;
               }
             }
           }

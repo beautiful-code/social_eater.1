@@ -1,14 +1,25 @@
-.col-xs-12.item
+- css_id = "item_#{item.id}"
+.col-xs-12.item{id: css_id}
   .col-xs-12
-    .col-xs-9
+    .col-xs-10
       %p.name
         =item.name
         %span.price
-          - if item.price
+          - if item.price.present?
             %i.fa.fa-inr
             = item.price
 
-    .col-xs-3{id: "item_#{item.id}"}
+        - if item.desc.present?
+          %span.desc
+            %a.more{role: 'link'}
+              More info
+              %i.fa.fa-angle-down
+
+            %a.less{role: 'link'}
+              Less info
+              %i.fa.fa-angle-up
+
+    .col-xs-2
       %p.votes
         = item.total_votes
         - if current_user.voted_for? item
@@ -28,6 +39,18 @@
   - if friend_likes.present?
     .col-xs-12.fb_info
       %p.friend_likes
-        - friend_likes.each do |friend|
+        - friend_likes.first(2).each do |friend|
           = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'
-        ="#{friend_likes.count} friend likes"
+
+        - if friend_likes.count < 2
+        - elsif friend_likes.count > 2
+          and
+          = link_to "#{ friend_likes.count - 2 } other",'#fb_friends'
+        #{'friend'.pluralize(friend_likes.count)} like this
+
+- if item.desc.present? or friend_likes.present?
+  :scss
+    .item#{css_id}
+      .col-xs-12:first-child {
+        border-bottom: 1px solid #ddd;
+      }
