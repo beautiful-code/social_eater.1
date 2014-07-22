@@ -139,6 +139,10 @@
       font-size: 14px;
       font-weight: 400;
       text-shadow: 2px 2px 1px #333;
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
     }
     .col-xs-12 {
       &:first-of-type {
@@ -150,7 +154,7 @@
         height: 60%;
         padding: 10px;
         margin-top: 8px;
-        box-shadow: 0 -52px 50px rgba(141, 141, 141, 0.7)inset;
+        box-shadow: 0 -62px 60px rgba(141, 141, 141, 0.7)inset;
       }
 
       .back-link {
@@ -219,12 +223,12 @@
         .item {
           border: 1px solid #AAAAAA;
           border-radius: 2px;
-          padding:8px 0px 0px;
+          padding:8px 0px;
           margin-bottom: 4px;
           background-color: #FFF;
 
-          .col-xs-10 {
-            padding: 5px 0px;
+          .col-xs-9 {
+            padding: 5px 5px 5px 0px;
 
             p {
               display: block;
@@ -235,22 +239,26 @@
           .name {
             float: left;
             margin: 0px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
 
             span.price {
-              font-size: 14px;
-              padding-left: 12px;
-              font-weight: 300;
+              font-size: 13px;
+              padding-left: 5px;
+              color: #7E7E7E;
+              font-weight:normal;
+              i {
+                font-size: 11px;
+              }
             }
 
             span.desc {
-              padding-left: 8px;
+              padding-left: 4px;
               padding-top: 5px;
               a {
                 &.less { display: none;}
                 font-weight: 400;
-                font-size: 12px;
+                font-size: 11px;
                 color: #F30000;
                 &:hover {
                   cursor: pointer;
@@ -270,23 +278,23 @@
           }
 
 
-          .col-xs-2 {
+          .col-xs-3 {
             text-align: center;
-            padding-left: 0px;
-            padding-bottom: 10px;
+            padding: 5px 0px;
             p {
               margin: 0px;
               display: inline;
               img {
                 display: inline;
-                &.like {height: 25px;}
-                &.unlike {height: 25px;}
+                &.like {height: 32px;}
+                &.unlike {height: 32px;}
               }
             }
 
             .like_it {
               position: absolute;
-              top: 0px;
+              top: -5px;
+              right: 0px;
               i.fa {
                 font-size: 25px;
                 margin-top: 5px;
@@ -296,13 +304,12 @@
 
             .votes {
               position: absolute;
-              left: 0px;
-              top: 5px;
-              //padding-bottom: 10px;
-              color: #4A4A4A;
-              font-weight: 400;
-              font-size: 18px;
-              color: #F30000;
+              top: 0px;
+              right: 45px;
+              text-align: right;
+              color: #DE2323;
+              font-weight: 300;
+              font-size: 24px;
               span {
                 color: #4A4A4A;
                 font-weight: 200;

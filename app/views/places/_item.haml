@@ -1,35 +1,33 @@
 - css_id = "item_#{item.id}"
 .col-xs-12.item{id: css_id}
   .col-xs-12
-    .col-xs-10
+    .col-xs-9
       %p.name
         =item.name
         %span.price
-          - if item.price.present?
+          - if item.price.present? and item.price > 0
             %i.fa.fa-inr
-            = item.price
+            = item.price.to_i
 
         - if item.desc.present?
           %span.desc
             %a.more{role: 'link'}
-              More info
+              More
               %i.fa.fa-angle-down
 
             %a.less{role: 'link'}
-              Less info
+              Less
               %i.fa.fa-angle-up
 
-    .col-xs-2
-      %p.votes
-        = item.total_votes
+    .col-xs-3
+      %p.votes= item.total_votes
+      %p.like_it
         - if current_user.voted_for? item
-          %p.like_it
-            = link_to unvote_place_item_path(@place,item),remote: true, method: :post do
-              = image_tag 'unlike.png',alt: 'Unlike button',class: 'unlike'
+          = link_to unvote_place_item_path(@place,item),remote: true, method: :post do
+            = image_tag 'unlike.png',alt: 'Unlike button',class: 'unlike'
         - else
-          %p.like_it
-            = link_to vote_place_item_path(@place,item),remote: true, method: :post do
-              = image_tag 'like.png',alt: 'Like button',class: 'like'
+          = link_to vote_place_item_path(@place,item),remote: true, method: :post do
+            = image_tag 'like.png',alt: 'Like button',class: 'like'
 
   - if item.desc.present?
     .col-xs-12.item_desc
@@ -48,9 +46,15 @@
           = link_to "#{ friend_likes.count - 2 } other",'#fb_friends'
         #{'friend'.pluralize(friend_likes.count)} like this
 
-- if item.desc.present? or friend_likes.present?
-  :scss
-    .item#{css_id}
-      .col-xs-12:first-child {
+  // Dynamic css hack
+  - if item.desc.present? && friend_likes.present?
+    :css
+      .item##{css_id} .col-xs-12:first-child {
         border-bottom: 1px solid #ddd;
       }
+  - elsif item.desc.present? || friend_likes.present?
+    :css
+      .item##{css_id} .col-xs-12:nth-child(2) {
+        border-top: 1px solid #ddd;
+      }
+
