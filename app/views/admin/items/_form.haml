@@ -20,9 +20,10 @@
     |
     = item.aggregated_cold_votes
     |
-    %span.flag
-      = f.check_box :seasonal
-      = f.label :seasonal
+    - if false
+      %span.flag
+        = f.check_box :seasonal
+        = f.label :seasonal
     %span.flag
       = f.check_box :non_veg
       = f.label :non_veg

@@ -1,0 +1,89 @@
+"South Indian":
+  - 'Tiffin'
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Desserts'
+
+"Andhra":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Desserts'
+
+"Bakery":
+  - 'Snacks'
+  - 'Cakes/Pastries'
+  - 'Sweets'
+  - 'Beverages'
+
+"Cafe":
+  - 'Snacks'
+  - 'Pastries'
+  - 'Beverages'
+
+"Chinese":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Rice/Noodles'
+  - 'Desserts'
+
+"Continental":
+  - 'Soup/Starters'
+  - 'Salad'
+  - 'Main Course'
+  - 'Desserts'
+
+"Fast Food":
+  - 'Snacks'
+  - 'Meals'
+  - 'Desserts'
+
+"Hyderabadi":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Biryanis'
+  - 'Desserts'
+
+"Mughlai":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Biryanis'
+  - 'Desserts'
+
+"Pizza":
+  - 'Pizzas'
+  - 'Sides'
+
+"Seafood":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Desserts'
+
+"Thai":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Rice/Noodles'
+
+"North Indian":
+  - 'Soup/Starters'
+  - 'Main Course'
+  - 'Bread'
+  - 'Desserts'
+
+"Mexican":
+  - 'Soup/Starters'
+  - 'Salads'
+  - 'Main Course'
+  - 'Desserts'
+
+"Ice Cream":
+  - 'Fruits'
+  - 'Chocolate'
+  - 'Nuts'
+  - 'Other'
+
+"Italian":
+  - 'Soup/Starters'
+  - 'Pizzas'
+  - 'Pastas'
+  - 'Main Course'
+  - 'Desserts'

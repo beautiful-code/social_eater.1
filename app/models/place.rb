@@ -4,8 +4,26 @@ class Place < ActiveRecord::Base
   has_many :items
   has_many :categories, :order => "position ASC"
 
+  CUISINES = CUISINE_TO_CATEGORIES.keys
 
+  serialize :cuisines, Array
   validates_presence_of :name
+
+  after_create :populate_categories
+
+  def populate_categories
+    categories = []
+
+    self.cuisines.each do |cuisine|
+      categories = categories | CUISINE_TO_CATEGORIES[cuisine]
+    end
+
+    categories.each_with_index do |category, index|
+      Category.create(:place => self, :name => category, :position => index*5, :cold_votes => 0)
+    end
+
+  end
+
 
   def ordered_items
     categorized_items = items.select {|i| i.category.present?}

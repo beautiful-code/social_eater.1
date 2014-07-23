@@ -33,7 +33,7 @@ class Admin::PlacesController < Admin::MainController
 
     respond_to do |format|
       if @place.save
-        format.html { redirect_to [:admin,:places], notice: 'Place was successfully created.' }
+        format.html { redirect_to [:admin,@place], notice: 'Place was successfully created.' }
         format.json { render action: 'show', status: :created, location: @place }
       else
         format.html { render action: 'new' }
@@ -74,7 +74,8 @@ class Admin::PlacesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url)
+      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url)
+      whitelisted_params.merge(:cuisines => params[:cuisines] || [])
     end
 
     def save_notes

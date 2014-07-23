@@ -35,6 +35,17 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :cuisines, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%- Place::CUISINES.each do |cuisine| %>
+        <%= check_box_tag 'cuisines[]' , cuisine, @place.cuisines.include?(cuisine) %>
+        <%= cuisine %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
     <div class='col-md-offset-2 col-md-10'>
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
