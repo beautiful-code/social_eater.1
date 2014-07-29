@@ -13,6 +13,10 @@ class Place < ActiveRecord::Base
 
   scope :enabled, where(:disabled => false)
 
+  def self.sorted
+    order('name asc')
+  end
+
   def populate_categories
     categories = []
 
