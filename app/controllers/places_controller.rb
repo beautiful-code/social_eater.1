@@ -2,28 +2,20 @@ class PlacesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
-  # GET /places
-  # GET /places.json
   def index
-    @places = Place.all
+    @places = Place.enabled
   end
 
-  # GET /places/1
-  # GET /places/1.json
   def show
   end
 
-  # GET /places/new
   def new
     @place = Place.new
   end
 
-  # GET /places/1/edit
   def edit
   end
 
-  # POST /places
-  # POST /places.json
   def create
     @place = Place.new(place_params)
 

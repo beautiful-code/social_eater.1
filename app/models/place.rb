@@ -11,6 +11,8 @@ class Place < ActiveRecord::Base
 
   after_create :populate_categories
 
+  scope :enabled, where(:disabled => false)
+
   def populate_categories
     categories = []
 

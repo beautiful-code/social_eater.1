@@ -9,6 +9,11 @@
   .updated-item.alert-success.alert-dismissable
   .updated-item-progress.alert-danger.alert-dismissable
 
+  - if @place.disabled
+    .alert.alert-warning
+      This place has been disabled.
+      = link_to 'Edit this place to enable', [:edit,:admin,@place]
+
 
 
 

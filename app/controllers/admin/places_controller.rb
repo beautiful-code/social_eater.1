@@ -74,7 +74,7 @@ class Admin::PlacesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url)
+      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url, :disabled)
       whitelisted_params.merge(:cuisines => params[:cuisines] || [])
     end
 
