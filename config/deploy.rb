@@ -46,6 +46,7 @@ set :linked_dirs, %w{log tmp/backup tmp/pids tmp/cache tmp/sockets public/assets
 # for details of operations
 set(:config_files, %w(
   Procfile.deployed
+  nginx.conf
 ))
 
 # which config files should be made executable after copying
