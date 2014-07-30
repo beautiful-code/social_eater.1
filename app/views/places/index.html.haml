@@ -1,5 +1,5 @@
 .row#places_index
-  .col-xs-12
+  .col-xs-12#places
     .header
       .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
         .container
@@ -7,15 +7,19 @@
             %a.navbar-brand{:href => "/"}
               = image_tag 'logo.png',alt: 'SocialEater logo'
             %form{:role => "form"}
-              %input.form-control{:placeholder => "Search Restaurants", :type => "text",:id => "search_places",:name => "query"}
+              %input.form-control{:placeholder => "Search Restaurants", :type => "text",:id => "search_places",:name => "query",class: 'search'}
+            %div.userpic
+              = link_to edit_user_registration_path do
+                = image_tag current_user.provider_pic,alt: 'profile pic'
+
       = bootstrap_flash
 
     .content
-      %ul.list-group
+      %ul.list-group.list
         - @places.each do |place|
           %li.list-group-item{place: place.id}
-            %h4= link_to place.name, place
-            %span
+            %h4.name= link_to place.name,place
+            %span.address
               - if place.short_address.present?
                 %i.fa.fa-map-marker
                 = place.short_address
@@ -23,7 +27,21 @@
                 %i.fa.fa-map-marker
                 Address
 
+      -#%center
+        %ul.pagination
+
 :javascript
   $('.list-group').delegate('li','click',function() {
     window.location = '/places/'+ $(this).attr('place') ;
   });
+
+  var placesList = new List(
+    'places',
+    {
+      valueNames: [ 'name', 'address' ]
+      //page: 10,
+      //plugins: [
+      //  ListPagination({})
+      //]
+    }
+  );
