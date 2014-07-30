@@ -3,6 +3,12 @@
     padding: 0px;
   }
 
+  #places {
+    .navbar-inverse {
+      border: 0px;
+    }
+  }
+
   .alert {
     margin: 0px;
   }
@@ -20,6 +26,15 @@
 
         .userpic {
           display: inline;
+          &:hover {
+            cursor: pointer;
+          }
+          a {
+            color: #fff;
+            &:hover {
+              text-decoration: none;
+            }
+          }
           img {
             width: 38px;
             height: 38px;
@@ -27,11 +42,25 @@
             border: 2px solid #fff;
             margin-top: -5px;
           }
+          ul.dropdown-menu {
+            left: initial;
+            right: -5px;
+            top: 32px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            background-color: #222;
+            border: 0px;
+
+            a:hover {
+              background-color: #ddd;
+              color: #222;
+            }
+          }
         }
 
         // Form style begin
         form {
-          width: 67%;
+          width: 66%;
           padding: 5px 2px 5px 8px;
           display: inline-block;
 
@@ -297,14 +326,14 @@
               display: inline;
               img {
                 display: inline;
-                &.like {height: 32px;}
-                &.unlike {height: 32px;}
+                &.like {height: 28px;}
+                &.unlike {height: 28px;}
               }
             }
 
             .like_it {
               position: absolute;
-              top: -5px;
+              top: 0px;
               right: 0px;
               i.fa {
                 font-size: 25px;
@@ -315,12 +344,12 @@
 
             .votes {
               position: absolute;
-              top: 0px;
+              top: 5px;
               right: 45px;
               text-align: right;
               color: #DE2323;
-              font-weight: 300;
-              font-size: 24px;
+              font-weight: 400;
+              font-size: 20px;
               span {
                 color: #4A4A4A;
                 font-weight: 200;
@@ -348,11 +377,6 @@
           .col-xs-12 {
             width: 94%;
             margin: 0px 10px;
-
-
-            &:last-child{
-              padding-bottom: 8px;
-            }
           }
 
           .fb_info {
