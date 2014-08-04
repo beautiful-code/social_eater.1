@@ -31,7 +31,6 @@
 
       .tab-content
         #top5.tab-pane.fade.in.active
-          /%h4.heading Top Dishes
           - @place.top(5).each do |item|
             .row
               = render 'item',item: item
@@ -39,14 +38,20 @@
         - @place.ordered_items.each do |cat_id, items|
           - category = Category.find(cat_id)
           %div.tab-pane{id: "#{category.id}"}
-            /%h4.heading= category.name
-            - items.each do |item|
-              .row
-                = render 'item', item: item
+            - if category.tag_hash.size > 1
+              - category.tag_hash.each do |tag, items|
+                - if items.present?
+                  %h5= tag
+                  - items.each do |item|
+                    .row
+                      = render 'item',item: item
+            - else
+              - items.each do |item|
+                .row
+                  = render 'item', item: item
 
         - if @place.uncategorized_items.present?
           #uncategorized.tab-pane
-            /%h4.heading Uncategorized
             - @place.uncategorized_items.each do |item|
               .row
                 = render 'item',item: item

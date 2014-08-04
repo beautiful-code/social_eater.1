@@ -17,8 +17,9 @@
     = f.text_field :price, :class => 'price', :value => item.price.to_i, :placeholder => 'Rs'
     |
     = f.text_field :cold_votes, :class => 'cold_votes'
-    |
-    = item.aggregated_cold_votes
+    - if false
+      |
+      = item.aggregated_cold_votes
     |
     - if false
       %span.flag
@@ -31,6 +32,11 @@
     - @place.categories.each do |cat|
       = f.radio_button :category_id, cat.id
       = f.label cat.name
+    - if @place.tags.present?
+      |
+      - @place.tags.each do |tag|
+        = f.radio_button :tag, tag 
+        = f.label tag.capitalize
     = hidden_field :item, :place_id, :value => @place.id
 
     |

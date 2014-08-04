@@ -30,6 +30,10 @@ class Place < ActiveRecord::Base
 
   end
 
+  def tags
+    categories.collect(&:tags_list).compact.flatten.uniq
+  end
+
 
   def ordered_items
     categorized_items = items.select {|i| i.category.present?}

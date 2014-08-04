@@ -52,6 +52,6 @@ class Admin::CategoriesController < Admin::MainController
   end
 
   def category_params
-    params.require(:category).permit(:place_id, :name, :position, :cold_votes)
+    params.require(:category).permit(:place_id, :name, :tags, :position, :cold_votes)
   end
 end

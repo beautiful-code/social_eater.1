@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729110234) do
+ActiveRecord::Schema.define(version: 20140804140108) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140729110234) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cold_votes", default: 0
+    t.string   "tags"
   end
 
   add_index "categories", ["place_id"], name: "index_categories_on_place_id", using: :btree
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140729110234) do
     t.datetime "updated_at"
     t.boolean  "seasonal"
     t.boolean  "non_veg"
+    t.string   "tag"
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree

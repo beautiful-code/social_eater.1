@@ -14,14 +14,20 @@
       = f.text_field :name, :class => 'text-field form-control'
 
   .form-group
+    = f.label 'Tags (Enter coma seperted values)', :class => 'control-label col-md-2'
+    .col-md-10
+      = f.text_field :tags, :class => 'text-field form-control'
+
+  .form-group
     = f.label :position, :class => 'control-label col-md-2'
     .col-md-10
       = f.text_field :position, :class => 'text-field form-control'
 
-  .form-group
-    = f.label :cold_votes, :class => 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :cold_votes, :class => 'text-field form-control'
+  - if false
+    .form-group
+      = f.label :cold_votes, :class => 'control-label col-md-2'
+      .col-md-10
+        = f.text_field :cold_votes, :class => 'text-field form-control'
 
   = hidden_field :category, :place_id, :value => @place.id
 
