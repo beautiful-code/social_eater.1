@@ -1,7 +1,8 @@
 class Item < ActiveRecord::Base
   belongs_to :place
   belongs_to :category
-  acts_as_votable 
+  acts_as_votable
+  before_save :set_default_category
 
   validates_presence_of :name
 
@@ -26,4 +27,17 @@ class Item < ActiveRecord::Base
   def total_votes
     aggregated_cold_votes + votes_for.size
   end
+
+
+
+  private
+
+  def set_default_category
+    return if category != nil
+    self.category = Category.find_or_create_by(name: 'Uncategorized', place_id: place.id)
+  end
+
+
+
+
 end

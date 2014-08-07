@@ -1,6 +1,6 @@
 $(function () {
 
-    $('.edit-item').focusout(function (event) {
+    $('.edit-item').focusout( function (event) {
         setTimeout(function () {
             if (!event.delegateTarget.contains(document.activeElement)) {
                $(event.delegateTarget).closest('form').submit();

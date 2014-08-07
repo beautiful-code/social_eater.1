@@ -1,3 +1,52 @@
-%h4= category_name
-- items.each do |item|
-  = render :partial => 'admin/items/form', :locals => {:item => item}
+%h4 {{ category.name }}
+
+.items{'ng-repeat'=>'item in items'}
+
+  %div{'ng-controller'=>'ItemCtrl'}
+    %form{'action'=>"{{editUrl}}", 'data-remote'=>true,'method'=>'post'}
+      %input{'name'=>"_method", 'type'=>"hidden" ,'value'=>"put"}
+      .edit-item
+        = text_field_tag 'item[name]','', :class => 'name','ng-model'=>'item.name'
+        |
+        = text_field_tag 'item[desc]','', :class => 'desc','ng-model'=>'item.desc'
+        |
+        = text_field_tag 'item[price]','', :class => 'price', :placeholder => 'Rs','ng-model'=>'item.price'
+        |
+        = text_field_tag 'item[cold_votes]','', :class => 'cold_votes','ng-model'=>'item.cold_votes'
+        - if false
+          |
+          = item.aggregated_cold_votes
+        |
+        - if false
+          %span.flag
+            = check_box_tag 'item[seasonal]','1','ng-model'=>'item.seasonal'
+            = label_tag 'name[seasonal]','Seasonal'
+        %span.flag
+          %input{'type'=>'checkbox','name'=>'item[non_veg]','ng-model'=>'item.non_veg','value'=>1}
+          = label_tag 'item[non_veg]','Non Veg'
+        |
+
+        - @place.categories.each do |cat|
+          %input{'type'=>'radio','name'=>'item[category_id]','ng-model'=>'item.category_id','value'=>cat.id}
+          = label_tag cat.name
+        %h6 Tags
+        - @place.categories.each do |cat|
+          .tags_list{'ng-if'=>"item.category_id=='#{cat.id}'"}
+            - cat.tags_list.each do |tag|
+              %input{'type'=>'radio','name'=>'item[tag]','ng-model'=>'item.tag','value'=>"#{tag}"}
+              -#= radio_button_tag 'item[tag]', tag,'ng-model'=>'item.tag'
+              = label_tag'item[tag]', tag.capitalize
+
+        = hidden_field_tag 'item[place_id]', @place.id
+
+        |
+        %a{"data-confirm" => "Are you sure?", "data-method" => "delete", href: "/admin/places/1/items/1", rel: "nofollow"}
+          %span.glyphicon.glyphicon-remove
+        |
+
+        .progress-spin.hidden
+          Saving...
+
+
+
+

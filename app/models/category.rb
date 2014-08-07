@@ -5,6 +5,10 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def self.by_position
+     order(:position)
+  end
+
   def tags_list
     tags.present? ? tags.split(',').collect{|e| e.strip}: []
   end

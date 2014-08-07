@@ -1,4 +1,15 @@
 - model_class = Place
+-  sorted_items = {}
+-  @place.categories.by_position.each { |cat|  sorted_items[cat.id] = cat.items}
+
+
+:javascript
+  PageConfig = {
+                categories: #{@place.categories.by_position.select{|cat| cat.items.present?}.to_json},
+                items: #{@place.items.to_json},
+                sorted_items: #{sorted_items.to_json}
+                }
+
 .col-xs-12
   #heading
     %span.name=@place.name
@@ -19,14 +30,14 @@
 
   #items
     .row.col-xs-12
+
       #items
         .items-header
           %span.title Items
           = link_to 'Add Item', [:new,:admin,@place,:item]
-
-        - @place.ordered_items.each do |cat_id, items|
-          = render :partial => 'category_items', :locals => {:category_name => @place.categories.find(cat_id).name, :items => items}
-        = render :partial => 'category_items', :locals => {:category_name => 'Uncategorized', :items => @place.uncategorized_items}
+        %div{'ng-controller'=>'CategoriesCtrl'}
+          %div{'ng-repeat'=>'category in categories', 'ng-controller'=>'CategoryCtrl','id'=>'{{$index}}'}
+            = render 'category_items'
 
 
       #categories

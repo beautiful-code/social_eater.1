@@ -35,6 +35,7 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
 app.controller('ItemCtrl', ['$scope',function ($scope) {
 
+  $scope.editUrl =  '/admin/places/'+$scope.item.place_id+'/items/'+$scope.item.id
   $scope.upVote = function() {
     $scope.items[$scope.$index][1]++;
   };
@@ -47,8 +48,6 @@ app.controller('ItemCtrl', ['$scope',function ($scope) {
   $scope.deleteNote = function() {
     $scope.items.splice($scope.$index, 1);
   };
-
-  
 }]);
 
 
@@ -66,8 +65,20 @@ app.controller('CategoryCtrl', ['$scope',function ($scope) {
   $scope.deleteCategory = function() {
     $scope.categories.splice($scope.$index, 1);
   };
-  
+
+
+
+  $scope.items = PageConfig.sorted_items[$scope.category.id]
+
+
 }]);
+
+
+app.controller('CategoriesCtrl',['$scope',function ($scope) {
+
+    $scope.categories = PageConfig.categories;
+
+}])
 
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
@@ -82,3 +93,4 @@ app.directive('ngEnter', function () {
         });
     };
 });
+
