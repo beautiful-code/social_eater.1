@@ -37,8 +37,11 @@ class Admin::CategoriesController < Admin::MainController
   end
 
   def destroy
-    @category.destroy
-    redirect_to [:admin,@category.place], notice: 'Category was deleted successfully'
+    if @category.destroy
+      redirect_to [:admin,@category.place], notice: 'Category was deleted successfully'
+    else
+      redirect_to [:admin,@category.place], alert: 'Unable to delete category.'
+    end
   end
 
   private

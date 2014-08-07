@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_many :items
 
   validates_presence_of :name
+  before_destroy :check_items
 
   def self.by_position
      order(:position)
@@ -32,6 +33,13 @@ class Category < ActiveRecord::Base
     if category.tags.present?
       category.tags = category.tags.downcase
       category.tags = category.tags.strip
+    end
+  end
+
+  def check_items
+    if items.present?
+      errors[:base] << "Items present under category. Please reassign items before deleting category"
+      return false
     end
   end
 

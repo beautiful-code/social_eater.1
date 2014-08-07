@@ -45,15 +45,14 @@
           .category
             %span.name=category.name
             %span.position=category.position
-            %span.cold_votes
-              ( CV
-              =category.cold_votes
-              )
+            %span.num_items
+              = "(#{category.items.count} items)"
             %span.name
               = link_to [:edit,:admin,@place,category], :class => 'btn btn-xs' do
                 = glyph 'pencil'
-              = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
-                = glyph 'remove'
+              - unless category.items.present?
+                = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
+                  = glyph 'remove'
 
   = image_tag @place.image_url if @place.image?
 
