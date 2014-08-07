@@ -25,6 +25,7 @@ class Category < ActiveRecord::Base
 
   after_initialize do |category|
     category.position ||= 0
+    category.tags ||= ''
   end
 
   before_save do |category|

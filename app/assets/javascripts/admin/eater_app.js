@@ -72,46 +72,21 @@ app.controller('NotesCategoryCtrl', ['$scope',function ($scope) {
 app.controller('ItemCtrl', ['$scope',function ($scope) {
 
   $scope.editUrl =  '/admin/places/'+$scope.item.place_id+'/items/'+$scope.item.id
-  $scope.upVote = function() {
-    $scope.items[$scope.$index][1]++;
-  };
 
-  $scope.downVote = function() {
-    var item_index = $scope.$index;
-    $scope.items[$scope.$index][1]--;
-  };
-
-  $scope.deleteNote = function() {
-    $scope.items.splice($scope.$index, 1);
-  };
-
-    $scope.debugItem = function(){
-        console.log($scope.category.tags);
-    }
+  $scope.debugItem = function(){
+      console.log($scope.item.category_id);
+      console.log($scope.category.id);
+      console.log($scope.category.tags);
+  }
 
 }]);
 
 
 app.controller('CategoryCtrl', ['$scope',function ($scope) {
 
-  $scope.upVote = function() {
-    $scope.categories[$scope.$index][2]++;
-  };
-
-  $scope.downVote = function() {
-    var item_index = $scope.$index;
-    $scope.categories[$scope.$index][2]--;
-  };
-
-  $scope.deleteCategory = function() {
-    $scope.categories.splice($scope.$index, 1);
-  };
-
   //Initialise items
   $scope.items = PageConfig.sorted_items[$scope.category.id]
-
   $scope.category.tags =   $scope.category.tags.split(",")
-
 
 }]);
 

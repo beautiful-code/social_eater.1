@@ -34,7 +34,7 @@
           %span.title Items
           = link_to 'Add Item', [:new,:admin,@place,:item]
         %div{'ng-controller'=>'CategoriesCtrl'}
-          %div{'ng-repeat'=>'category in categories', 'ng-controller'=>'CategoryCtrl','id'=>'{{$index}}'}
+          %div{'ng-repeat'=>'category in categories', 'ng-controller'=>'CategoryCtrl'}
             = render 'category_items'
 
 
