@@ -1,4 +1,3 @@
-
 %div{'ng-if'=>'items'}
   %h4 {{ category.name }}
 
@@ -30,13 +29,8 @@
           %select{'name'=>'item[category_id]','ng-model'=>'item.category_id', 'ng-options'=>'category.id as category.name for  category in categories', 'ng-change'=>'showTopics()'}
             %option{}
               Select category
-          / - @place.categories.each do |cat|
-          /   %select{'name'=>'item[category_id]','ng-model'=>'item.category_id', 'ng-options'=>'category.id as category.name for  category in categories', 'ng-change'=>'showTopics()'}
-
-          /   %input{'type'=>'radio','name'=>'item[category_id]','ng-model'=>'item.category_id','value'=>cat.id}
-          /   = label_tag cat.name
-          %div{'ng-repeat'=>'category in categories'}
-            .tags_list{'ng-if'=>"item.category_id==category.id"}
+          %span{'ng-repeat'=>'category in categories'}
+            %span.tags_list{'ng-if'=>"item.category_id==category.id"}
               %select{'name'=>'item[tag]','ng-model'=>'item.tag', 'ng-options'=>'tag as tag for tag in category.tags            track by tag', 'ng-change'=>'showTopics()'}
                 %option{'value'=>""}
                   Select tag
