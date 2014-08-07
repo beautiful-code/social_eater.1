@@ -1,7 +1,7 @@
 :javascript
   var PageConfig = {
     items: #{@place.items.collect{|item| [item.name, item.cold_votes]}},
-    categories: #{@place.categories.collect {|cat| [cat.name, cat.position, cat.cold_votes]}},
+    categories: #{@place.categories.collect {|cat| [cat.name, cat.position]}},
   };
 #notes{"ng-controller" => "NotesCtrl", :align => 'center'}
   = form_tag do
@@ -33,7 +33,6 @@
           .category{"ng-repeat" => 'category in categories', "ng-controller" => 'NotesCategoryCtrl'}
             %input.name{"type"=> "text", "ng-model" => 'category[0]', "name" => "category_{{$index}}"}
             %input.position{"type"=> "text", "ng-model" => 'category[1]', "name" => "position_{{$index}}"}
-            %input.hidden{"type"=> "text", "ng-model" => 'category[2]', "name" => "cat_cv_{{$index}}"}
             %a.btn{"ng-click" => "deleteCategory()"}= glyph 'trash'
 
     .row
