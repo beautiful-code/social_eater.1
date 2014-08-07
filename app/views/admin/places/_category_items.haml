@@ -40,6 +40,9 @@
               %select{'name'=>'item[tag]','ng-model'=>'item.tag', 'ng-options'=>'tag as tag for tag in category.tags            track by tag', 'ng-change'=>'showTopics()'}
                 %option{'value'=>""}
                   Select tag
+              .hidden
+                %input{'name'=>'item[category_id]','value'=>"{{ category.id }}",'ng-if'=>'category.id'}
+
           = hidden_field_tag 'item[place_id]', @place.id
 
           |
