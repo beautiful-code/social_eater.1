@@ -25,9 +25,6 @@
           %li
             %a{"data-toggle" => "tab", :href => "##{category.id}", :role => "tab"}
               = category.name
-        - if @place.uncategorized_items.present?
-          %li
-            %a{"data-toggle" => "tab", :href => "#uncategorized", :role => "tab"} Uncategorized
 
       .tab-content
         #top5.tab-pane.fade.in.active
@@ -49,9 +46,3 @@
               - items.each do |item|
                 .row
                   = render 'item', item: item
-
-        - if @place.uncategorized_items.present?
-          #uncategorized.tab-pane
-            - @place.uncategorized_items.each do |item|
-              .row
-                = render 'item',item: item

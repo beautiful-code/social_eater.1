@@ -48,10 +48,6 @@ class Place < ActiveRecord::Base
     categories.find(ordered_items.collect {|e| e.first} )
   end
 
-  def uncategorized_items
-    items.select {|i| !i.category.present?}
-  end
-
   def top n
     items.sort {|a,b| b.total_votes <=> a.total_votes}[0..n-1]
   end
@@ -64,7 +60,9 @@ class Place < ActiveRecord::Base
 
 
   def set_default_category
-    Category.find_or_create_by(name: 'Uncategorized', place_id: id)
+    cat = Category.find_or_create_by(name: 'Uncategorized', place_id: id)
+    cat.update_attribute(:position, 50)
+    cat
   end
 
 

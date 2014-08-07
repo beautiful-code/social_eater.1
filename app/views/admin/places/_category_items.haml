@@ -13,9 +13,6 @@
         = text_field_tag 'item[price]','', :class => 'price', :placeholder => 'Rs','ng-model'=>'item.price'
         |
         = text_field_tag 'item[cold_votes]','', :class => 'cold_votes','ng-model'=>'item.cold_votes'
-        - if false
-          |
-          = item.aggregated_cold_votes
         |
         - if false
           %span.flag

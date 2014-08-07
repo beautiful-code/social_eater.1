@@ -16,25 +16,14 @@ class Item < ActiveRecord::Base
     votes_for.collect(&:voter_id)
   end
 
-  def aggregated_cold_votes
-    if category.present?
-      (cold_votes + (category.cold_votes * (cold_votes.to_f / category.total_item_cold_votes))).round
-    else
-      cold_votes
-    end
-  end
-
   def total_votes
-    aggregated_cold_votes + votes_for.size
+    cold_votes + votes_for.size
   end
 
 
   def set_default_category
-    return if category != nil
+    return if category.present?
     self.category = place.set_default_category
   end
-
-
-
 
 end
