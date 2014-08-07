@@ -84,6 +84,11 @@ app.controller('ItemCtrl', ['$scope',function ($scope) {
   $scope.deleteNote = function() {
     $scope.items.splice($scope.$index, 1);
   };
+
+    $scope.debugItem = function(){
+        console.log($scope.category.tags);
+    }
+
 }]);
 
 
@@ -102,7 +107,11 @@ app.controller('CategoryCtrl', ['$scope',function ($scope) {
     $scope.categories.splice($scope.$index, 1);
   };
 
+  //Initialise items
   $scope.items = PageConfig.sorted_items[$scope.category.id]
+
+  $scope.category.tags =   $scope.category.tags.split(",")
+
 
 }]);
 
