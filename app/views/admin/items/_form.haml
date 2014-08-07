@@ -36,7 +36,7 @@
     = hidden_field :item, :place_id, :value => @place.id
 
     |
-    = link_to [:admin,@place,item],method: :delete, :confirm => 'Are you sure?' do
+    = link_to [:admin,@place,item],method: :delete, data: {:confirm => 'Are you sure?'} do
       = glyph 'remove'
 
     |

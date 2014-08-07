@@ -20,29 +20,54 @@
     .content
       %ul.nav.nav-tabs{:role => "tablist"}
         %li.active
-          %a{"data-toggle" => "tab", :href => "#top5", :role => "tab"} Top 5
+          %a{"data-toggle" => "tab", :href => "#top5", :role => "tab"}
+            %i.fa.fa-trophy
+            %span.fa.fa-caret-up
+
         - @place.populated_categories.each do |category|
           %li
             %a{"data-toggle" => "tab", :href => "##{category.id}", :role => "tab"}
               = category.name
+<<<<<<< HEAD
+=======
+              %span.fa.fa-caret-up
+
+        - if false and @place.uncategorized_items.present?
+          %li
+            %a{"data-toggle" => "tab", :href => "#uncategorized", :role => "tab"} Uncategorized
+>>>>>>> V4 screens
 
       .tab-content
         #top5.tab-pane.fade.in.active
-          - @place.top(5).each do |item|
+          - @place.top(1).each do |item|
             .row
+              %h4.tab-header
+                People
+                %i.fa.fa-heart
+
               = render 'item',item: item
 
         - @place.ordered_items.each do |cat_id, items|
           - category = Category.find(cat_id)
           %div.tab-pane{id: "#{category.id}"}
+            - act_tag =  category.tag_hash.keys.first
             - if category.tag_hash.size > 1
-              - category.tag_hash.each do |tag, items|
-                - if items.present?
-                  %h5= tag
-                  - items.each do |item|
-                    .row
-                      = render 'item',item: item
+              %ul.nav.nav-tabs{:role => "tablist"}
+                - category.tag_hash.each do |tag, items|
+                  - if items.present? and tag != 'other'
+                    %li{class: (act_tag == tag)? 'active' : false}
+                      %a{"data-toggle" => "tab", :href => "##{tag}-tag", :role => "tab"}= tag
+
+              .tab-content
+                - category.tag_hash.each do |tag, items|
+                  %div.tab-pane{id: "#{tag}-tag",class: (act_tag == tag)? 'active' : false}
+                    - if items.present?
+                      - items.each do |item|
+                        .row
+                          = render 'item',item: item
             - else
-              - items.each do |item|
-                .row
-                  = render 'item', item: item
+              .no-tags
+                - items.each do |item|
+                  .row
+                    = render 'item', item: item
+

@@ -1,8 +1,11 @@
+@import "normalize-rails";
+
 // Load bootstrap css
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 @import "font-awesome";
+
 
 // Custom styles
 @import "generic";

@@ -56,6 +56,7 @@ gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
+gem 'normalize-rails'
 gem 'carrierwave'
 gem 'rmagick', :require => 'RMagick'
 gem "fog"

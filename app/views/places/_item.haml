@@ -1,7 +1,11 @@
 - css_id = "item_#{item.id}"
 .col-xs-12.item{id: css_id}
   .col-xs-12
-    .col-xs-9
+    .col-xs-1
+      %p.votes
+        = item.total_votes
+        %span Likes
+    .col-xs-8
       %p.name
         =item.name
         %span.price
@@ -20,14 +24,15 @@
               %i.fa.fa-angle-up
 
     .col-xs-3
-      %p.votes= item.total_votes
       %p.like_it
         - if current_user.voted_for? item
-          = link_to unvote_place_item_path(@place,item),remote: true, method: :post do
-            = image_tag 'unlike.png',alt: 'Unlike button',class: 'unlike'
+          = link_to unvote_place_item_path(@place,item),remote: true, method: :post,class: 'btn btn-default unlike' do
+            %i.fa.fa-thumbs-up
+            Liked
         - else
-          = link_to vote_place_item_path(@place,item),remote: true, method: :post do
-            = image_tag 'like.png',alt: 'Like button',class: 'like'
+          = link_to vote_place_item_path(@place,item),remote: true, method: :post,class: 'btn btn-default like' do
+            %i.fa.fa-thumbs-o-up
+            Like
 
   - if item.desc.present?
     .col-xs-12.item_desc
@@ -51,10 +56,12 @@
     :css
       .item##{css_id} .col-xs-12:first-child {
         border-bottom: 1px solid #ddd;
+        padding-bottom: 3px;
       }
   - elsif item.desc.present? || friend_likes.present?
     :css
       .item##{css_id} .col-xs-12:nth-child(2) {
         border-top: 1px solid #ddd;
+        margin-top: 3px;
       }
 
