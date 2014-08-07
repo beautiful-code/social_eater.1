@@ -63,4 +63,9 @@ class Place < ActiveRecord::Base
   end
 
 
+  def set_default_category
+    Category.find_or_create_by(name: 'Uncategorized', place_id: id)
+  end
+
+
 end

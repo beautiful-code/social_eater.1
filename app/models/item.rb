@@ -29,12 +29,9 @@ class Item < ActiveRecord::Base
   end
 
 
-
-  private
-
   def set_default_category
     return if category != nil
-    self.category = Category.find_or_create_by(name: 'Uncategorized', place_id: place.id)
+    self.category = place.set_default_category
   end
 
 
