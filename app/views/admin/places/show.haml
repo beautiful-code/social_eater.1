@@ -55,10 +55,6 @@
               = link_to [:admin,@place,category], :class => 'btn btn-xs', method: :delete do
                 = glyph 'remove'
 
-      - if false
-        .col-md-6
-          = render 'admin/items/form'
-
   = image_tag @place.image_url if @place.image?
 
 

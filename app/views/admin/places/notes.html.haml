@@ -13,7 +13,7 @@
             %input.cold-votes{"type"=> "text", "ng-model" => 'new_item_cold_votes'}
 
         #item_list
-          .item{"ng-repeat" => 'item in items', "ng-controller" => 'ItemCtrl'}
+          .item{"ng-repeat" => 'item in items', "ng-controller" => 'NotesItemCtrl'}
             %input.name{"type"=> "text", "ng-model" => 'item[0]', "name" => "item_{{$index}}"}
             %input.hidden{"type"=> "text", "ng-model" => 'item[1]', "name" => "count_{{$index}}"}
             %span.cold-votes
@@ -28,17 +28,12 @@
         #add_category.big-inputs
           %input.category-name{"type"=> "text", "ng-model" => 'new_category_name', "ng-enter" => "addCategory()", "placeholder" => 'Category'}
           %input.position{"type"=> "text", "ng-model" => 'new_category_position', "ng-enter" => "addCategory()"}
-          %input.cold-votes{"type"=> "text", "ng-model" => 'new_category_cold_votes', "ng-enter" => "addCategory()"}
 
         #category_list
-          .category{"ng-repeat" => 'category in categories', "ng-controller" => 'CategoryCtrl'}
+          .category{"ng-repeat" => 'category in categories', "ng-controller" => 'NotesCategoryCtrl'}
             %input.name{"type"=> "text", "ng-model" => 'category[0]', "name" => "category_{{$index}}"}
             %input.position{"type"=> "text", "ng-model" => 'category[1]', "name" => "position_{{$index}}"}
             %input.hidden{"type"=> "text", "ng-model" => 'category[2]', "name" => "cat_cv_{{$index}}"}
-            %span.cold_votes
-              {{category[2]}}
-            %a.btn{"ng-click" => "upVote()"}= glyph 'plus'
-            %a.btn{"ng-click" => "downVote()"}= glyph 'minus'
             %a.btn{"ng-click" => "deleteCategory()"}= glyph 'trash'
 
     .row
