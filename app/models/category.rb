@@ -16,12 +16,16 @@ class Category < ActiveRecord::Base
 
   def tag_hash
     ret = tags_list.inject({}) {|hash, tag| hash[tag] = tagged_items(tag); hash}
-    ret['other'] = items.select {|item| !tags_list.include?(item.tag)}
+    ret['other'] = sort_items(items.select {|item| !tags_list.include?(item.tag)})
     ret
   end
 
   def tagged_items tag
-    items.select {|i| i.tag == tag}
+    sort_items(items.select {|i| i.tag == tag})
+  end
+
+  def sort_items list
+    list.sort{|a,b| b.total_votes <=> a.total_votes}
   end
 
   after_initialize do |category|
