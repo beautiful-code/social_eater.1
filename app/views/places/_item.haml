@@ -42,11 +42,11 @@
   - if friend_likes.present?
     .col-xs-12.fb_info
       %p.friend_likes
-        - friend_likes.first(2).each do |friend|
+        - friend_likes.each do |friend|
           = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'
 
-        - if friend_likes.count < 2
-        - elsif friend_likes.count > 2
+        -# if friend_likes.count < 2
+          - elsif friend_likes.count > 2
           and
           = link_to "#{ friend_likes.count - 2 } other",'#fb_friends'
         #{'friend'.pluralize(friend_likes.count)} like this
