@@ -85,8 +85,8 @@ app.controller('ItemCtrl', ['$scope',function ($scope) {
 app.controller('CategoryCtrl', ['$scope',function ($scope) {
 
   //Initialise items
-  $scope.items = PageConfig.sorted_items[$scope.category.id]
-  $scope.category.tags =   $scope.category.tags.split(",")
+  $scope.items = PageConfig.sorted_items[$scope.category.id];
+  $scope.category.tags =   $scope.category.tags_list;
 
 }]);
 

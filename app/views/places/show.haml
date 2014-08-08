@@ -47,7 +47,7 @@
             - if category.tag_hash.size > 1
               %ul.nav.nav-tabs{:role => "tablist"}
                 - category.tag_hash.each do |tag, items|
-                  - if items.present? and tag != 'other'
+                  - if items.present?
                     %li{class: (act_tag == tag)? 'active' : false}
                       %a{"data-toggle" => "tab", :href => "##{tag}-tag", :role => "tab"}= tag
 
