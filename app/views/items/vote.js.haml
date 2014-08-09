@@ -1,4 +1,4 @@
 - if @activity
-  $("#places_show #item_#{@item.id} p.votes").html("#{@item.total_votes} <span>Likes</span>");
+  $("#places_show #item_#{@item.id} p.votes span").html("#{@item.total_votes}");
 
   $("#places_show #item_#{@item.id} p.like_it").html('<a href="#{unvote_place_item_path(@place,@item)}" data-method="post" data-remote="true" class="btn btn-default unlike"><i class="fa fa-thumbs-up"></i> Liked</a>');

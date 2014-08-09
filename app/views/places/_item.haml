@@ -3,8 +3,8 @@
   .col-xs-12
     .col-xs-1
       %p.votes
-        = item.total_votes
-        %span Likes
+        %span= item.total_votes
+        Likes
     .col-xs-8
       %p.name
         =item.name
@@ -45,11 +45,6 @@
         - friend_likes.each do |friend|
           = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'
 
-        -# if friend_likes.count < 2
-          - elsif friend_likes.count > 2
-          and
-          = link_to "#{ friend_likes.count - 2 } other",'#fb_friends'
-        #{'friend'.pluralize(friend_likes.count)} like this
 
   // Dynamic css hack
   - if item.desc.present? && friend_likes.present?

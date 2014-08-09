@@ -255,7 +255,7 @@
           left: 40%;
           color: #a5a5a5;
           font-size: 28px;
-          top: 62%;
+          top: 72%;
         }
 
         &[href='#top5'] {
@@ -302,16 +302,16 @@
   .item {
     border: 1px solid #AAAAAA;
     border-radius: 3px;
-    padding:8px 0 3px;
+    padding:8px 0 4px;
     margin-bottom: 4px;
     background-color: #FFF;
 
     .col-xs-8 {
-      padding: 5px;
+      padding: 0 0 5px 12px;
     }
 
     .col-xs-1 {
-      padding: 0 0 0 5px;
+      padding: 0 0 0 8px;
     }
 
     p {
@@ -319,7 +319,7 @@
 
       &.name {
         margin: 0px;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
 
         span.price {
@@ -335,20 +335,21 @@
       }
 
       &.votes {
-        width: 100%;
+        width: 90%;
         display: inline-block;
         color: #F10000;
-        font-weight: 600;
-        font-size: 24px;
         text-align: center;
         position: absolute;
-        top: -5px;
+        font-size: 8px;
+        font-weight: 400;
         span {
-          font-size: 8px;
-          font-weight: 400;
-          position: absolute;
-          bottom: -3px;
-          left: 20%;
+          font-weight: 600;
+          font-size: 14px;
+          padding: 1px 0;
+          color: #fff;
+          display: block;
+          border-radius: 4px;
+          background-color: #F10000;
         }
       }
 
@@ -421,7 +422,7 @@
   }
 
   .fb_info {
-    padding: 6px 10px;
+    padding: 6px 8px;
   }
 
   .friend_likes {
@@ -438,78 +439,33 @@
     }
   }
 
-  .tab-pane#top5 {
-    .col-xs-1 {
-      width: 10%;
-    }
-
-    div:first-of-type[class='col-xs-12'] {
-      padding:8px 0;
-    }
-
-    .votes {
-      font-size: 28px;
-      display: inline-block;
-      text-align:center;
-      top: -6px;
-      span {
-        font-size: 12px;
-        bottom: -8px;
-        font-weight: 500;
-        left: 11%;
-      }
-    }
-
-    .name {
-      font-size: 28px;
-      font-weight: 300;
-    }
-
-    .col-xs-3 {
-      padding: 0;
-      width: 20%;
-      text-align: right;
-    }
-
-    .like_it {
-      margin: 3px;
-      .btn {
-        padding: 4px 10px;
-      }
-    }
-
-    .col-xs-8 {
-      padding-top: 0;
-      width: 66%;
-    }
-
-    .fb_info {
-      margin: 0px;
-      padding: 8px 10px;
-    }
-
-    .item_desc p {
-      padding: 5px 15px 0;
-      font-size: 14px;
-    }
-
-    .friend_likes {
-      img.fb-pic {
-        height: 35px;
-        width: 35px;
-      }
-    }
-
-  }
-
   .tab-pane {
+    &#top5 {
+      .winner {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: #5C5C5C;
+      }
+    }
+
     .nav-tabs {
       padding: 10px 0 5px;
       border: 0;
       margin: 0;
 
-      li.active a:after {
-        content: none;
+      li {
+        &.active a {
+          &:after {
+            content: none;
+          }
+          background-color: #51914C;
+        }
+        a {
+          background-color: #666666;
+          color: #fff;
+          padding: 1px 14px;
+        }
       }
     }
 
