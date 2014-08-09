@@ -14,7 +14,7 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
 
   $scope.addCategory = function() {
     $scope.categories.push([$scope.new_category_name.trim().titleize(), $scope.new_category_position, $scope.new_category_cold_votes]);
-    $scope.categories = $scope.categories.sort(compare);
+    $scope.categories = $scope.categories.sort(position_compare);
 
     $scope.new_category_name = '';
     $scope.new_category_position = 0;
@@ -26,7 +26,7 @@ app.controller('NotesCtrl', ['$scope',function ($scope) {
   $scope.items = PageConfig.items.sort(compare);
   $scope.new_item_cold_votes = 1;
 
-  $scope.categories = PageConfig.categories.sort(compare);
+  $scope.categories = PageConfig.categories.sort(position_compare);
   $scope.new_category_position = 0;
   $scope.new_category_cold_votes = 0;
   

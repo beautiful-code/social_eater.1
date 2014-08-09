@@ -15,3 +15,12 @@ function compare(a,b) {
     return 1;
   return 0;
 }
+
+//Sorting function based on the first item in an array
+function position_compare(a,b) {
+  if (a[1] < b[1])
+     return -1;
+  if (a[1] > b[1])
+    return 1;
+  return 0;
+}
