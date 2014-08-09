@@ -31,13 +31,25 @@
               %span.fa.fa-caret-up
 
       .tab-content
-        #top5.tab-pane.fade.in.active
-          - @place.top(1).each do |item|
-            .row
-              %h4.tab-header
-                People
-                %i.fa.fa-heart
+        - if false
+          #top5.tab-pane.fade.in.active
+            - @place.top(1).each do |item|
+              .row
+                %h4.tab-header
+                  People
+                  %i.fa.fa-heart
 
+                = render 'item',item: item
+
+        #top5.tab-pane.fade.in.active
+          .row
+            %h4.tab-header
+              People
+              %i.fa.fa-heart
+          - WinnerList.new(@place).list.each do |cat_id, items|
+            - category = Category.find(cat_id)
+            %h6= category.name
+            - items.each do |item|
               = render 'item',item: item
 
         - @place.ordered_items.each do |cat_id, items|

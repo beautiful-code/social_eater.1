@@ -52,10 +52,22 @@ class Place < ActiveRecord::Base
     items.sort {|a,b| b.total_votes <=> a.total_votes}[0..n-1]
   end
 
+=begin
   def items_by_category
      items = {}
      categories.by_position.each { |cat|  items[cat.id] = cat.items}
      items
+  end
+=end
+
+  def winner_list
+    winner_list = []
+
+    ordered_items.each do |cat_id, items|
+      winner_list << [cat_id, [items.first]]
+    end
+
+    winner_list
   end
 
 
