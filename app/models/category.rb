@@ -15,7 +15,8 @@ class Category < ActiveRecord::Base
   end
 
   def tag_hash
-    ret = tags_list.inject({}) {|hash, tag| hash[tag] = tagged_items(tag); hash}
+    ret = {'all' => sort_items(items)}
+    ret = tags_list.inject(ret) {|hash, tag| hash[tag] = tagged_items(tag); hash}
     ret['other'] = sort_items(items.select {|item| !tags_list.include?(item.tag)})
     ret
   end
