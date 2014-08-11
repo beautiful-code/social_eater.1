@@ -21,7 +21,8 @@
       %ul.nav.nav-tabs{:role => "tablist"}
         %li.active
           %a{"data-toggle" => "tab", :href => "#top5", :role => "tab"}
-            %i.fa.fa-trophy
+            %i.fa.fa-heart
+            Popular
             %span.fa.fa-caret-up
 
         - @place.populated_categories.each do |category|

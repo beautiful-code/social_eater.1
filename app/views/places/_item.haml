@@ -1,62 +1,68 @@
 - css_id = "item_#{item.id}"
+- friend_likes = current_user.friends_like_item(item)
+
 .col-xs-12.item{id: css_id}
   .col-xs-12
     .col-xs-1
       %p.votes
         %span= item.total_votes
         Likes
-    .col-xs-8
+    .col-xs-6
       %p.name
         =item.name
-        %span.price
+
+      - if item.price.present? or item.desc.present?
+        %p.more-info
           - if item.price.present? and item.price > 0
-            %i.fa.fa-inr
-            = item.price.to_i
+            %span.price
+              %i.fa.fa-inr
+              = item.price.to_i
 
-        - if item.desc.present?
-          %span.desc
-            %a.more{role: 'link'}
-              More
-              %i.fa.fa-angle-down
+          - if item.desc.present?
+            %span.desc
+              %a.more{role: 'link'}
+                More
+                %i.fa.fa-angle-down
 
-            %a.less{role: 'link'}
-              Less
-              %i.fa.fa-angle-up
+              %a.less{role: 'link'}
+                Less
+                %i.fa.fa-angle-up
 
-    .col-xs-3
+    .col-xs-5
       %p.like_it
-        - if current_user.voted_for? item
-          = link_to unvote_place_item_path(@place,item),remote: true, method: :post,class: 'btn btn-default unlike' do
-            %i.fa.fa-thumbs-up
-            Liked
-        - else
-          = link_to vote_place_item_path(@place,item),remote: true, method: :post,class: 'btn btn-default like' do
-            %i.fa.fa-thumbs-o-up
-            Like
+        - if friend_likes.present?
+          %span.friend_likes
+            - friend_likes.last(2).each do |friend|
+              = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'
+
+        %span.votebtn
+          - if current_user.voted_for? item
+            = link_to unvote_place_item_path(@place,item),remote: true, method: :post,class: 'btn btn-default unlike' do
+              %i.fa.fa-thumbs-up
+              Liked
+          - else
+            = link_to vote_place_item_path(@place,item),remote: true, method: :post,class: 'btn btn-default like' do
+              %i.fa.fa-thumbs-o-up
+              Like
 
   - if item.desc.present?
     .col-xs-12.item_desc
       %p.desc= item.desc
 
-  - friend_likes = current_user.friends_like_item(item)
-  - if friend_likes.present?
-    .col-xs-12.fb_info
-      %p.friend_likes
-        - friend_likes.each do |friend|
-          = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'
 
 
   // Dynamic css hack
-  - if item.desc.present? && friend_likes.present?
-    :css
-      .item##{css_id} .col-xs-12:first-child {
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 3px;
-      }
-  - elsif item.desc.present? || friend_likes.present?
-    :css
-      .item##{css_id} .col-xs-12:nth-child(2) {
-        border-top: 1px solid #ddd;
-        margin-top: 3px;
-      }
+  - if false
+    - if item.desc.present? && friend_likes.present?
+      :css
+        .item##{css_id} .col-xs-12:first-child {
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 3px;
+        }
+    - elsif item.desc.present? || friend_likes.present?
+      :css
+        .item##{css_id} .col-xs-12:nth-child(2) {
+          border-top: 1px solid #ddd;
+          margin-top: 3px;
+        }
 
