@@ -50,11 +50,11 @@
                 - category.tag_hash.each do |tag, items|
                   - if items.present?
                     %li{class: (act_tag == tag)? 'active' : false}
-                      %a{"data-toggle" => "tab", :href => "##{tag}-tag", :role => "tab"}= tag.titleize
+                      %a{"data-toggle" => "tab", :href => "##{tag + category.id.to_s}", :role => "tab"}= tag.titleize
 
               .tab-content
                 - category.tag_hash.each do |tag, items|
-                  %div.tab-pane{id: "#{tag}-tag",class: (act_tag == tag)? 'active' : false}
+                  %div.tab-pane{id: "#{tag + category.id.to_s}",class: (act_tag == tag)? 'active' : false}
                     - if items.present?
                       - items.each do |item|
                         .row
