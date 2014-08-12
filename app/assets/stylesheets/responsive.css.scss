@@ -29,6 +29,46 @@
     }
   }
 
+  #places_show {
+    .nav-tabs li {
+      a {
+        font-size: 13px;
+
+        span.fa {
+          font-size: 27px;
+        }
+
+      }
+
+      &.active a[href="#top5"] i {
+        font-size: 14px;
+      }
+    }
+
+    .item {
+      .btn {
+        padding: 2px 4px;
+        font-size: 12px;
+        min-width: 50px;
+      }
+
+      p.votes {
+        font-size: 9px;
+
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .friend_likes img.fb-pic {
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+
+
 
 }
 
@@ -71,7 +111,7 @@
             width: 25%;
           }
           form {
-            width: 57%;
+            width: 55%;
             padding-left: 0px;
           }
         }
