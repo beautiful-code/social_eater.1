@@ -39,4 +39,10 @@ SocialEater::Application.routes.draw do
 
   root :to => 'places#index'
 
+  resources :searches do
+    collection do
+      get :search
+    end
+  end
+
 end

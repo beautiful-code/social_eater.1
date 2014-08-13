@@ -12,6 +12,14 @@ class Item < ActiveRecord::Base
     item.seasonal = false unless item.seasonal
   end
 
+
+  searchable do
+    text :name, boost: 5
+    text :desc
+  end
+
+
+
   def voter_ids
     votes_for.collect(&:voter_id)
   end
@@ -25,5 +33,17 @@ class Item < ActiveRecord::Base
     return if category.present?
     self.category = place.set_default_category
   end
+
+  def kind
+    self.class.name
+  end
+
+
+  def as_json(options={})
+    options ||= {}
+    options[:methods] ||= [:kind]
+    super(options)
+  end
+
 
 end

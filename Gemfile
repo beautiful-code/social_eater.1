@@ -60,6 +60,15 @@ gem 'normalize-rails'
 gem 'carrierwave'
 gem 'rmagick', :require => 'RMagick'
 gem "fog"
+gem 'sunspot_rails'
+gem 'progress_bar'
+gem 'twitter-typeahead-rails'
+
+
+
+group :development do
+  gem 'sunspot_solr'
+end
 
 group :development, :test do
   gem 'capistrano-rails'
@@ -72,4 +81,5 @@ group :deploy do
   gem 'capistrano-rvm'
 end
 gem 'quiet_assets'
+
 

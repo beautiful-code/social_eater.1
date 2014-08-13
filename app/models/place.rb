@@ -13,6 +13,15 @@ class Place < ActiveRecord::Base
 
   scope :enabled, where(:disabled => false)
 
+  searchable do
+    text :name, boost: 5
+    text :short_address
+    text :cuisines
+  end
+
+
+
+
   def self.sorted
     order('name asc')
   end
@@ -75,6 +84,17 @@ class Place < ActiveRecord::Base
     cat = Category.find_or_create_by(name: 'Uncategorized', place_id: id)
     cat.update_attribute(:position, 50)
     cat
+  end
+
+  def kind
+    self.class.name
+  end
+
+
+  def as_json options={}
+    options ||= {}
+    options[:methods] ||= [:kind]
+    super(options)
   end
 
 

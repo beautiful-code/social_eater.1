@@ -15,3 +15,5 @@
 //= require bootstrap
 //= require places
 //= require list
+//= require twitter/typeahead
+//= require search
