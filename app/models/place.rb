@@ -3,10 +3,11 @@ class Place < ActiveRecord::Base
 
   has_many :items
   has_many :categories, :order => "position ASC"
+  has_and_belongs_to_many :cuisines
 
   CUISINES = CUISINE_TO_CATEGORIES.keys
 
-  serialize :cuisines, Array
+  serialize :old_cuisines, Array
   validates_presence_of :name
 
   after_create :populate_categories
@@ -30,7 +31,7 @@ class Place < ActiveRecord::Base
     categories = []
 
     self.cuisines.each do |cuisine|
-      categories = categories | CUISINE_TO_CATEGORIES[cuisine]
+      categories = categories | (CUISINE_TO_CATEGORIES[cuisine] || [])
     end
 
     categories.each_with_index do |category, index|

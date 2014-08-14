@@ -82,4 +82,6 @@ group :deploy do
 end
 gem 'quiet_assets'
 
+gem 'handlebars_assets'
+
 

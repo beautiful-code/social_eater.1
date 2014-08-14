@@ -30,6 +30,8 @@ class Admin::PlacesController < Admin::MainController
   # POST /places.json
   def create
     @place = Place.new(place_params)
+    @place.cuisines = params[:cuisines].collect{|cid| Cuisine.find cid}
+
 
     respond_to do |format|
       if @place.save
@@ -45,6 +47,8 @@ class Admin::PlacesController < Admin::MainController
   # PATCH/PUT /places/1
   # PATCH/PUT /places/1.json
   def update
+    @place.cuisines = params[:cuisines].collect{|cid| Cuisine.find cid}
+
     respond_to do |format|
       if @place.update(place_params)
         format.html { redirect_to [:admin,@place], notice: 'Place was successfully updated.' }
@@ -74,8 +78,9 @@ class Admin::PlacesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url, :disabled)
-      whitelisted_params.merge(:cuisines => params[:cuisines] || [])
+      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url,
+                                                         :disabled,:locality_id)
+      # whitelisted_params.merge(:cuisines => params[:cuisines] || [])
     end
 
     def save_notes

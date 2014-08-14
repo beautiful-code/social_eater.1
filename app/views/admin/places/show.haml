@@ -13,7 +13,7 @@
 .col-xs-12
   #heading
     %span.name=@place.name
-    %span.cuisines= @place.cuisines.join(', ')
+    %span.cuisines= @place.cuisines.collect(&:name).join(', ')
     %span.short-address= "( #{@place.short_address} )"
     %span.actions
       = link_to 'Take Notes', [:notes, :admin, @place], :class => 'btn btn-primary'

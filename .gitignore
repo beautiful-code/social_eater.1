@@ -35,5 +35,6 @@
 *.sass-cache
 # Carrierwave local files
 /public/uploads
-
+#Ignore solr data
+solr/development/data/*
 *.sql

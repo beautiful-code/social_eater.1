@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require twitter/typeahead
+//= require handlebars
 //= require places
 //= require list
-//= require twitter/typeahead
+
 //= require search

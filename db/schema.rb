@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804140108) do
+ActiveRecord::Schema.define(version: 20140814051117) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20140804140108) do
   end
 
   add_index "categories", ["place_id"], name: "index_categories_on_place_id", using: :btree
+
+  create_table "cuisines", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cuisines_places", force: true do |t|
+    t.integer "cuisine_id"
+    t.integer "place_id"
+  end
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -42,6 +53,13 @@ ActiveRecord::Schema.define(version: 20140804140108) do
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
   add_index "items", ["place_id"], name: "index_items_on_place_id", using: :btree
 
+  create_table "localities", force: true do |t|
+    t.string   "area_name"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "places", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -49,8 +67,9 @@ ActiveRecord::Schema.define(version: 20140804140108) do
     t.string   "image"
     t.string   "short_address"
     t.string   "phone"
-    t.text     "cuisines"
+    t.text     "old_cuisines"
     t.boolean  "disabled",      default: false
+    t.integer  "locality_id"
   end
 
   create_table "roles", force: true do |t|
