@@ -1,9 +1,14 @@
 class Place < ActiveRecord::Base
+
+  include TextSearchable
+
+
   mount_uploader :image, ImageUploader
 
   has_many :items
   has_many :categories, :order => "position ASC"
   has_and_belongs_to_many :cuisines
+  belongs_to :locality
 
   CUISINES = CUISINE_TO_CATEGORIES.keys
 
@@ -17,7 +22,7 @@ class Place < ActiveRecord::Base
   searchable do
     text :name, boost: 5
     text :short_address
-    text :cuisines
+    string :city
   end
 
 
@@ -92,11 +97,22 @@ class Place < ActiveRecord::Base
   end
 
 
-  def as_json options={}
-    options ||= {}
-    options[:methods] ||= [:kind]
-    super(options)
+
+
+  def self.custom_search query,extra={}
+    city = extra[:city]
+    search = Place.search do
+      fulltext query
+      with(:city,city)
+      paginate(:page => 1, :per_page => 3)
+    end
+    search.results || []
   end
+
+  def city
+    locality.city
+  end
+
 
 
 end

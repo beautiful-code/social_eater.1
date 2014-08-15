@@ -20,12 +20,11 @@ class SearchesController < ApplicationController
 
 
   def search
-
-    @sunspot_search = Sunspot.search Item, Place do |query|
-      query.keywords params[:search]
-      query.paginate(:page => params[:page], :per_page => 30)
+    search_term,city = params[:search], (params[:city] || 'Bangalore')
+    @results = []
+    [Place,Locality,Cuisine,Item].each do |category|
+      @results += category.custom_search search_term,city: city
     end
-    @results = @sunspot_search.results
     render json: @results
   end
 

@@ -1,4 +1,8 @@
 class Item < ActiveRecord::Base
+
+  include TextSearchable
+
+
   belongs_to :place
   belongs_to :category
   acts_as_votable
@@ -16,6 +20,7 @@ class Item < ActiveRecord::Base
   searchable do
     text :name, boost: 5
     text :desc
+    string :city
   end
 
 
@@ -44,6 +49,24 @@ class Item < ActiveRecord::Base
     options[:methods] ||= [:kind]
     super(options)
   end
+
+
+ #Searches items based on city too
+  def self.custom_search query,extra={}
+    city = extra[:city]
+    search = Item.search do
+      fulltext query
+      with(:city,city)
+      paginate(:page => 1, :per_page => 5)
+    end
+    search.results || []
+  end
+
+
+  def city
+    place.locality.city
+  end
+
 
 
 end
