@@ -20,4 +20,12 @@ $(document).ready(function(){
     $(this).replaceWith('<i class="fa fa-spinner fa-spin"></i>');
   });
 
+  // Toggle veg or non-veg items
+  $('#roundedOne').click(function() {
+    $('.item[data-item-type="non-veg"]').toggle();
+    ele = $(this).closest('.col-xs-5');
+    $(ele).find('.show-veg').toggleClass('hidden');
+    $(ele).find('.show-all').toggleClass('hidden');
+  });
+
 });

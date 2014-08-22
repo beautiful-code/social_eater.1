@@ -4,11 +4,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Vendor assets
 @import "font-awesome";
-
 
 // Custom styles
 @import "generic";
 @import "home";
 @import "places";
 @import "responsive";
+

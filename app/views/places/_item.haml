@@ -1,7 +1,7 @@
 - css_id = "item_#{item.id}"
 - friend_likes = current_user.friends_like_item(item)
 
-.col-xs-12.item{id: css_id}
+.col-xs-12.item{id: css_id, "data-item-type" => ((item.non_veg)? 'non-veg' : 'veg') }
   .col-xs-12
     .col-xs-1
       %p.votes

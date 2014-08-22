@@ -3,10 +3,11 @@
 .row#places_show
   .col-xs-12
     .header
-      .col-xs-12
+      .col-xs-1
         = link_to places_path, class: 'back-link btn btn-default' do
           %i.fa.fa-angle-left
-      .col-xs-12
+
+      .col-xs-11
         %h2=@place.name
         %p
           - if @place.phone.present?
@@ -16,6 +17,18 @@
           - if @place.short_address.present?
             %i.fa.fa-map-marker
             = @place.short_address
+
+    .divider
+      .col-xs-7
+        - if @place.cuisines.present?
+          %p= @place.cuisines.join(', ').upcase
+
+      .col-xs-5
+        %p.show-veg show only veg
+        %p.show-all.hidden show all
+        .roundedOne
+          %input#roundedOne{:name => "check", :type => "checkbox", :value => "None"}
+          %label{:for => "roundedOne"}
 
     .content
       %ul.nav.nav-tabs{:role => "tablist"}

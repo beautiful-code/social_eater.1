@@ -163,12 +163,11 @@
   }
 
   .header {
-    height: 140px;
-    margin-bottom: 10px;
+    height: 120px;
     padding-bottom: 10px;
 
     h2 {
-      margin: 0px;
+      margin: 5px 0;
       color: #fff;
       font-weight: 400;
       font-size: 22px;
@@ -176,8 +175,8 @@
     }
 
     p {
+      margin: 3px 0;
       color: #fff;
-      margin: 0px;
       font-size: 14px;
       font-weight: 400;
       text-shadow: 2px 2px 1px #000;
@@ -201,6 +200,19 @@
       }
     }
 
+    .col-xs-1 {
+      padding: 0;
+    }
+
+    .col-xs-11 {
+      text-align: right;
+      padding: 5px 15px;
+
+      i {
+        padding-right: 6px;
+      }
+    }
+
   }
 
   .back-link {
@@ -217,6 +229,115 @@
 
     i {
       font-size: 50px;
+    }
+  }
+
+  .divider {
+    height: 28px;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    background-color: #4A4A4A;
+
+    .col-xs-7 {
+      padding: 0 0 0 15px;
+      text-align: left;
+    }
+
+    .col-xs-5 {
+      padding-left: 0;
+      text-align: right;
+
+      p {
+        display: inline-block;
+        position: relative;
+        top: -4px;
+        padding-right: 5px;
+        font-size: 10px;
+
+        &.visible {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    p {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .roundedOne {
+      width: 18px;
+      height: 18px;
+      position: relative;
+      margin: 0;
+      top: -1px;
+      display: inline-block;
+      background: #fcfff4;
+      background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fcfff4), color-stop(40%, #dfe5d7), color-stop(100%, #b3bead));
+      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+      background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+      background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      -ms-border-radius: 50px;
+      border-radius: 50px;
+      -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+      label {
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #45484d));
+        background: -webkit-linear-gradient(top, #222222 0%, #45484d 100%);
+        background: -moz-linear-gradient(top, #222222 0%, #45484d 100%);
+        background: linear-gradient(top, #222222 0%, #45484d 100%);
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        border-radius: 50px;
+        -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+        -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+        &:after {
+          content: '';
+          width: 10px;
+          height: 10px;
+          position: absolute;
+          top: 0.5px;
+          left: 1px;
+          background: #00bf00;
+          background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #00bf00), color-stop(100%, #009400));
+          background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+          background: -moz-linear-gradient(top, #00bf00 0%, #009400 100%);
+          background: linear-gradient(top, #00bf00 0%, #009400 100%);
+          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+          opacity: 0;
+          -webkit-border-radius: 50px;
+          -moz-border-radius: 50px;
+          -ms-border-radius: 50px;
+          border-radius: 50px;
+          -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+          -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        &:hover::after {
+          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+          //opacity: 0.3;
+        }
+      }
+      input[type=checkbox] {
+        visibility: hidden;
+        &:checked + label:after {
+          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+          opacity: 1;
+        }
+      }
     }
   }
 

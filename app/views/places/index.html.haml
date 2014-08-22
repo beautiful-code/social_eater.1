@@ -13,12 +13,12 @@
                 = image_tag current_user.provider_pic,alt: 'profile pic'
                 %span.caret
               %ul.dropdown-menu{"aria-labelledby" => "Menu1", :role => "menu"}
-                %li{:role => "presentation"}
+                -#%li{:role => "presentation"}
                   = link_to edit_user_registration_path, :role => 'menuitem', :tabindex => '-1' do
                     %i.fa.fa-cog
                     Settings
 
-                %li.divider{:role => "presentation"}
+                -#%li.divider{:role => "presentation"}
                 %li{:role => "presentation"}
                   = link_to destroy_user_session_path, :method => :delete, :role => "menuitem", :tabindex => "-1" do
                     %i.fa.fa-user
