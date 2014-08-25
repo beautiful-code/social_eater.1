@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
 
   after_create :fetch_pic!
 
+  def email_required?
+    false
+  end
 
   #->Prelang (user_login/devise)
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
