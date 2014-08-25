@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140825121014) do
     t.string   "phone"
     t.text     "cuisines"
     t.boolean  "disabled",      default: false
+    t.boolean  "veg"
   end
 
   create_table "roles", force: true do |t|

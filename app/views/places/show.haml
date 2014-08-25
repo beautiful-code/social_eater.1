@@ -21,14 +21,15 @@
     .divider
       .col-xs-7
         - if @place.cuisines.present?
-          %p= @place.cuisines.join(', ').upcase
+          %p= @place.cuisines.first(2).join(', ').upcase
 
       .col-xs-5
-        %p.show-veg show only veg
-        %p.show-all.hidden show all
-        .roundedOne
-          %input#roundedOne{:name => "check", :type => "checkbox", :value => "None"}
-          %label{:for => "roundedOne"}
+        - unless @place.veg
+          %label.show-veg{:for => "roundedOne"} show only veg
+          %label.show-all.hidden{:for => "roundedOne"} show all
+          .roundedOne
+            %input#roundedOne{:name => "veg_nonveg", :type => "checkbox", :value => "None"}
+            %label{:for => "roundedOne"}
 
     .content
       %ul.nav.nav-tabs{:role => "tablist"}
@@ -48,8 +49,9 @@
 
         #top5.tab-pane.fade.in.active
           - WinnerList.new(@place).list.each do |cat_id, items|
-            .row
-              - category = Category.find(cat_id)
+            - category = Category.find(cat_id)
+            - nonveg_count = items.select { |i| i if i.non_veg }.count
+            .row{"data-item-type" => ((items.count == nonveg_count)? 'non-veg' : 'veg')}
               %h4.winner= category.name
               - items.each do |item|
                 = render 'item',item: item

@@ -22,7 +22,7 @@ $(document).ready(function(){
 
   // Toggle veg or non-veg items
   $('#roundedOne').click(function() {
-    $('.item[data-item-type="non-veg"]').toggle();
+    $('div[data-item-type="non-veg"]').toggle();
     ele = $(this).closest('.col-xs-5');
     $(ele).find('.show-veg').toggleClass('hidden');
     $(ele).find('.show-all').toggleClass('hidden');

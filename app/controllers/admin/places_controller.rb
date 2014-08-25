@@ -1,7 +1,6 @@
 class Admin::PlacesController < Admin::MainController
 
   before_action :set_place, only: [:show, :notes, :edit, :update, :destroy]
-  
 
   def index
     @places = Place.all
@@ -74,7 +73,7 @@ class Admin::PlacesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url, :disabled)
+      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url, :disabled, :veg)
       whitelisted_params.merge(:cuisines => params[:cuisines] || [])
     end
 
@@ -84,7 +83,7 @@ class Admin::PlacesController < Admin::MainController
         item = @place.items.find_or_initialize_by(name: params["item_#{index}"])
         item.update_attributes({
           :place => @place,
-          :name => params["item_#{index}"], 
+          :name => params["item_#{index}"],
           :cold_votes => params["count_#{index}"]
         })
        end
@@ -96,7 +95,7 @@ class Admin::PlacesController < Admin::MainController
         category = @place.categories.find_or_initialize_by(name: params["category_#{index}"])
         category.update_attributes({
           :place => @place,
-          :name => params["category_#{index}"], 
+          :name => params["category_#{index}"],
           :position => params["position_#{index}"],
           :cold_votes => params["cat_cv_#{index}"],
         })

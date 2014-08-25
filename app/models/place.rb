@@ -9,6 +9,10 @@ class Place < ActiveRecord::Base
   serialize :cuisines, Array
   validates_presence_of :name
 
+  after_initialize do |place|
+    place.veg = false unless place.veg
+  end
+
   after_create :populate_categories
 
   scope :enabled, where(:disabled => false)

@@ -7,8 +7,7 @@ class Admin::MainController < ApplicationController
   private
 
   def authenticate_admin!
-    # TODO: Enable this at some time.
-    #redirect_to root_path , alert: 'Admin Area is restricted' unless current_user.has_role? :admin
+    redirect_to root_path , alert: 'Admin Area is restricted' unless current_user.has_role? :admin
   end
 
 

@@ -11,9 +11,13 @@ namespace :social_eater do
   task :set_non_veg_items, [] => :environment do
     dictionary = %w(chicken mutton murg murgh haleem fish prawn crab gosh ghost goat lamb)
     dictionary.each do |keyword|
-      items = Item.where('name like ?',"%#{keyword}%")
-      items.each do |item|
-        item.update_attribute(:non_veg, true)
+      Place.all.each do |restaurant|
+        # Set all items to veg
+        restaurant.items.each {|item| item.update_attribute(:non_veg, false) }
+
+        # Set all non vegetarian items
+        nonveg_items = restaurant.items.where('items.name LIKE ? OR items.desc LIKE ?',"%#{keyword}%", "%#{keyword}%")
+        nonveg_items.each { |item| item.update_attribute(:non_veg, true) }
       end
     end
   end
