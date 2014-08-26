@@ -63,6 +63,8 @@ gem "fog"
 gem 'sunspot_rails'
 gem 'progress_bar'
 gem 'twitter-typeahead-rails'
+gem "geocoder"
+
 
 
 

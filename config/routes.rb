@@ -9,13 +9,16 @@ SocialEater::Application.routes.draw do
     end
   end
 
-
-  devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords", omniauth_callbacks: "users/omniauth_callbacks"}, skip: [:sessions, :registrations]
-
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+    passwords: "users/passwords",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }, skip: [:sessions, :registrations]
 
   namespace :admin do
     resources :places do
-      member do 
+      member do
         get "notes"
         post "notes"
       end
@@ -24,13 +27,11 @@ SocialEater::Application.routes.draw do
     end
   end
 
-
   #->Prelang (user_login:devise/stylized_paths)
   devise_scope :user do
     get    "login"   => "devise/sessions#new",         as: :new_user_session
     post   "login"   => "devise/sessions#create",      as: :user_session
     delete "signout" => "devise/sessions#destroy",     as: :destroy_user_session
-    
     get    "signup"  => "devise/registrations#new",    as: :new_user_registration
     post   "signup"  => "devise/registrations#create", as: :user_registration
     put    "signup"  => "devise/registrations#update", as: :update_user_registration
@@ -42,6 +43,7 @@ SocialEater::Application.routes.draw do
   resources :searches do
     collection do
       get :search
+      get :new_search
     end
   end
 

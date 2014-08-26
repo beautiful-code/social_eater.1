@@ -30,6 +30,14 @@ class SearchesController < ApplicationController
 
 
 
+  def new_search
+    lat,lon,radius,city = params[:lat], params[:lon],params[:radius],params[:city]
+    results = Place.new_custom_search(lat,lon,radius: radius,city: city).results
+    render json: results
+  end
+
+
+
 
 
 

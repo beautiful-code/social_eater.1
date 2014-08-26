@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814051117) do
+ActiveRecord::Schema.define(version: 20140826102636) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20140814051117) do
     t.text     "old_cuisines"
     t.boolean  "disabled",      default: false
     t.integer  "locality_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "roles", force: true do |t|

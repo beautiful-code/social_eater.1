@@ -1,9 +1,8 @@
 class Place < ActiveRecord::Base
 
   include TextSearchable
-
-
   mount_uploader :image, ImageUploader
+
 
   has_many :items
   has_many :categories, :order => "position ASC"
@@ -16,6 +15,10 @@ class Place < ActiveRecord::Base
   validates_presence_of :name
 
   after_create :populate_categories
+  geocoded_by :short_address   # can also be an IP address
+  after_validation :geocode
+
+
 
   scope :enabled, where(:disabled => false)
 
@@ -23,10 +26,10 @@ class Place < ActiveRecord::Base
     text :name, boost: 5
     text :short_address
     string :city
+    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
 
-
-
+  # Use like so: Place.search { with(:location).in_radius(17.3916,78.4658,1)}
 
   def self.sorted
     order('name asc')
@@ -108,6 +111,21 @@ class Place < ActiveRecord::Base
     end
     search.results || []
   end
+
+
+  def self.new_custom_search(lat,lon,extra={})
+    extra ||={}
+    city ||= extra[:city]
+    radius = extra[:radius] || 1
+    lat ||= 17.3916
+    lon ||= 78.4658
+    search do
+      with(:location).in_radius(lat,lon,radius) if (lat && lon && radius)
+      with(:city,city) if city.present?
+      paginate(:page=>1,:per_page=>6)
+    end
+  end
+
 
   def city
     locality.city
