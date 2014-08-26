@@ -1,0 +1,164 @@
+-#
+  %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+  :javascript
+    var geocoder;
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successFunction, errorFunction,{enableHighAccuracy: true});
+    }
+
+    //Get the latitude and the longitude;
+    function successFunction(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        codeLatLng(lat, lng)
+    }
+
+    function errorFunction(e){
+        alert(e.code + e.message);
+    }
+
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+    }
+
+    function codeLatLng(lat, lng) {
+
+      var latlng = new google.maps.LatLng(lat, lng);
+      geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            alert(results[0].formatted_address);
+          } else {
+            alert("No results found");
+          }
+        } else {
+          alert("Geocoder failed due to: " + status);
+        }
+      });
+    }
+
+
+  = link_to '#', onclick: 'initialize();', class: 'btn btn-success' do
+    %i.fa.fa-location-arrow
+    Get Location
+
+
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %center
+          %h4#myModalLabel.modal-title Select your Location
+      .modal-body
+        = select_tag "city", options_for_select([ "Hyderabad" ]), class: 'form-control', prompt: 'Select the city'
+      .modal-footer
+        %center
+          = link_to '#', class: 'btn btn-primary', onclick: 'getNearby()' do
+            %i.fa.fa-check
+            Set Location
+
+
+.container
+  %br
+  %br
+  .well
+    %center
+      = link_to '#', onclick: 'getLocation();', class: 'btn btn-success' do
+        %i.fa.fa-location-arrow
+        Set Location
+
+      %p.status
+
+      %p.result
+        %br
+        %i.fa.fa-map-marker
+        Latitude:
+        %span.lat N/A
+        , Longitude:
+        %span.lon N/A
+        %br
+        Current Location:
+        %span.current N/A
+
+
+:javascript
+  function getLocation() {
+    if ($.cookie('latitude') || $.cookie('city')) {
+      $('span.current').html($.cookie('city'));
+      $('p.status').html('<br><i class="fa fa-info-sign"></i><span> Location is already set.</span>');
+    } else {
+      updateLocation();
+    }
+  }
+
+  function updateLocation() {
+    $('p.status').html('<br><i class="fa fa-spinner fa-spin"></i><span> Wating for the location ....</span>');
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {enableHighAccuracy: true});
+  }
+
+  function geoError(e) {
+    if (e.code == 1 ) {
+      selectLocation();
+    } else {
+      $('p.status').html('<br><i class="fa fa-warning"></i><span> Failed.' + e.message + '</span>');
+    }
+  }
+
+  function geoSuccess(pos) {
+    $('p.status').html('<br><i class="fa fa-check"></i><span> Success.</span>');
+    $('span.lat').html(pos.coords.latitude);
+    $('span.lon').html(pos.coords.longitude);
+    $.cookie('latitude',pos.coords.latitude);
+    $.cookie('longitude',pos.coords.longitude);
+  }
+
+  function selectLocation() {
+    $('#myModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+  }
+
+  function getNearby() {
+    var city = $('select#city').val();
+
+    if (city) {
+      $.cookie('city',city);
+      location.reload();
+    } else {
+      $('select').addClass('has-error');
+    }
+  }
+
+  $('document').ready(function() {
+    if ($.cookie('latitude')) {
+      $('span.lat').html($.cookie('latitude'));
+      $('span.lon').html($.cookie('longitude'));
+      $('p.status').html('<br><i class="fa fa-info-sign"></i><span> Location is already set.</span>');
+    }
+
+    if ($.cookie('city')) {
+      $('span.current').html($.cookie('city'));
+      $('p.status').html('<br><i class="fa fa-info-sign"></i><span> Location is already set.</span>');
+    }
+
+    if (navigator.geolocation) {
+      $('p.status').html('<br>GPS is on. <button type="button" onclick="updateLocation()" class="btn btn-info"> Update Location </button>')
+    }
+
+  });
+
+:scss
+  .modal {
+    background: #999696;
+
+    .modal-dialog {
+      width: 90%;
+      margin: 15% 4%;
+    }
+
+    .modal-content {
+      border-radius: 0;
+    }
+  }

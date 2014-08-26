@@ -39,4 +39,5 @@ SocialEater::Application.routes.draw do
 
   root :to => 'places#index'
 
+  get '/nearby', to: 'places#nearby'
 end

@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -14,6 +14,9 @@ class PlacesController < ApplicationController
   end
 
   def edit
+  end
+
+  def nearby
   end
 
   def create
