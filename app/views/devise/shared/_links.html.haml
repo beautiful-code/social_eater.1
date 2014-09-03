@@ -2,4 +2,5 @@
   - resource_class.omniauth_providers.each do |provider|
     = link_to omniauth_authorize_path(resource_name, provider),class: 'btn btn-primary btn-block' do
       Login with
-      %span= provider.to_s.downcase
+      %span
+        %strong= provider.to_s.downcase

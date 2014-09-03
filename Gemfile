@@ -21,7 +21,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'listjs-rails'
 gem 'angularjs-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

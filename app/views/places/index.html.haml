@@ -4,27 +4,46 @@
       .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
         .container
           .navbar-header
-            %a.navbar-brand{:href => "/"}
-              = image_tag 'logo.png',alt: 'SocialEater logo'
-            %form{:role => "form"}
-              %input.form-control{:placeholder => "Search Restaurants", :type => "text",:id => "search_places",:name => "query",class: 'search'}
-            %div.userpic.dropdown
-              %a#Menu1{"data-toggle" => "dropdown"}
-                = image_tag current_user.provider_pic,alt: 'profile pic'
-                %span.caret
-              %ul.dropdown-menu{"aria-labelledby" => "Menu1", :role => "menu"}
-                -#%li{:role => "presentation"}
-                  = link_to edit_user_registration_path, :role => 'menuitem', :tabindex => '-1' do
-                    %i.fa.fa-cog
-                    Settings
+            .col-xs-2
+              %a.navbar-brand{:href => "/"}
+                = image_tag 'logo.png',alt: 'SocialEater logo'
+            .col-xs-8
+              %p.headline What's good around you ?
+            .col-xs-2
+              %div.userpic.dropdown
+                %a#Menu1{"data-toggle" => "dropdown"}
+                  = image_tag current_user.provider_pic,alt: 'profile pic'
+                  %span.caret
+                %ul.dropdown-menu{"aria-labelledby" => "Menu1", :role => "menu"}
 
-                -#%li.divider{:role => "presentation"}
-                %li{:role => "presentation"}
-                  = link_to destroy_user_session_path, :method => :delete, :role => "menuitem", :tabindex => "-1" do
-                    %i.fa.fa-user
-                    Logout
+                  %li{:role => "presentation"}
+                    = link_to destroy_user_session_path, :method => :delete, :role => "menuitem", :tabindex => "-1" do
+                      %i.fa.fa-user
+                      Logout
 
       = bootstrap_flash
+
+      .filter
+        .col-xs-12
+          = link_to '', class: 'btn btn-default btn-loc btn-block' do
+            %i.fa.fa-crosshairs
+            %span Select your location
+
+        .col-xs-12
+          .col-xs-8
+            %input{type: 'text', class: 'form-control'}
+
+
+          .col-xs-4
+            .btn-group{"data-toggle" => "buttons"}
+              %label.btn.btn-default
+                %input#option1{:name => "options", :type => "radio"}
+                  %i.fa.fa-arrow-up
+                  KMS
+              %label.btn.btn-default
+                %input#option2{:name => "options", :type => "radio"}
+                  %i.fa.fa-arrow-down
+                  LIKES
 
     .content
       %ul.list-group.list
@@ -39,21 +58,32 @@
                 %i.fa.fa-map-marker
                 Address
 
-      -#%center
-        %ul.pagination
+#selectLocation.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %center
+          %h4.modal-title Select your Location
+
+      .modal-body
+        = select_tag "location", options_for_select([ "Hitec City", "Madhapur", "Banjara Hills", "Jubliee Hills" ]), class: 'form-control', prompt: 'Select the location'
+
+      .modal-footer
+        %center
+          = button_tag type: 'button', class: 'btn btn-primary', onclick: 'setLocation()' do
+            %i.fa.fa-check
+            Set Location
 
 :javascript
-  $('.list-group').delegate('li','click',function() {
+  $('.list-group li').click(function() {
     window.location = '/places/'+ $(this).attr('place') ;
   });
 
-  var placesList = new List(
-    'places',
-    {
-      valueNames: [ 'name', 'address' ]
-      //page: 10,
-      //plugins: [
-      //  ListPagination({})
-      //]
-    }
-  );
+  $('.btn-loc').click(function() {
+    getLocation();
+  });
+
+  $(function() {
+    getLocation();
+  });
+

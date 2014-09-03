@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 
   // More/Less Description
   $("[id^='item_']").delegate('.more','click',function(){
