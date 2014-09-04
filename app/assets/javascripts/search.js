@@ -1,6 +1,5 @@
 $(document).on('ready page:load', function() {
     var results;
-    console.log('AAAAA');
     results = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,

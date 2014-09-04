@@ -1,1 +1,10 @@
-= render 'places/place', places: @places
+- if @places.present?
+  = render 'places/place', places: @places
+- else
+  %ul.list-group
+    %li
+      .alert.alert-info
+        %p
+          %i.fa.fa-info-circle
+          Sorry. There are no places near by.
+          Please increase the radius of your search.

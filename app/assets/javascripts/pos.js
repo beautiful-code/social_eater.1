@@ -42,8 +42,8 @@ function computeLocation(lat, lng) {
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
-        loc = results[3].formatted_address.split(',');
-        updateAddress(loc[0]);
+        var locality = matchLocality(results[1].formatted_address);
+        updateAddress(locality);
       } else {
         manualLocation();
       }
@@ -76,6 +76,7 @@ function setLocation() {
   $('#selectLocation .form-control').each(function() {
     if($(this).val()) {
       updateAddress($(this).val());
+      $('#selectLocation').modal('toggle');
     } else {
       $(this).addClass('has-error');
     }
@@ -95,3 +96,19 @@ function updatePlaces() {
     }
   );
 }
+
+function matchLocality(addr) {
+  var localities = PageConfig.localities;
+  addr = $.map(addr.split(','), $.trim);
+
+  var result = addr.filter(function(n) {
+    return localities.indexOf(n) != -1
+  });
+
+  if (result.length > 0) {
+    return result;
+  } else {
+    manualLocation('Unable to locate the correct address. Please select the location.');
+  }
+}
+

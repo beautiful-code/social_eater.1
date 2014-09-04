@@ -4,6 +4,7 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.enabled.sorted
+    @localities = Locality.all.collect { |l| l.name }
   end
 
   def show

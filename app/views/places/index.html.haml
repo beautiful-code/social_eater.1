@@ -26,8 +26,10 @@
       .filter
         .col-xs-12
           = link_to '', class: 'btn btn-default btn-loc btn-block' do
-            %i.fa.fa-crosshairs
-            %span Select your location
+            %i.fa.fa-map-marker
+            %span
+              Updating your address...
+              %i.fa.fa-spin.fa-spinner
 
         .col-xs-12
           .col-xs-8
@@ -56,7 +58,7 @@
           %h4.modal-title Select your Location
 
       .modal-body
-        = select_tag "location", options_for_select([ "Hitec City", "Madhapur", "Banjara Hills", "Jubliee Hills" ]), class: 'form-control', prompt: 'Select the location'
+        = select_tag "location", options_for_select(@localities), class: 'form-control', prompt: 'Select the location'
 
       .modal-footer
         %center
@@ -65,15 +67,19 @@
             Set Location
 
 :javascript
-  $('.list-group li').click(function() {
-    window.location = '/places/'+ $(this).attr('place') ;
-  });
-
-  $('.btn-loc').click(function() {
-    getLocation();
-  });
+  var PageConfig = {
+    localities: #{@localities.to_json}
+  }
 
   $(function() {
+    $('.list-group li').click(function() {
+      window.location = '/places/'+ $(this).attr('place') ;
+    });
+
+    $('.btn-loc').click(function() {
+      getLocation();
+    });
+
     getLocation();
   });
 
