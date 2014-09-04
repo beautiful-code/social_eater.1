@@ -2,7 +2,6 @@ class Item < ActiveRecord::Base
 
   include TextSearchable
 
-
   belongs_to :place
   belongs_to :category
   acts_as_votable
@@ -25,10 +24,9 @@ class Item < ActiveRecord::Base
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string :place_id
   end
+
   # To use facets : r = Item.search { with(:location).in_radius(17.3916,78.4658,0); facet(:place_id)}
   # r.facet(:place_id).rows
-
-
 
   def voter_ids
     votes_for.collect(&:voter_id)
@@ -55,7 +53,6 @@ class Item < ActiveRecord::Base
     super(options)
   end
 
-
  #Searches items based on city too
   def self.custom_search query,extra={}
     city = extra[:city]
@@ -67,12 +64,8 @@ class Item < ActiveRecord::Base
     search.results || []
   end
 
-
   def city
     place.locality.city
   end
-
-
-
 
 end

@@ -43,7 +43,7 @@ SocialEater::Application.routes.draw do
   resources :searches do
     collection do
       get :search
-      get :new_search
+      get :places
     end
   end
 

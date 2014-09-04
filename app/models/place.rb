@@ -22,14 +22,13 @@ class Place < ActiveRecord::Base
   geocoded_by :short_address   # can also be an IP address
   after_validation :geocode
 
-
-
   scope :enabled, where(:disabled => false)
 
   searchable do
     text :name, boost: 5
     text :short_address
     string :city
+    string :area
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
 
@@ -55,7 +54,6 @@ class Place < ActiveRecord::Base
   def tags
     categories.collect(&:tags_list).compact.flatten.uniq
   end
-
 
   def ordered_items
     categorized_items = items.select {|i| i.category.present?}
@@ -92,7 +90,6 @@ class Place < ActiveRecord::Base
     winner_list
   end
 
-
   def set_default_category
     cat = Category.find_or_create_by(name: 'Uncategorized', place_id: id)
     cat.update_attribute(:position, 50)
@@ -102,9 +99,6 @@ class Place < ActiveRecord::Base
   def kind
     self.class.name
   end
-
-
-
 
   def self.custom_search query,extra={}
     city = extra[:city]
@@ -120,21 +114,23 @@ class Place < ActiveRecord::Base
   def self.new_custom_search(lat,lon,extra={})
     extra ||={}
     city ||= extra[:city]
-    radius = extra[:radius] || 1
-    lat ||= 17.3916
-    lon ||= 78.4658
+    radius = extra[:radius] || 2
+    area ||= extra[:area]
+
     search do
       with(:location).in_radius(lat,lon,radius) if (lat && lon && radius)
       with(:city,city) if city.present?
+      with(:area,area) if area.present?
       paginate(:page=>1,:per_page=>6)
     end
   end
-
 
   def city
     locality.city
   end
 
-
+  def area
+    locality.area_name
+  end
 
 end

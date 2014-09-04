@@ -2,10 +2,8 @@ var geocoder, loc;
 
 function getLocation() {
   if($.cookie('_locality')) {
-    // Cookie is set. Return value
     updateAddress($.cookie('_locality'));
   } else {
-    // Set Cookie
     updateLocation();
   }
 
@@ -36,7 +34,6 @@ function geoSuccess(pos) {
 }
 
 function geoError(e) {
-  // console.log('Err code:' + e.code + '. Err Msg:'+ e.message);
   manualLocation('GPS is disabled on your device. Please select your location.');
 }
 
@@ -48,11 +45,9 @@ function computeLocation(lat, lng) {
         loc = results[3].formatted_address.split(',');
         updateAddress(loc[0]);
       } else {
-        //console.log('No results found');
         manualLocation();
       }
     } else {
-      //console.log('Geocoder failed due to: ' + status);
       manualLocation();
     }
   });
@@ -63,6 +58,7 @@ function updateAddress(addr) {
   $.cookie('_locality',addr);
   date = new Date();
   $.cookie('_updated_at',date.getTime());
+  updatePlaces();
 }
 
 function manualLocation(msg) {
@@ -79,10 +75,23 @@ function manualLocation(msg) {
 function setLocation() {
   $('#selectLocation .form-control').each(function() {
     if($(this).val()) {
-      // Hit the API
       updateAddress($(this).val());
     } else {
       $(this).addClass('has-error');
     }
   });
+}
+
+
+function updatePlaces() {
+  $.get(
+    '/searches/places',
+    {
+      area: $.cookie('_locality')
+    },
+    function(data) {
+      //alert(data);
+      $('#places .content').html(data);
+    }
+  );
 }

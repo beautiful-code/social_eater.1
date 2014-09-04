@@ -2,13 +2,13 @@ class Locality < ActiveRecord::Base
 
   include TextSearchable
 
-
   validates_presence_of :area_name,:city
 
   has_many :places
 
   searchable do
     text :area_name,boost: 5
+    string :area_name
     string :city
   end
 

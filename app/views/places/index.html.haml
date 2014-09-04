@@ -46,17 +46,7 @@
                   LIKES
 
     .content
-      %ul.list-group.list
-        - @places.each do |place|
-          %li.list-group-item{place: place.id}
-            %h4.name= link_to place.name,place
-            %span.address
-              - if place.short_address.present?
-                %i.fa.fa-map-marker
-                = place.short_address
-              - else
-                %i.fa.fa-map-marker
-                Address
+      = render 'place', places: @places
 
 #selectLocation.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog

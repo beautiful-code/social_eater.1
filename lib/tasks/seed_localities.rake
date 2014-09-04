@@ -1,8 +1,11 @@
 namespace :social_eater do
-  desc "seed localities"
-  task :seed_localities,  [:prefix] => :environment do |t, args|
-    ['Banjara Hills', 'Jubilee Hills', 'Hitec City'].each do |name|
-      Locality.find_or_create_by(area_name: name,city: 'Hyderabad')
+  # Run Rake db:seed before doing this which seeds the locality and cuisines
+  desc "update place locality"
+  task :update_place_locality,  [:prefix] => :environment do |t, args|
+    Locality.all.each do |locality|
+      Place.where('short_address LIKE ?',"%#{locality.area_name}%").each do |place|
+        place.update_attribute(:locality_id,locality.id) unless place.locality_id
+      end
     end
   end
 end

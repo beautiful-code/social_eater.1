@@ -1,11 +1,8 @@
 class SearchesController < ApplicationController
-
-
+  before_filter :authenticate_user!
 
   def new
-
   end
-
 
 =begin
   def search
@@ -18,7 +15,6 @@ class SearchesController < ApplicationController
   end
 =end
 
-
   def search
     search_term,city = params[:search], (params[:city] || 'Bangalore')
     @results = []
@@ -28,18 +24,14 @@ class SearchesController < ApplicationController
     render json: @results
   end
 
+  def places
+    lat,lon,radius,area,city = params[:lat], params[:lon],params[:radius],params[:area],params[:city]
+    @places = Place.new_custom_search(lat, lon, radius: radius, area: area, city: city).results
 
-
-  def new_search
-    lat,lon,radius,city = params[:lat], params[:lon],params[:radius],params[:city]
-    results = Place.new_custom_search(lat,lon,radius: radius,city: city).results
-    render json: results
+    respond_to do |format|
+      format.html { render 'places', :layout => false }
+      format.json { render json: @places }
+    end
   end
-
-
-
-
-
-
 
 end
