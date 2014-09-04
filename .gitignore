@@ -12,6 +12,7 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+/log/*
 /log/*.log
 /tmp
 
@@ -34,5 +35,6 @@
 *.sass-cache
 # Carrierwave local files
 /public/uploads
-
+#Ignore solr data
+solr/development/data/*
 *.sql

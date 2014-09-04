@@ -1,0 +1,13 @@
+%h3  Testing Search
+
+#custom-templates
+  = form_tag search_searches_path , method: :get do
+    = text_field_tag :search, params[:search], class: 'typeahead'
+    = submit_tag "Search", class: 'btn btn-success'
+
+
+
+- if @results
+  - @results.each do |result|
+    %h3= result.name
+    %div= result.class.name

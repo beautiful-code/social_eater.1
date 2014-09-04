@@ -14,5 +14,9 @@
 //= require jquery_ujs
 //= require jquery.cookie
 //= require bootstrap
+//= require twitter/typeahead
+//= require handlebars
 //= require places
 //= require pos
+
+//= require search

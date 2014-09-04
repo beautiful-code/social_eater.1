@@ -13,6 +13,13 @@
     </div>
   </div>
 
+    <div class="form-group">
+      <%= f.label :locality_id,'Locality', :class => 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= f.select 'locality_id',Locality.all.collect{|l| ["#{l.area_name}-#{l.city}", l.id]},{ include_blank: true } %>
+      </div>
+    </div>
+
   <div class="form-group">
     <%= f.label :phone, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
@@ -37,9 +44,9 @@
   <div class="form-group">
     <%= f.label :cuisines, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%- Place::CUISINES.each do |cuisine| %>
-        <%= check_box_tag 'cuisines[]' , cuisine, @place.cuisines.include?(cuisine) %>
-        <%= cuisine %>
+      <%- Cuisine.all.each do |cuisine| %>
+        <%= check_box_tag 'cuisines[]' , cuisine.id, @place.cuisines.include?(cuisine) %>
+        <%= cuisine.name %>
       <% end %>
     </div>
   </div>
