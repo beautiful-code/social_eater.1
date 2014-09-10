@@ -121,7 +121,7 @@ class Place < ActiveRecord::Base
       with(:location).in_radius(lat,lon,radius) if (lat && lon && radius)
       with(:city,city) if city.present?
       with(:area,area) if area.present?
-      paginate(:page=>1,:per_page=>6)
+      #paginate(:page=>1,:per_page=>6)
     end
   end
 
@@ -131,6 +131,10 @@ class Place < ActiveRecord::Base
 
   def area
     locality.area_name
+  end
+
+  def cuisines_list
+    cuisines.first(2).collect { |c| c.name.upcase }.join(', ')
   end
 
 end

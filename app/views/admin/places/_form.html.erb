@@ -45,7 +45,7 @@
     <%= f.label :cuisines, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
       <%- Cuisine.all.each do |cuisine| %>
-        <%= check_box_tag 'cuisines[]' , cuisine.id, @place.cuisines.include?(cuisine) %>
+        <%= check_box_tag 'cuisine_ids[]' , cuisine.id, @place.cuisines.include?(cuisine) %>
         <%= cuisine.name %>
       <% end %>
     </div>

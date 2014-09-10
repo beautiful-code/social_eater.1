@@ -1,5 +1,5 @@
 - css_id = "item_#{item.id}"
-- friend_likes = current_user.friends_like_item(item)
+-# friend_likes = current_user.friends_like_item(item)
 
 .col-xs-12.item{id: css_id, "data-item-type" => ((item.non_veg)? 'non-veg' : 'veg') }
   .col-xs-12
@@ -7,7 +7,7 @@
       %p.votes
         %span= item.total_votes
         Likes
-    .col-xs-6
+    .col-xs-8
       %p.name
         =item.name
 
@@ -28,9 +28,9 @@
                 Less
                 %i.fa.fa-angle-up
 
-    .col-xs-5
+    .col-xs-3
       %p.like_it
-        - if friend_likes.present?
+        -# if friend_likes.present?
           %span.friend_likes
             - friend_likes.last(2).each do |friend|
               = image_tag friend.provider_pic,alt: 'fb pic',class: 'fb-pic'

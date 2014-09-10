@@ -1,4 +1,5 @@
 = render 'header_styles', image_info: @place.image_url(:thumb)
+- friend_likes = current_user.friends_like_place @place
 
 .row#places_show
   .col-xs-12
@@ -18,20 +19,28 @@
             %i.fa.fa-map-marker
             = @place.short_address
 
-    .divider
-      .col-xs-7
-        - if @place.cuisines.present?
-          %p= @place.cuisines.first(2).join(', ').upcase
+    .divider.row
+      .col-xs-12
+        .col-xs-7
+          - if @place.cuisines.present?
+            %p= @place.cuisines_list
 
-      .col-xs-5
-        - unless @place.veg
-          %label.show-veg{:for => "roundedOne"} show only veg
-          %label.show-all.hidden{:for => "roundedOne"} show all
-          .roundedOne
-            %input#roundedOne{:name => "veg_nonveg", :type => "checkbox", :value => "None"}
-            %label{:for => "roundedOne"}
+        .col-xs-5
+          - unless @place.veg
+            %label.show-veg{:for => "roundedOne"} show only veg
+            %label.show-all.hidden{:for => "roundedOne"} show all
+            .roundedOne
+              %input#roundedOne{:name => "veg_nonveg", :type => "checkbox", :value => "None"}
+              %label{:for => "roundedOne"}
 
     .content
+      - if friend_likes.present?
+        %div.friend-likes
+          %p Friends who liked dishes here
+          %p
+            - friend_likes.last(3).each do |f|
+              = image_tag f.provider_pic,alt: 'fb pic',class: 'fb-pic'
+
       %ul.nav.nav-tabs{:role => "tablist"}
         %li.active
           %a{"data-toggle" => "tab", :href => "#top5", :role => "tab"}

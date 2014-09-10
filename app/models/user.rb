@@ -73,4 +73,8 @@ class User < ActiveRecord::Base
     User.find(friend_ids & item.voter_ids)
   end
 
+  def friends_like_place place
+    User.find(friend_ids & place.items.collect {|i| i.voter_ids}.flatten)
+  end
+
 end

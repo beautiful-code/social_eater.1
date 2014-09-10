@@ -2,10 +2,32 @@
   - places.each do |place|
     %li.list-group-item{place: place.id}
       %h4.name= link_to place.name,place
-      %span.address
-        - if place.short_address.present?
-          %i.fa.fa-map-marker
-          = place.short_address
-        - else
-          %i.fa.fa-map-marker
-          Address
+      %span 1.2 KMS
+
+      - if place.short_address.present?
+        %p.address
+          %span
+            %i.fa.fa-map-marker
+            = place.short_address
+
+      - if place.cuisines.present?
+        %p.cuisines
+          %span
+            %i.fa.fa-cutlery
+            = place.cuisines_list
+
+      - top_item = place.top(1).first
+      - if top_item.present?
+        %p.top-item
+          %span.votes
+            %span= top_item.total_votes
+            Likes
+          %span.item-name= top_item.name.titleize
+
+      - friend_likes = current_user.friends_like_place(place)
+      - if friend_likes.present?
+        %p.friend-likes
+          %span Friends who liked dishes here
+          - friend_likes.last(3).each do |f|
+            = image_tag f.provider_pic,alt: 'fb pic',class: 'fb-pic'
+

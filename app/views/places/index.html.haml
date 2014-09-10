@@ -25,7 +25,7 @@
 
       .filter
         .col-xs-12
-          = link_to '', class: 'btn btn-default btn-loc btn-block' do
+          %a.btn.btn-default.btn-loc.btn-block
             %i.fa.fa-map-marker
             %span
               Updating your address...
@@ -62,24 +62,8 @@
 
       .modal-footer
         %center
-          = button_tag type: 'button', class: 'btn btn-primary', onclick: 'setLocation()' do
+          = button_tag type: 'button', class: 'btn btn-primary manual-loc' do
             %i.fa.fa-check
             Set Location
 
-:javascript
-  var PageConfig = {
-    localities: #{@localities.to_json}
-  }
-
-  $(function() {
-    $('.list-group li').click(function() {
-      window.location = '/places/'+ $(this).attr('place') ;
-    });
-
-    $('.btn-loc').click(function() {
-      getLocation();
-    });
-
-    getLocation();
-  });
-
+= render 'places_js'

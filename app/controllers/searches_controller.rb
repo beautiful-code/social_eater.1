@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
   end
 
   def places
-    lat,lon,radius,area,city = params[:lat], params[:lon],params[:radius],params[:area],params[:city]
+    lat,lon,radius,area,city = params[:lat].to_i, params[:lon].to_i,params[:radius].to_i,params[:area],params[:city]
     @places = Place.new_custom_search(lat, lon, radius: radius, area: area, city: city).results
 
     respond_to do |format|

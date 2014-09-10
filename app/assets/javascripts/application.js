@@ -17,6 +17,6 @@
 //= require twitter/typeahead
 //= require handlebars
 //= require places
-//= require pos
+//= require geolocation
 
 //= require search

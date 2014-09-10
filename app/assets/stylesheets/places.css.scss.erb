@@ -157,12 +157,14 @@
     border-color: #BBBBBB;
     border-right: 0px;
     border-left: 0px;
-    padding: 8px 15px 5px 25px;
+    padding: 8px 15px 0 25px;
 
-    h4 {
+    h4.name {
       margin: 0px;
       font-weight: 400;
       font-size: 22px;
+      width: 80%;
+      display: inline-block;
     }
 
     a{
@@ -179,6 +181,76 @@
 
     &:last-child {
       border-bottom: 0;
+    }
+
+    .cuisines {
+      margin: 0px;
+
+      span {
+        color: #333;
+        font-size: 13px;
+      }
+
+      i {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .top-item {
+    margin: 0px;
+    padding: 5px 0 0;
+
+    p {
+      margin-bottom: 0;
+      min-height: 35px;
+    }
+
+    .votes {
+      width: 10%;
+      display: inline-block;
+      font-size: 10px;
+      color: #E50000;
+
+      span {
+        text-align: center;
+        font-size: 13px;
+        color: #fff;
+        min-width: 25px;
+        height: 25px;
+        background-color: #E50000;
+        border-radius: 2px;
+        display: inline-block;
+        padding-top: 2px;
+      }
+    }
+
+    .item-name {
+      position: absolute;
+      width: 88%;
+      display: inline-block;
+      font-size: 18px;
+      color: #9f9f9f;
+      padding-left: 5px;
+      font-weight: 500;
+    }
+  }
+
+  .friend-likes {
+    span {
+      font-size: 14px;
+      color: #333;
+      font-weight: 200;
+    }
+
+    .fb-pic {
+      height: 30px;
+      width: 30px;
+      border-radius: 3px;
+
+      &:first-of-type {
+        margin-left: 5px;
+      }
     }
   }
 
@@ -267,8 +339,9 @@
   .divider {
     height: 28px;
     padding: 5px 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     background-color: #4A4A4A;
+    margin: 0;
 
     .col-xs-7 {
       padding: 0 0 0 15px;
@@ -386,6 +459,25 @@
     }
   }
 
+  .friend-likes {
+    text-align: center;
+    border-bottom: 1px solid #9f9f9f;
+    margin-bottom: 10px;
+
+    p {
+      font-size: 14px;
+      color: #6B5C6B;
+      font-weight: 200;
+      margin-bottom: 5px;
+    }
+
+    .fb-pic {
+      height: 30px;
+      width: 30px;
+      border-radius: 3px;
+    }
+  }
+
   .nav-tabs {
     margin: 0 6px;
     border: 0;
@@ -461,7 +553,7 @@
     margin-bottom: 4px;
     background-color: #FFF;
 
-    .col-xs-6 {
+    .col-xs-8 {
       padding: 0 0 0 12px;
     }
 
@@ -538,7 +630,7 @@
     }
 
 
-    .col-xs-5 {
+    .col-xs-3 {
       text-align: right;
       padding: 0 6px 0 2px;
     }

@@ -58,17 +58,18 @@ gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem 'carrierwave'
 gem 'rmagick', :require => 'RMagick'
-gem "fog"
+gem 'fog'
 gem 'sunspot_rails'
 gem 'progress_bar'
 gem 'twitter-typeahead-rails'
-gem "geocoder"
-
-
-
+gem 'geocoder'
+gem 'handlebars_assets'
 
 group :development do
   gem 'sunspot_solr'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
@@ -81,8 +82,3 @@ group :deploy do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
 end
-gem 'quiet_assets'
-
-gem 'handlebars_assets'
-
-
