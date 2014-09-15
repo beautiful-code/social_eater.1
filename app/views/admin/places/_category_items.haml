@@ -26,12 +26,12 @@
 
 
 
-          %select{'name'=>'item[category_id]','ng-model'=>'item.category_id', 'ng-options'=>'category.id as category.name for  category in categories', 'ng-change'=>'showTopics()'}
+          %select{'name'=>'item[category_id]','ng-model'=>'item.category_id', 'ng-options'=>'category.id as category.name for category in categories', 'ng-change'=>'showTopics()'}
             %option{}
               Select category
           %span{'ng-repeat'=>'category in categories'}
             %span.tags_list{'ng-if'=>"item.category_id==category.id"}
-              %select{'name'=>'item[tag]','ng-model'=>'item.tag', 'ng-options'=>'tag as tag for tag in category.tags            track by tag', 'ng-change'=>'showTopics()'}
+              %select{'name'=>'item[tag]','ng-model'=>'item.tag', 'ng-options'=>'tag as tag for tag in category.tags track by tag', 'ng-change'=>'showTopics()'}
                 %option{'value'=>""}
                   Select tag
               .hidden
@@ -40,7 +40,7 @@
           = hidden_field_tag 'item[place_id]', @place.id
 
           |
-          %a{"data-confirm" => "Are you sure?", "data-method" => "delete", href: "/admin/places/1/items/1", rel: "nofollow"}
+          %a{"data-confirm" => "Are you sure?", "data-method" => "delete", href: "/admin/places/#{@place.id}/items/{{item.id}}", rel: "nofollow"}
             %span.glyphicon.glyphicon-remove
           |
 
