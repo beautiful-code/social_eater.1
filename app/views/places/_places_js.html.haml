@@ -5,7 +5,7 @@
 
   $(function() {
     $('.list-group li').click(function() {
-      //window.location = '/places/'+ $(this).attr('place') ;
+      window.location = '/places/'+ $(this).attr('place') ;
     });
 
     var geo = Object.create(GeoLocation);
@@ -13,7 +13,21 @@
 
     var compute = Object.create(ComputeLocation);
 
-    setTimeout(function() {
+    var updated_at = $.cookie('_updated_at');
+
+    if(updated_at) {
+      var   date = new Date();
+      if (date.getTime() - updated_at > 120000) {
+        setTimeout(function() {
+          updateLocationInfo();
+        }, 6000);
+      } else {
+        $('.btn-loc span').html($.cookie('_locality'));
+        compute.updatePlaces();
+      }
+    }
+
+    function updateLocationInfo() {
       if(__geoLoc__.error) {
         compute.manualLocation(
           'Failed: '+ __geoLoc__.error.message + '. Please select your location.'
@@ -27,18 +41,21 @@
 
         compute.start();
       }
-    }, 6000);
 
-    setTimeout(function() {
-      if(!__geoLoc__.error && __geoLoc__.position) {
-        compute.updateAddress(
-          compute.matchLocality(
-            compute.results()[1].formatted_address
-          )
-        );
-      }
-    }, 7000);
+      updateAddressInfo();
+    }
 
+    function updateAddressInfo() {
+      setTimeout(function() {
+        if(!__geoLoc__.error && __geoLoc__.position) {
+          compute.updateAddress(
+            compute.matchLocality(
+              compute.results()[1].formatted_address
+            )
+          );
+        }
+      }, 7000);
+    }
 
     $('#selectLocation .manual-loc').click(function() {
       console.log('hi');

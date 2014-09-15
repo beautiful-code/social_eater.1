@@ -84,20 +84,22 @@
       input[type="text"] {
         border: 0;
         border-radius: 2px;
-        font-weight: 100px;
-        padding: 5px 10px;
+        padding: 5px 10px 5px 25px;
         height: 28px;
         font-size: 12px;
+        background-image: image-url('filter.png');
+        background-repeat: no-repeat;
+        background-size: 14px;
+        background-position: 2% 50%;
       }
 
-      .col-xs-8 {
-        padding: 0;
-        width: 68%;
-      }
-
+      .col-xs-8,
       .col-xs-4 {
         padding: 0;
-        width: 30%;
+      }
+
+      .filter-params {
+        text-align: right;
       }
 
       &:last-of-type {
@@ -107,10 +109,10 @@
     }
 
     .btn-group {
-      padding: 0 0 0 8px;
+      padding: 0 0 0 4px;
 
       .btn {
-        padding: 6px 4px;
+        padding: 4px;
         font-size: 10px;
         border-radius: 2px;
         background-color: #D1D1D1;
@@ -146,25 +148,53 @@
     min-height: 100vh;
   }
 
-  .list-group {
+  .center-block {
+    text-align: center;
+
+    p {
+      margin-top: 20%;
+      color: #333;
+    }
+
+    i.fa-spin {
+      font-size: 4em;
+      color: #d7d7d7;
+    }
+  }
+
+  .list {
     padding: 0px;
     margin: 0px;
   }
 
-  .list-group-item {
+  .list-item {
     border-radius: 0px;
     background-color: #E8E8E8;
     border-color: #BBBBBB;
     border-right: 0px;
     border-left: 0px;
-    padding: 8px 15px 0 25px;
+    padding: 6px 20px;
+    border-top: 1px solid #ABABAB;
 
-    h4.name {
-      margin: 0px;
-      font-weight: 400;
-      font-size: 22px;
-      width: 80%;
-      display: inline-block;
+    .place-name {
+      padding: 0;
+
+      h4 {
+        margin: 0px;
+        font-weight: 400;
+        font-size: 16px;
+        width: 86%;
+        display: inline-block;
+      }
+    }
+
+    .place-distance {
+      padding: 0;
+      text-align: right;
+    }
+
+    .place-info {
+      padding: 0;
     }
 
     a{
@@ -176,7 +206,7 @@
 
     span {
       color: #9F9F9F;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     &:last-child {
@@ -187,13 +217,18 @@
       margin: 0px;
 
       span {
-        color: #333;
-        font-size: 13px;
+        color: #89898D;
+        font-size: 12px;
+        font-weight: 600;
       }
 
       i {
-        font-size: 10px;
+        font-size: 8px;
       }
+    }
+
+    .address {
+      margin: 0;
     }
   }
 
@@ -230,15 +265,28 @@
       width: 88%;
       display: inline-block;
       font-size: 18px;
-      color: #9f9f9f;
-      padding-left: 5px;
-      font-weight: 500;
+      color: #5C5C5C;
+      font-weight: 700;
     }
   }
 
-  .friend-likes {
+  .more-top-items {
+    color: #878787;
+    font-size: 12px;
+
     span {
-      font-size: 14px;
+      text-transform: uppercase;
+      color: #333;
+    }
+
+  }
+
+  .friend-likes {
+    padding: 10px 0 0 0;
+    text-align: right;
+
+    span {
+      font-size: 12px;
       color: #333;
       font-weight: 200;
     }

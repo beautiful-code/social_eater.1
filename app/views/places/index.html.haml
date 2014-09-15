@@ -33,22 +33,24 @@
 
         .col-xs-12
           .col-xs-8
-            %input{type: 'text', class: 'form-control'}
+            %input{type: 'text', class: 'form-control', placeholder: 'Eg: Biriyani, Mexican, Chutneys'}
 
-
-          .col-xs-4
+          .col-xs-4.filter-params
             .btn-group{"data-toggle" => "buttons"}
-              %label.btn.btn-default
+              %label.btn.btn-default.active
                 %input#option1{:name => "options", :type => "radio"}
-                  %i.fa.fa-arrow-up
-                  KMS
+                  Relevance
               %label.btn.btn-default
                 %input#option2{:name => "options", :type => "radio"}
-                  %i.fa.fa-arrow-down
-                  LIKES
+                  %i.fa.fa-arrow-up
+                  KMS
 
     .content
-      = render 'place', places: @places
+      .center-block
+        %p Updating the list based on your location ...
+        %i.fa.fa-spin.fa-circle-o-notch
+
+      /= render 'place', places: @places
 
 #selectLocation.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog

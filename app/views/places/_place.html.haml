@@ -1,33 +1,45 @@
-%ul.list-group.list
+.row-fluid.list
   - places.each do |place|
-    %li.list-group-item{place: place.id}
-      %h4.name= link_to place.name,place
-      %span 1.2 KMS
+    .col-xs-12.list-item{place: place.id}
+      .col-xs-12
+        .col-xs-10.place-name
+          %h4= link_to place.name,place
 
-      - if place.short_address.present?
-        %p.address
-          %span
-            %i.fa.fa-map-marker
-            = place.short_address
+        .col-xs-2.place-distance
+          %span 1.2 KMS
 
-      - if place.cuisines.present?
-        %p.cuisines
-          %span
-            %i.fa.fa-cutlery
-            = place.cuisines_list
+      .col-xs-12
+        .col-xs-7.place-info
+          - if place.short_address.present?
+            .col-xs-12.address
+              %span
+                %i.fa.fa-map-marker
+                = place.short_address
 
-      - top_item = place.top(1).first
-      - if top_item.present?
-        %p.top-item
+          - if place.cuisines.present?
+            .col-xs-12.cuisines
+              %span
+                /%i.fa.fa-cutlery
+                = place.cuisines_list
+
+        .col-xs-5.friend-likes
+          - friend_likes = current_user.friends_like_place(place)
+          - if friend_likes.present?
+            %span Liked by
+            - friend_likes.last(2).each do |f|
+              = image_tag f.provider_pic,alt: 'fb pic',class: 'fb-pic'
+
+
+      - top_items = place.top(4)
+      - if top_items.present?
+        .col-xs-12.top-item
+          - top_item = top_items.first
           %span.votes
             %span= top_item.total_votes
             Likes
           %span.item-name= top_item.name.titleize
 
-      - friend_likes = current_user.friends_like_place(place)
-      - if friend_likes.present?
-        %p.friend-likes
-          %span Friends who liked dishes here
-          - friend_likes.last(3).each do |f|
-            = image_tag f.provider_pic,alt: 'fb pic',class: 'fb-pic'
-
+          - if top_items.size > 1
+            %p.more-top-items
+              %span Also known for:
+              = top_items.last(3).collect {|i| i.name }.join(', ').titleize
