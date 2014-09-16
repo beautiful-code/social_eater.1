@@ -64,9 +64,9 @@ gem 'progress_bar'
 gem 'twitter-typeahead-rails'
 gem 'geocoder'
 gem 'handlebars_assets'
+gem 'sunspot_solr'
 
 group :development do
-  gem 'sunspot_solr'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'

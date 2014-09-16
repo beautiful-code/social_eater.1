@@ -13,6 +13,7 @@ set :deploy_to, "/home/deploy/app/#{fetch :application}"
 
 set :services_for_role, {
   app: %i(app),
+  solr: %i(solr)
 }
 
 # Default value for :scm is :git
@@ -29,7 +30,7 @@ set :services_for_role, {
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
-set :linked_files, %w{.env config/database.yml}
+set :linked_files, %w{.env config/database.yml config/sunspot.yml}
 
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -107,7 +108,7 @@ namespace :deploy do
         upload! File.open(local_location), "#{shared_path}/.env" if File.exists?(local_location)
 
         # Upload config files into shared/config
-        %w(database.yml).each do |config_file|
+        %w(database.yml sunspot.yml).each do |config_file|
           local_location = ".environments/#{fetch :stage}/#{config_file}"
           if File.exists?(local_location)
             execute "mkdir -p #{shared_path}/config"

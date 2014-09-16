@@ -18,31 +18,33 @@
     if(updated_at) {
       var   date = new Date();
       if (date.getTime() - updated_at > 120000) {
-        setTimeout(function() {
-          updateLocationInfo();
-        }, 6000);
+        updateLocationInfo();
+        updateAddressInfo();
       } else {
-        $('.btn-loc span').html($.cookie('_locality'));
         compute.updatePlaces();
+        $('.btn-loc span').html($.cookie('_locality'));
       }
+    } else {
+      updateLocationInfo();
+      updateAddressInfo();
     }
 
     function updateLocationInfo() {
-      if(__geoLoc__.error) {
-        compute.manualLocation(
-          'Failed: '+ __geoLoc__.error.message + '. Please select your location.'
-        );
-      } else {
-        compute.init(
-          new google.maps.Geocoder(),
-          geo.result(),
-          PageConfig.localities
-        );
+      setTimeout(function() {
+        if(__geoLoc__.error) {
+          compute.manualLocation(
+            'Failed: '+ __geoLoc__.error.message + '. Please select your location.'
+          );
+        } else {
+          compute.init(
+            new google.maps.Geocoder(),
+            geo.result(),
+            PageConfig.localities
+          );
 
-        compute.start();
-      }
-
-      updateAddressInfo();
+          compute.start();
+        }
+      }, 6000);
     }
 
     function updateAddressInfo() {

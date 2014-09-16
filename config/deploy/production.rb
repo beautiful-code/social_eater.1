@@ -10,6 +10,7 @@ set :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 role :app, %w{54.255.134.105}
 role :web, %w{54.255.134.105}
 role :db,  %w{54.255.134.105}
+role :solr,  %w{54.255.134.105}
 
 # Extended Server Syntax
 # ======================

@@ -1,6 +1,7 @@
 <%
   services = {
     app:    'bundle exec unicorn -c config/unicorn.rb',
+    solr:   'bundle exec rake sunspot:solr:run'
   }
 
   exported_services = host.roles.to_a.collect { |r|
