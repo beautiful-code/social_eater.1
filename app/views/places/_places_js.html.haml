@@ -1,12 +1,18 @@
+-#  distance: function(lat1, lon1, lat2, lon2) {
+    var R = 6371;
+    var a = 0.5 - Math.cos((lat2 - lat1) * Math.PI / 180)/2 +
+          Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+          (1 - Math.cos((lon2 - lon1) * Math.PI / 180))/2;
+    return R * 2 * Math.asin(Math.sqrt(a));
+  }
+
 :javascript
   var PageConfig = {
     localities: #{@localities.to_json}
   }
 
+
   $(function() {
-    $('.list-group li').click(function() {
-      window.location = '/places/'+ $(this).attr('place') ;
-    });
 
     var geo = Object.create(GeoLocation);
     geo.init();
@@ -17,7 +23,7 @@
 
     if(updated_at) {
       var   date = new Date();
-      if (date.getTime() - updated_at > 120000) {
+      if (date.getTime() - updated_at > 600000) {
         updateLocationInfo();
         updateAddressInfo();
       } else {
@@ -60,7 +66,6 @@
     }
 
     $('#selectLocation .manual-loc').click(function() {
-      console.log('hi');
       $('#selectLocation .form-control').each(function() {
         if($(this).val()) {
           compute.setLocation($(this).val());
@@ -73,3 +78,4 @@
     });
 
   });
+

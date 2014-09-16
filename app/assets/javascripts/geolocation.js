@@ -51,8 +51,8 @@ ComputeLocation.process = function(lat,lng) {
   this.geocoder.geocode({'location': latlng}, function(results,status) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
-        //$.cookie('_lat',lat);
-        //$.cookie('_lon',lng);
+        $.cookie('_lat',parseFloat(lat).toFixed(6));
+        $.cookie('_lon',parseFloat(lng).toFixed(6));
         __geoLoc__.results =  results;
       } else {
         ComputeLocation.manualLocation();
@@ -105,7 +105,7 @@ ComputeLocation.updatePlaces = function() {
     {
       area: $.cookie('_locality'),
       lat: $.cookie('_lat'),
-      lon: $.cookie('_lon')
+      lon: $.cookie('_lon'),
     },
     function(data) {
       $('#places .content').html(data);

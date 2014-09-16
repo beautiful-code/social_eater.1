@@ -3,6 +3,7 @@ class Place < ActiveRecord::Base
   include TextSearchable
   mount_uploader :image, ImageUploader
 
+  attr_accessor :distance
 
   has_many :items
   has_many :categories, :order => "position ASC"
@@ -112,9 +113,9 @@ class Place < ActiveRecord::Base
 
 
   def self.new_custom_search(lat,lon,extra={})
-    extra ||={}
+    extra ||= {}
     city ||= extra[:city]
-    radius = extra[:radius] || 2
+    radius = extra[:radius] || 5
     area ||= extra[:area]
 
     search do

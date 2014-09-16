@@ -52,6 +52,6 @@ class Admin::LocalitiesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def locality_params
-      params.fetch(:locality,{}).permit(:area_name, :city)
+      params.fetch(:locality,{}).permit(:area_name, :city, :Latitude, :Longitude)
     end
 end

@@ -6,7 +6,9 @@
           %h4= link_to place.name,place
 
         .col-xs-2.place-distance
-          %span 1.2 KMS
+          %span
+            = place.distance.round(2)
+            KMS
 
       .col-xs-12
         .col-xs-7.place-info
@@ -19,7 +21,7 @@
           - if place.cuisines.present?
             .col-xs-12.cuisines
               %span
-                /%i.fa.fa-cutlery
+                -#%i.fa.fa-cutlery
                 = place.cuisines_list
 
         .col-xs-5.friend-likes
@@ -43,3 +45,17 @@
             %p.more-top-items
               %span Also known for:
               = top_items.last(3).collect {|i| i.name }.join(', ').titleize
+
+:javascript
+  $('.list .list-item').click(function() {
+    window.location = '/places/'+ $(this).attr('place') ;
+  });
+
+-#$('.list .list-item').each(function() {
+    var lat = $(this).attr('latitude');
+    var lon = $(this).attr('longitude');
+
+    var res = PageConfig.distance(lat,lon,$.cookie('_lat'),$.cookie('_lon'))
+
+    $(this).find('.place-distance span').html(res.toFixed(2) + ' KMS');
+  })

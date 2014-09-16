@@ -1,4 +1,4 @@
-json.array!(@localities) do |locality|
-  json.extract! locality, :id, :area_name, :city
-  json.url admin_locality_url(locality, format: :json)
+json.array!(@cuisines) do |cuisine|
+  json.extract! cuisine, :id, :name
+  json.url admin_cuisine_url(cuisine, format: :json)
 end

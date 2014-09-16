@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826102636) do
+ActiveRecord::Schema.define(version: 20140916104846) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20140826102636) do
     t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "latitude",   precision: 10, scale: 6
+    t.decimal  "longitude",  precision: 10, scale: 6
   end
 
   create_table "places", force: true do |t|
@@ -68,11 +70,11 @@ ActiveRecord::Schema.define(version: 20140826102636) do
     t.string   "short_address"
     t.string   "phone"
     t.text     "old_cuisines"
-    t.boolean  "disabled",      default: false
+    t.boolean  "disabled",                               default: false
     t.boolean  "veg"
     t.integer  "locality_id"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude",      precision: 10, scale: 6
+    t.decimal  "longitude",     precision: 10, scale: 6
   end
 
   create_table "roles", force: true do |t|
