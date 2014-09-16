@@ -25,6 +25,8 @@ SocialEater::Application.routes.draw do
       resources :items
       resources :categories
     end
+    resources :localities
+    resources :cuisines
   end
 
   #->Prelang (user_login:devise/stylized_paths)

@@ -1,0 +1,29 @@
+<h1>Listing Cuisines</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cuisines.each do |cuisine| %>
+      <tr>
+        <td><%= cuisine.id %></td>
+        <td><%= cuisine.name %></td>
+        <td><%= link_to 'Show', [:admin,cuisine] %></td>
+        <td><%= link_to 'Edit', edit_admin_cuisine_path(cuisine) %></td>
+        <td><%= link_to 'Destroy', [:admin,cuisine], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New cuisine', new_admin_cuisine_path, class: 'btn btn-primary' %>

@@ -1,0 +1,31 @@
+<h1>Listing Localities</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Place</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @localities.each do |locality| %>
+      <tr>
+        <td><%= locality.id %></td>
+        <td><%= locality.area_name %></td>
+        <td><%= locality.city %></td>
+        <td><%= link_to 'Show', [:admin,locality] %></td>
+        <td><%= link_to 'Edit', edit_admin_locality_path(locality) %></td>
+        <td><%= link_to 'Destroy', [:admin,locality], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New locality', new_admin_locality_path, class: 'btn btn-primary' %>

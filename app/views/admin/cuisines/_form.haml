@@ -1,0 +1,19 @@
+= form_for [:admin, @cuisine], :html => { :class => 'form-horizontal form-model' } do |f|
+  - if @cuisine.errors.any?
+    #error_explanation
+      %h2
+        =pluralize(@cuisine.errors.count, "error")
+        prohibited this cuisine from being saved:
+      %ul
+        - @cuisine.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, :class => 'control-label col-md-2'
+    .col-md-10
+      = f.text_field :name, :class => 'text-field form-control'
+
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, :class => 'btn btn-primary'
+      = link_to 'Cancel', [:admin,:cuisines], :class => 'btn btn-default'
