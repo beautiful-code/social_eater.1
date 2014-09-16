@@ -106,6 +106,7 @@ ComputeLocation.updatePlaces = function() {
       area: $.cookie('_locality'),
       lat: $.cookie('_lat'),
       lon: $.cookie('_lon'),
+      radius: 5
     },
     function(data) {
       $('#places .content').html(data);

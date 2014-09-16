@@ -7,6 +7,7 @@
     <tr>
       <th>ID</th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th>Lat,Long</th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= place.id %></td>
         <td><%= link_to(place.name,[:admin,place]) %></td>
+        <td><%= "#{place.latitude}, #{place.longitude}" %>
         <td><%=l place.created_at, format: :long %></td>
         <td>
           <%= link_to [:admin,place], :class => 'btn btn-xs', :title => "#{ t('.show',:default => t('helpers.links.show')) }" do %>
