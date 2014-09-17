@@ -24,12 +24,16 @@
       = bootstrap_flash
 
       .filter
-        .col-xs-12
-          %a.btn.btn-default.btn-loc.btn-block
-            %i.fa.fa-map-marker
-            %span
-              Updating your address...
-              %i.fa.fa-spin.fa-spinner
+        .col-xs-12.btn-group.loc-group
+          .col-xs-11
+            %button.btn.btn-default.btn-block.btn-loc{:type => "button"}
+              %i.fa.fa-map-marker
+              %span
+                Updating your address...
+                %i.fa.fa-spin.fa-spinner
+          .col-xs-1
+            %button.btn.btn-default.btn-block.update-loc{:type => "button"}
+              %i.fa.fa-refresh
 
         .col-xs-12
           .col-xs-8

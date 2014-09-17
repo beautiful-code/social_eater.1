@@ -28,4 +28,13 @@ $(function(){
     $(ele).find('.show-all').toggleClass('hidden');
   });
 
+  setTimeout(function() {
+   $('.alert').fadeOut(600);
+
+   setTimeout(function() {
+     $('.alert').remove();
+   },3000);
+
+  },2000);
+
 });

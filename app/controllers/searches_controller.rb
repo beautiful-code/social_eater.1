@@ -25,14 +25,15 @@ class SearchesController < ApplicationController
   end
 
   def places
-    lat,lon,radius,area,city = params[:lat].to_f, params[:lon].to_f,params[:radius].to_i,params[:area],params[:city]
-    @places = Place.new_custom_search(lat, lon, radius: radius, area: area, city: city).results
+    lat,lon,radius,city = params[:lat].to_f, params[:lon].to_f,params[:radius].to_i,params[:city]
+    area = (lat)? nil : params[:area]
+    places = Place.enabled.new_custom_search(lat, lon, radius: radius, area: area, city: city).results
 
-    @places.each do |place|
+    places.each do |place|
       place.distance = Geocoder::Calculations.distance_between([lat,lon], [place.latitude,place.longitude], {units: :km})
     end
 
-    @places = @places.sort_by(&:distance)
+    @places = places.sort_by(&:distance)
 
     respond_to do |format|
       format.html { render 'places', :layout => false }

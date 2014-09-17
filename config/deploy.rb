@@ -76,10 +76,7 @@ namespace :foreman do
   end
 end
 
-
-
 namespace :deploy do
-
   desc 'Install Bundler Gem version 1.5.3'
   task :install_bundler_gem do
     on roles(:all), in: :parallel do
@@ -139,10 +136,21 @@ namespace :deploy do
       execute "sudo restart #{fetch :application}"
     end
   end
+end
 
+namespace :solr do
+  desc 'Reindex solr data'
+  task :reindex do
+    on roles(:solr) do
+      within release_path do
+        execute :bundle, "exec rake sunspot:reindex"
+      end
+    end
+  end
 end
 
 before "bundler:install", "deploy:install_bundler_gem"
 before "deploy:compile_assets", "deploy:create_db"
 after "deploy:compile_assets", "deploy:setup_config"
 after "deploy:compile_assets", "foreman:export"
+after "deploy:start","solr:reindex"

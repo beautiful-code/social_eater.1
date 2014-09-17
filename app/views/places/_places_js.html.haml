@@ -14,14 +14,8 @@
     var updated_at = $.cookie('_updated_at');
 
     if(updated_at) {
-      var   date = new Date();
-      if (date.getTime() - updated_at > 600000) {
-        updateLocationInfo();
-        updateAddressInfo();
-      } else {
-        compute.updatePlaces();
-        $('.btn-loc span').html($.cookie('_locality'));
-      }
+      compute.updatePlaces();
+      $('.btn-loc span').html($.cookie('_locality'));
     } else {
       updateLocationInfo();
       updateAddressInfo();
@@ -67,6 +61,13 @@
         }
       });
 
+    });
+
+    $('.update-loc').click(function() {
+      $('.btn-loc span').html('<span> Updating your location... <i class="fa fa-spin fa-spinner"></i></span>');
+      $('#places .content').html('<div class="center-block"><p>Updating the list based on your location ...</p><i class="fa fa-spin fa-circle-o-notch"></i></div>');
+      updateLocationInfo();
+      updateAddressInfo();
     });
 
   });
