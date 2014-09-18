@@ -13,7 +13,7 @@ class Place < ActiveRecord::Base
   CUISINES = CUISINE_TO_CATEGORIES.keys
 
   serialize :old_cuisines, Array
-  validates_presence_of :name
+  validates_presence_of :name, :locality_id, :latitude, :longitude, :short_address
 
   after_initialize do |place|
     place.veg = false unless place.veg

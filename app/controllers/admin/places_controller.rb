@@ -1,6 +1,6 @@
 class Admin::PlacesController < Admin::MainController
 
-  before_action :set_place, only: [:show, :notes, :edit, :update, :destroy]
+  before_action :set_place, except: [:index]
   before_action :set_cusine, only: [:create, :update]
 
   def index
@@ -9,10 +9,6 @@ class Admin::PlacesController < Admin::MainController
 
   def show
     @item = Item.new
-  end
-
-  def new
-    @place = Place.new
   end
 
   def notes
@@ -29,8 +25,6 @@ class Admin::PlacesController < Admin::MainController
   # POST /places
   # POST /places.json
   def create
-    @place = Place.new(place_params)
-
     respond_to do |format|
       if @place.save
         format.html { redirect_to [:admin,@place], notice: 'Place was successfully created.' }
@@ -69,12 +63,12 @@ class Admin::PlacesController < Admin::MainController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_place
-      @place = Place.find(params[:id])
+      @place = (params[:id].present?)? Place.find(params[:id]) : Place.new(place_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      whitelisted_params = params.require(:place).permit(:name, :short_address, :phone, :image,:remote_image_url, :disabled, :veg, :locality_id, :Latitude, :longitude)
+      whitelisted_params = params.fetch(:place,{}).permit(:name, :short_address, :phone, :image,:remote_image_url, :disabled, :veg, :locality_id, :latitude, :longitude)
       whitelisted_params.merge(:cuisine_ids => params[:cuisine_ids] || [])
     end
 

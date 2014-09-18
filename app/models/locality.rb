@@ -2,7 +2,7 @@ class Locality < ActiveRecord::Base
 
   include TextSearchable
 
-  validates_presence_of :area_name,:city
+  validates_presence_of :area_name,:city, :latitude, :longitude
 
   has_many :places
 
