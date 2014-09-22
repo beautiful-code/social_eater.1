@@ -20,8 +20,8 @@ class Place < ActiveRecord::Base
   end
 
   after_create :populate_categories
-  geocoded_by :short_address   # can also be an IP address
-  after_validation :geocode
+  #geocoded_by :short_address   # can also be an IP address
+  #after_validation :geocode
 
   scope :enabled, where(:disabled => false)
 
@@ -43,7 +43,7 @@ class Place < ActiveRecord::Base
     categories = []
 
     self.cuisines.each do |cuisine|
-      categories = categories | (CUISINE_TO_CATEGORIES[cuisine] || [])
+      categories = categories | (CUISINE_TO_CATEGORIES[cuisine.name] || [])
     end
 
     categories.each_with_index do |category, index|
