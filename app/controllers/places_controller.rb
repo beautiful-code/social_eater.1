@@ -4,7 +4,10 @@ class PlacesController < ApplicationController
 
   def index
     #@places = Place.enabled.sorted
-    @localities = Locality.all.collect { |l| l.name }
+    localities = Locality.all
+    @localities = { names: localities.collect { |l| l.name },
+                    coords: localities.collect { |l| [l.latitude,l.longitude] }
+                  }
   end
 
   def show

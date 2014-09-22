@@ -1,6 +1,9 @@
 :javascript
   var PageConfig = {
-    localities: #{@localities.to_json}
+    localities: {
+      names: #{@localities[:names].to_json},
+      coords: #{@localities[:coords].to_json}
+    }
   }
 
 
@@ -68,6 +71,10 @@
       $('#places .content').html('<div class="center-block"><p>Updating the list based on your location ...</p><i class="fa fa-spin fa-circle-o-notch"></i></div>');
       updateLocationInfo();
       updateAddressInfo();
+    });
+
+    $('.search-input').focus(function() {
+      $(this).closest('div').find('.modal').modal('toggle');
     });
 
   });

@@ -26,7 +26,10 @@ var ComputeLocation = {
   init: function(geocoder, geoInfo, localities,container) {
     this.geocoder = geocoder;
     this.geoInfo = geoInfo;
-    this.localities = localities;
+    this.localities = {
+      names: localities.names,
+      coords: localities.coords
+    };
   },
   results: function() {
     return __geoLoc__.results;
@@ -79,7 +82,7 @@ ComputeLocation.matchLocality = function(addr) {
   var address = $.map(addr.split(','), $.trim);
 
   var result = address.filter(function(n) {
-    return localities.indexOf(n) != -1
+    return localities.names.indexOf(n) != -1
   });
 
   if (result.length > 0) {
@@ -115,6 +118,12 @@ ComputeLocation.updatePlaces = function() {
 };
 
 ComputeLocation.setLocation = function(addr) {
+  var index = this.localities.names.indexOf(addr);
+  var coords = this.localities.coords[index];
+
+  $.cookie('_lat',coords[0]);
+  $.cookie('_lon',coords[1]);
+
   this.updateAddress(addr);
 };
 

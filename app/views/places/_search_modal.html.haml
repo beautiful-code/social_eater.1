@@ -1,0 +1,17 @@
+#searchModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} &times;
+        %span.sr-only Close
+
+      .modal-header
+        %center
+          %h4.modal-title Search for dishes, places, cuisines etc.
+
+      .modal-body
+        %input{type: 'text', class: 'form-control', placeholder: 'Eg: Biriyani, Mexican, Chutneys'}
+
+      .modal-footer
+        %center
+          &copy; eater.in

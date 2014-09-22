@@ -37,7 +37,8 @@
 
         .col-xs-12
           .col-xs-8
-            %input{type: 'text', class: 'form-control', placeholder: 'Eg: Biriyani, Mexican, Chutneys'}
+            %input{type: 'text', class: 'form-control search-input', placeholder: 'Eg: Biriyani, Mexican, Chutneys'}
+            = render 'search_modal'
 
           .col-xs-4.filter-params
             .btn-group{"data-toggle" => "buttons"}
@@ -64,7 +65,7 @@
           %h4.modal-title Select your Location
 
       .modal-body
-        = select_tag "location", options_for_select(@localities), class: 'form-control', prompt: 'Select the location'
+        = select_tag "location", options_for_select(@localities[:names]), class: 'form-control', prompt: 'Select the location'
 
       .modal-footer
         %center
