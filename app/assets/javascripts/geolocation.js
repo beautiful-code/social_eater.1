@@ -26,10 +26,7 @@ var ComputeLocation = {
   init: function(geocoder, geoInfo, localities,container) {
     this.geocoder = geocoder;
     this.geoInfo = geoInfo;
-    this.localities = {
-      names: localities.names,
-      coords: localities.coords
-    };
+    this.localities = localities;
   },
   results: function() {
     return __geoLoc__.results;
@@ -80,13 +77,27 @@ ComputeLocation.manualLocation = function(msg) {
 ComputeLocation.matchLocality = function(addr) {
   var localities = this.localities;
   var address = $.map(addr.split(','), $.trim);
+  var curr_locality = null;
+  address.filter(function(n) {
+//    return localities.names.indexOf(n) != -1
 
-  var result = address.filter(function(n) {
-    return localities.names.indexOf(n) != -1
+    return $.each(localities,function(index,locality){
+
+       if (locality.area_name == n ){
+           curr_locality = locality;
+           return true;
+       }
+        else{
+           return false;
+       }
+
+   });
+
+
   });
-
-  if (result.length > 0) {
-    return result;
+  if (curr_locality) {
+    console.log(curr_locality);
+    return curr_locality;
   } else {
     this.manualLocation(
       'Unable to locate the correct address. Please select the location.'
@@ -94,9 +105,10 @@ ComputeLocation.matchLocality = function(addr) {
   }
 };
 
-ComputeLocation.updateAddress = function(addr) {
-  $('.btn-loc span').html(addr);
-  $.cookie('_locality',addr);
+ComputeLocation.updateAddress = function(locality) {
+  $('.btn-loc span').html(locality.area_name);
+  $.cookie('_locality_id',locality.id);
+  $.cookie('_locality_name',locality.area_name);
   var date = new Date();
   $.cookie('_updated_at',date.getTime());
   this.updatePlaces();
@@ -106,7 +118,7 @@ ComputeLocation.updatePlaces = function() {
   $.get(
     '/searches/places',
     {
-      area: $.cookie('_locality'),
+      locality_id: $.cookie('_locality_id'),
       lat: $.cookie('_lat'),
       lon: $.cookie('_lon'),
       radius: 5
@@ -117,14 +129,11 @@ ComputeLocation.updatePlaces = function() {
   );
 };
 
-ComputeLocation.setLocation = function(addr) {
-  var index = this.localities.names.indexOf(addr);
-  var coords = this.localities.coords[index];
-
-  $.cookie('_lat',coords[0]);
-  $.cookie('_lon',coords[1]);
-
-  this.updateAddress(addr);
+ComputeLocation.setLocation = function(locality) {
+    console.log(locality);
+  $.cookie('_lat','');
+  $.cookie('_lon','');
+  this.updateAddress(locality);
 };
 
 

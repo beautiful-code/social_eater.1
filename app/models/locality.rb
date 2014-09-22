@@ -26,4 +26,12 @@ class Locality < ActiveRecord::Base
     area_name
   end
 
+
+  def url
+    place_path id
+  end
+
+
+
+
 end

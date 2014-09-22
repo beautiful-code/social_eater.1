@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(version: 20140916104846) do
     t.string   "phone"
     t.text     "old_cuisines"
     t.boolean  "disabled",                               default: false
-    t.boolean  "veg"
     t.integer  "locality_id"
     t.decimal  "latitude",      precision: 10, scale: 6
     t.decimal  "longitude",     precision: 10, scale: 6
+    t.boolean  "veg"
   end
 
   create_table "roles", force: true do |t|

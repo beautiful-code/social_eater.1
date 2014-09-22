@@ -1,9 +1,6 @@
 :javascript
   var PageConfig = {
-    localities: {
-      names: #{@localities[:names].to_json},
-      coords: #{@localities[:coords].to_json}
-    }
+    localities: #{@localities.to_json}
   }
 
 
@@ -18,7 +15,7 @@
 
     if(updated_at) {
       compute.updatePlaces();
-      $('.btn-loc span').html($.cookie('_locality'));
+      $('.btn-loc span').html($.cookie('_locality_name'));
     } else {
       updateLocationInfo();
       updateAddressInfo();
@@ -57,7 +54,9 @@
     $('#selectLocation .manual-loc').click(function() {
       $('#selectLocation .form-control').each(function() {
         if($(this).val()) {
-          compute.setLocation($(this).val());
+          var id = $(this).val();
+          var locality = PageConfig.localities.filter(function(l){ return l.id==id})[0];
+          compute.setLocation(locality);
           $('#selectLocation').modal('toggle');
         } else {
           $(this).addClass('has-error');

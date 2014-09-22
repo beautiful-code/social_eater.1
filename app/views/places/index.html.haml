@@ -65,7 +65,8 @@
           %h4.modal-title Select your Location
 
       .modal-body
-        = select_tag "location", options_for_select(@localities[:names]), class: 'form-control', prompt: 'Select the location'
+        = select_tag "location", options_for_select(@localities.collect{|l| [l.area_name,l.id]}), class: 'form-control',
+        prompt: 'Select the location'
 
       .modal-footer
         %center

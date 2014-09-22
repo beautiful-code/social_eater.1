@@ -22,7 +22,7 @@ $(document).on('ready page:load', function() {
                 'unable to find any places/items',
                 '</div>'
             ].join('\n'),
-            suggestion: Handlebars.compile('<p><strong>{{name}}</strong> – {{kind}}</p>')
+            suggestion: Handlebars.compile('<a href={{url}}><p><strong>{{name}}</strong> – {{kind}}</p></a>')
         }
 
     });

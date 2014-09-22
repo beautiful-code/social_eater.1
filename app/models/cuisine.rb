@@ -19,5 +19,9 @@ class Cuisine < ActiveRecord::Base
     search.results || []
   end
 
+  def url
+    places_searches_path(cuisine_id: id)
+  end
+
 
 end

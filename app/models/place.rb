@@ -1,6 +1,7 @@
 class Place < ActiveRecord::Base
 
   include TextSearchable
+
   mount_uploader :image, ImageUploader
 
   attr_accessor :distance
@@ -29,8 +30,9 @@ class Place < ActiveRecord::Base
     text :name, boost: 5
     text :short_address
     string :city
-    string :area
+    string :locality_name
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
+    integer :cuisine_ids, multiple: true
   end
 
   # Use like so: Place.search { with(:location).in_radius(17.3916,78.4658,1)}
@@ -57,29 +59,21 @@ class Place < ActiveRecord::Base
   end
 
   def ordered_items
-    categorized_items = items.select {|i| i.category.present?}
-    ret = categorized_items.group_by(&:category_id).sort_by {|cat,items| Category.find(cat).position}
+    categorized_items = items.select { |i| i.category.present? }
+    ret = categorized_items.group_by(&:category_id).sort_by { |cat, items| Category.find(cat).position }
     ret.each do |cat_id, items|
-      items.sort! {|a,b| b.total_votes <=> a.total_votes}
+      items.sort! { |a, b| b.total_votes <=> a.total_votes }
     end
     ret
   end
 
   def populated_categories
-    categories.find(ordered_items.collect {|e| e.first} )
+    categories.find(ordered_items.collect { |e| e.first })
   end
 
   def top n
-    items.sort {|a,b| b.total_votes <=> a.total_votes}[0..n-1]
+    items.sort { |a, b| b.total_votes <=> a.total_votes }[0..n-1]
   end
-
-=begin
-  def items_by_category
-     items = {}
-     categories.by_position.each { |cat|  items[cat.id] = cat.items}
-     items
-  end
-=end
 
   def winner_list
     winner_list = []
@@ -101,41 +95,52 @@ class Place < ActiveRecord::Base
     self.class.name
   end
 
-  def self.custom_search query,extra={}
+  def self.custom_search query, extra={}
     city = extra[:city]
     search = Place.search do
       fulltext query
-      with(:city,city)
+      with(:city, city)
       paginate(:page => 1, :per_page => 3)
     end
     search.results || []
   end
 
 
-  def self.new_custom_search(lat,lon,extra={})
+  def self.new_custom_search(lat, lon, extra={})
     extra ||= {}
-    city ||= extra[:city]
+    city = extra[:city]
     radius = extra[:radius] || 5
-    area ||= extra[:area]
-
+    locality = extra[:locality]
+    cuisine_id = extra[:cuisine_id]
     search do
-      with(:location).in_radius(lat,lon,radius) if (lat && lon && radius)
-      with(:city,city) if city.present?
-      with(:area,area) if area.present?
+      with(:location).in_radius(lat, lon, radius) if (lat && lon && radius)
+      with(:city, city) if city.present?
+      # with(:locality_name, locality.area_name) if locality.present?
+      # with(:cuisine_ids, [cuisine_id])
       #paginate(:page=>1,:per_page=>6)
     end
   end
+
 
   def city
     locality.city
   end
 
-  def area
+  def locality_name
     locality.area_name
   end
 
-  def cuisines_list
-    cuisines.first(2).collect { |c| c.name.upcase }.join(', ')
+  def url
+    place_path id
   end
+
+  def distance_from latlon
+    Geocoder::Calculations.distance_between(latlon, [latitude, longitude], {units: :km})
+  end
+
+  def cuisines_list
+    cuisines.collect { |c| c.name.upcase }.join(', ')
+  end
+
 
 end
