@@ -20,7 +20,7 @@ class Place < ActiveRecord::Base
     place.veg = false unless place.veg
   end
 
-  after_create :populate_categories
+  after_create :populate_categories_and_tags
   #geocoded_by :short_address   # can also be an IP address
   #after_validation :geocode
 
@@ -41,17 +41,15 @@ class Place < ActiveRecord::Base
     order('name asc')
   end
 
-  def populate_categories
+  def populate_categories_and_tags
     categories = []
 
     self.cuisines.each do |cuisine|
-      categories = categories | (CUISINE_TO_CATEGORIES[cuisine.name] || [])
+      categories =  CUISINE_TO_CATEGORIES[cuisine.name]
+      categories.each_with_index do |(category, tags), index|
+        Category.create(:place => self, :name => category, :tags => (tags || []).join(","), :position => index*5)
+      end
     end
-
-    categories.each_with_index do |category, index|
-      Category.create(:place => self, :name => category, :position => index*5, :cold_votes => 0)
-    end
-
   end
 
   def tags

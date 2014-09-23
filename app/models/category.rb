@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_many :items
 
   validates_presence_of :name
+  validates_uniqueness_of :name, scope: [:place_id]
   before_destroy :check_items
 
   def self.by_position

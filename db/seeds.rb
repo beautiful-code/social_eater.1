@@ -4,6 +4,7 @@
 #Item.create!(:place => wok, :category => category, :name => 'Chicken Wok', :desc => 'Fusion of Chickend and Fried Rice', :price => 300, :cold_votes => 2)
 
 
+# TODO: Need to add latitude and longitude
 # Locality
 [
   ["Banjara Hills", "Hyderabad"],

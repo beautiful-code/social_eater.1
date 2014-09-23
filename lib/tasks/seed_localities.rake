@@ -1,5 +1,5 @@
 namespace :social_eater do
-  # Run Rake db:seed before doing this which seeds the locality and cuisines
+  # Run Rake db:seed before doing this which seeds the locality
   desc "update place locality"
   task :update_place_locality,  [:prefix] => :environment do |t, args|
     Locality.all.each do |locality|

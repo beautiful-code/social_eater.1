@@ -1,89 +1,115 @@
 "South Indian":
-  - 'Tiffin'
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soup'
+    - 'Starter'
+  'Main Course':
+    - 'Tiffin'
+    - 'Thali'
+    - 'Curries'
+  'Desserts':
 
 "Andhra":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+    - 'Thali'
+    - 'Curries'
+  'Desserts':
 
 "Bakery":
-  - 'Snacks'
-  - 'Cakes/Pastries'
-  - 'Sweets'
-  - 'Beverages'
+  'Snacks':
+  'Cakes':
+  'Beverages':
 
 "Cafe":
-  - 'Snacks'
-  - 'Pastries'
-  - 'Beverages'
+  'Snacks':
+  'Cakes':
+  'Beverages':
 
 "Chinese":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Rice/Noodles'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+    - 'Rice'
+    - 'Noodles'
+  'Desserts':
 
 "Continental":
-  - 'Soup/Starters'
-  - 'Salad'
-  - 'Main Course'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+    - 'Salads'
+  'Main Course':
+  'Desserts':
 
 "Fast Food":
-  - 'Snacks'
-  - 'Meals'
-  - 'Desserts'
+  'Snacks':
+  'Meals':
+  'Desserts':
 
 "Hyderabadi":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Biryanis'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+    - 'Biryanis'
+  'Desserts':
 
 "Mughlai":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Biryanis'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+    - 'Biryanis'
+  'Desserts':
 
 "Pizza":
-  - 'Pizzas'
-  - 'Sides'
+  'Pizzas':
+  'Sides':
 
 "Seafood":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+  'Desserts':
 
 "Thai":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Rice/Noodles'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+  'Desserts':
 
 "North Indian":
-  - 'Soup/Starters'
-  - 'Main Course'
-  - 'Bread'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+    - 'Breads'
+    - 'Curries'
+    - 'Rice'
+  'Desserts':
 
 "Mexican":
-  - 'Soup/Starters'
-  - 'Salads'
-  - 'Main Course'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+  'Desserts':
 
 "Ice Cream":
-  - 'Fruits'
-  - 'Chocolate'
-  - 'Nuts'
-  - 'Other'
+  'Fruits':
+  'Chocolate':
+  'Nuts':
 
 "Italian":
-  - 'Soup/Starters'
-  - 'Pizzas'
-  - 'Pastas'
-  - 'Main Course'
-  - 'Desserts'
+  'Appetisers':
+    - 'Soups'
+    - 'Starters'
+  'Main Course':
+    - 'Pastas'
+    - 'Pizzas'
+  'Desserts':
