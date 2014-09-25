@@ -45,6 +45,7 @@
           .category
             %span.name=category.name
             %span.position=category.position
+            %span.tags= "(tags - #{category.tags})"
             %span.num_items
               = "(#{category.items.count} items)"
             %span.name

@@ -9,7 +9,7 @@ namespace :social_eater do
 
   desc "Set non-veg items"
   task :set_non_veg_items, [] => :environment do
-    dictionary = %w(chicken mutton murg murgh haleem fish prawn crab gosh ghost goat lamb)
+    dictionary = %w(chicken mutton murg murgh haleem fish prawn crab gosh ghost goat lamb kodi chaapa)
     dictionary.each do |keyword|
       Place.all.each do |restaurant|
         # Set all items to veg
