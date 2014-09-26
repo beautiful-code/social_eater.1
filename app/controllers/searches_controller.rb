@@ -1,24 +1,11 @@
 class SearchesController < ApplicationController
   before_filter :authenticate_user!
 
-  def new
-  end
-
-=begin
   def search
-    @search = Item.search do
-      fulltext params[:search]
-      paginate page: 1, per_page: 10
-    end
-    @results = @search.results
-    render 'new'
-  end
-=end
-
-  def search
-    search_term, city = params[:search], (params[:city] || 'Hyderabad')
+    search_term, locality = params[:search], (params[:locality])
+    city = Locality.where(area_name: locality).first.city if locality.present?
     @results = []
-    [Place, Locality, Cuisine, Item].each do |category|
+    [Place, Cuisine, Item].each do |category|
       @results += category.custom_search search_term, city: city
     end
     render json: @results

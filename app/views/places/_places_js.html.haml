@@ -3,19 +3,17 @@
     localities: #{@localities.to_json}
   }
 
-
   $(function() {
-
     var geo = Object.create(GeoLocation);
     geo.init();
 
     var compute = Object.create(ComputeLocation);
-
     var updated_at = $.cookie('_updated_at');
 
     if(updated_at) {
       compute.updatePlaces();
       $('.btn-loc span').html($.cookie('_locality_name'));
+      $('.results .result span').html('"'+$.cookie('_locality_name')+'"');
     } else {
       updateLocationInfo();
       updateAddressInfo();
@@ -72,8 +70,26 @@
       updateAddressInfo();
     });
 
-    $('.search-input').focus(function() {
+    $('.fake-input').click(function() {
       $(this).closest('div').find('.modal').modal('toggle');
+    });
+
+    $('.search-input').on('keyup',function() {
+      $('.results').html('');
+      $.get(
+        '/searches/search',
+        {
+          search: $('.search-input').val(),
+          locality: $.cookie('_locality_name')
+        },
+        function(data) {
+          for(var i=0; i < data.length; i++) {
+            $('.results').append(
+              "<li class='result'><a href=" + data[i].url + ">" + data[i].name + "</a><span class='kind'>" + data[i].kind + "</li>"
+            );
+          }
+        }
+      );
     });
 
   });

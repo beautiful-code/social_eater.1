@@ -2,16 +2,25 @@
   .modal-dialog
     .modal-content
       %button.close{"data-dismiss" => "modal", :type => "button"}
-        %span{"aria-hidden" => "true"} &times;
+        %span.x{"aria-hidden" => "true"} &times;
         %span.sr-only Close
 
       .modal-header
         %center
-          %h4.modal-title Search for dishes, places, cuisines etc.
+          %button.btn.btn-default.btn-block.btn-loc{:type => "button"}
+            %i.fa.fa-map-marker
+            %span
+
+          %input{type: 'text', class: 'form-control search-input', placeholder: ' Search for dishes, places, cuisines etc.'}
 
       .modal-body
-        %input{type: 'text', class: 'form-control typeahead', placeholder: 'Eg: Biriyani, Mexican, Chutneys'}
-
-      .modal-footer
-        %center
-          &copy; eater.in
+        .search-content
+          %ul.results
+            %li.result
+              %a
+                Most liked dish in
+                %span
+            %li.result
+              %a
+                Most liked restaurant in
+                %span

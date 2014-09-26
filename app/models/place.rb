@@ -113,8 +113,8 @@ class Place < ActiveRecord::Base
     search do
       with(:location).in_radius(lat, lon, radius) if (lat && lon && radius)
       with(:city, city) if city.present?
-      # with(:locality_name, locality.area_name) if locality.present?
-      # with(:cuisine_ids, [cuisine_id])
+      with(:locality_name, locality.area_name) if locality.present?
+      with(:cuisine_ids, [cuisine_id]) if cuisine_id.present?
       #paginate(:page=>1,:per_page=>6)
     end
   end

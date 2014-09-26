@@ -79,24 +79,15 @@ ComputeLocation.matchLocality = function(addr) {
   var address = $.map(addr.split(','), $.trim);
   var curr_locality = null;
   address.filter(function(n) {
-//    return localities.names.indexOf(n) != -1
-
     return $.each(localities,function(index,locality){
-
-       if (locality.area_name == n ){
-           curr_locality = locality;
-           return true;
-       }
-        else{
-           return false;
-       }
-
-   });
-
-
+      if (locality.area_name == n ){
+        curr_locality = locality;
+        return true;
+      } else { return false; }
+    });
   });
+
   if (curr_locality) {
-    console.log(curr_locality);
     return curr_locality;
   } else {
     this.manualLocation(
@@ -107,6 +98,7 @@ ComputeLocation.matchLocality = function(addr) {
 
 ComputeLocation.updateAddress = function(locality) {
   $('.btn-loc span').html(locality.area_name);
+  $('.results .result span').html('"'+locality.area_name+'"');
   $.cookie('_locality_id',locality.id);
   $.cookie('_locality_name',locality.area_name);
   var date = new Date();
@@ -130,7 +122,6 @@ ComputeLocation.updatePlaces = function() {
 };
 
 ComputeLocation.setLocation = function(locality) {
-    console.log(locality);
   $.cookie('_lat','');
   $.cookie('_lon','');
   this.updateAddress(locality);

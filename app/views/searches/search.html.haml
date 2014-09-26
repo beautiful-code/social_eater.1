@@ -1,0 +1,9 @@
+- if @results.present?
+  - @results.each do |result|
+    %li.result
+      = link_to result.url do
+        = result.name
+        %span.pull-right= result.kind
+- else
+  %li.result.empty
+    Sorry! No results found.

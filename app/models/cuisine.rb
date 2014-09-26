@@ -20,8 +20,7 @@ class Cuisine < ActiveRecord::Base
   end
 
   def url
-    places_searches_path(cuisine_id: id)
+    places_path(cuisine_id: id)
   end
-
 
 end
