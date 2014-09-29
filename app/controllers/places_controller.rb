@@ -5,23 +5,10 @@ class PlacesController < ApplicationController
   def index
     #@places = Place.enabled.sorted
     @localities = Locality.all
-=begin
-    @localities = { names: localities.collect { |l| l.name },
-                    coords: localities.collect { |l| [l.latitude,l.longitude] }
-                  }
-
-=end
-
-  end
-
-  def show
   end
 
   def new
     @place = Place.new
-  end
-
-  def edit
   end
 
   def create

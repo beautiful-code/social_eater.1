@@ -102,17 +102,19 @@ ComputeLocation.updateAddress = function(locality) {
   $.cookie('_locality_name',locality.area_name);
   var date = new Date();
   $.cookie('_updated_at',date.getTime());
-  this.updatePlaces();
+  this.updatePlaces('','');
 };
 
-ComputeLocation.updatePlaces = function() {
+ComputeLocation.updatePlaces = function(item,cuisine_id) {
   $.get(
     '/searches/places',
     {
       locality_id: $.cookie('_locality_id'),
       lat: $.cookie('_lat'),
       lon: $.cookie('_lon'),
-      radius: 5
+      radius: 5,
+      item: item,
+      cuisine_id: cuisine_id
     },
     function(data) {
       $('#places .content').html(data);

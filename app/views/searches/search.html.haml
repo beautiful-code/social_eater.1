@@ -1,7 +1,7 @@
 - if @results.present?
   - @results.each do |result|
-    %li.result
-      = link_to result.url do
+    %li{class: "resut", "data-url" => "#{result.url}", "data-type" => "#{result.kind}"}
+      %a
         = result.name
         %span.pull-right= result.kind
 - else

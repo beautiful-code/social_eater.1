@@ -103,7 +103,6 @@ class Place < ActiveRecord::Base
     search.results || []
   end
 
-
   def self.new_custom_search(lat, lon, extra={})
     extra ||= {}
     city = extra[:city]
@@ -118,7 +117,6 @@ class Place < ActiveRecord::Base
       #paginate(:page=>1,:per_page=>6)
     end
   end
-
 
   def city
     locality.city

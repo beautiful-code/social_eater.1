@@ -82,6 +82,34 @@
       $('.content').toggle();
     });
 
+    $('.results').delegate('.result','click',function() {
+      var kind, url,name,id;
+      kind = $(this).attr('data-kind');
+      url = $(this).attr('data-url');
+      id = $(this).attr('data-id');
+      name = $(this).html().split('<')[0];
+
+      function toggleSearch() {
+        $('.fake-input').html(name);
+        $('#searchModal').toggle();
+        $('.content').toggle();
+      }
+
+      switch (kind) {
+      case "Place":
+        window.location = url;
+        break;
+      case "Item":
+        toggleSearch();
+        compute.updatePlaces(name,'');
+        break;
+      case "Cuisine":
+        toggleSearch();
+        compute.updatePlaces('',id);
+        break;
+      }
+    });
+
     $('.search-input').on('keyup',function() {
       $('.results').html('');
       $.get(
@@ -92,8 +120,9 @@
         },
         function(data) {
           for(var i=0; i < data.length; i++) {
+            var data_attrs = "data-url='"+ data[i].url + "' data-kind='" + data[i].kind +"' data-id='" + data[i].id + "'";
             $('.results').append(
-              "<li class='result'><a href=" + data[i].url + ">" + data[i].name + "</a><span class='kind'>" + data[i].kind + "</li>"
+              "<li class='result' "+ data_attrs +"'>" + data[i].name + "<span class='kind'>" + data[i].kind + "</li>"
             );
           }
         }

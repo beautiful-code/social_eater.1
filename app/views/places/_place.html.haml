@@ -51,11 +51,3 @@
     window.location = '/places/'+ $(this).attr('place') ;
   });
 
--#$('.list .list-item').each(function() {
-    var lat = $(this).attr('latitude');
-    var lon = $(this).attr('longitude');
-
-    var res = PageConfig.distance(lat,lon,$.cookie('_lat'),$.cookie('_lon'))
-
-    $(this).find('.place-distance span').html(res.toFixed(2) + ' KMS');
-  })
