@@ -1,9 +1,8 @@
-#searchModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#searchModal.modal{tabindex: '1'}
   .modal-dialog
     .modal-content
-      %button.close{"data-dismiss" => "modal", :type => "button"}
-        %span.x{"aria-hidden" => "true"} &times;
-        %span.sr-only Close
+      %button.close{:type => "button"}
+        %span.x &times;
 
       .modal-header
         %center
@@ -11,7 +10,7 @@
             %i.fa.fa-map-marker
             %span
 
-          %input{type: 'text', class: 'form-control search-input', placeholder: ' Search for dishes, places, cuisines etc.'}
+          %input{type: 'text', class: 'form-control search-input',tabindex: 1, placeholder: ' Search for dishes, places, cuisines etc.'}
 
       .modal-body
         .search-content

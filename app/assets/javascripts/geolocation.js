@@ -1,14 +1,13 @@
 var __geoLoc__ = {};
 
 var GeoLocation = {
-  navigator: Object.create(navigator),
   result: function() {
     return __geoLoc__ ;
   }
 };
 
 GeoLocation.init = function() {
-  this.navigator.geolocation.getCurrentPosition(
+  navigator.geolocation.getCurrentPosition(
     function(position) {
       __geoLoc__.position = position;
     },

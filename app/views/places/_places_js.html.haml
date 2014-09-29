@@ -71,7 +71,15 @@
     });
 
     $('.fake-input').click(function() {
-      $(this).closest('div').find('.modal').modal('toggle');
+      $('.content').toggle();
+      var modal = $(this).closest('div').find('.modal')
+      $(modal).toggle();
+      $(modal).find('.search-input').focus();
+    });
+
+    $('button.close').click(function() {
+      $(this).parents('.modal').toggle();
+      $('.content').toggle();
     });
 
     $('.search-input').on('keyup',function() {
