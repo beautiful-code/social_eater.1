@@ -52,6 +52,6 @@ class Admin::CuisinesController < Admin::MainController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cuisine_params
-      params.fetch(:cuisine,{}).permit(:area_name, :city)
+      params.fetch(:cuisine,{}).permit(:name)
     end
 end
