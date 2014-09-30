@@ -105,15 +105,16 @@ ComputeLocation.updateAddress = function(locality) {
   this.updatePlaces('','');
 };
 
-ComputeLocation.updatePlaces = function(item,cuisine_id) {
+ComputeLocation.updatePlaces = function(item_name,cuisine_id) {
+  var url = item_name? '/searches/items_places' : '/searches/places'
   $.get(
-    '/searches/places',
+    url,
     {
       locality_id: $.cookie('_locality_id'),
       lat: $.cookie('_lat'),
       lon: $.cookie('_lon'),
       radius: 5,
-      item: item,
+      item_name: item_name,
       cuisine_id: cuisine_id
     },
     function(data) {

@@ -111,21 +111,44 @@
     });
 
     $('.search-input').on('keyup',function() {
-      $('.results').html('');
+      var locality = $.cookie('_locality_name');
+      var query = $('.search-input').val();
+
       $.get(
         '/searches/search',
         {
-          search: $('.search-input').val(),
-          locality: $.cookie('_locality_name')
+          search: query,
+          locality: locality
         },
         function(data) {
-          for(var i=0; i < data.length; i++) {
-            var data_attrs = "data-url='"+ data[i].url + "' data-kind='" + data[i].kind +"' data-id='" + data[i].id + "'";
-            $('.results').append(
-              "<li class='result' "+ data_attrs +"'>" + data[i].name + "<span class='kind'>" + data[i].kind + "</li>"
+          if(data.length > 0) {
+            $('.results').html('');
+
+            if(query.length > 2) {
+              $('.results').append(
+                '<li class="result" data-url="" data-kind="Item" data-id="">' + query + '<span class="kind">Dish</span></li>'
+              );
+            }
+
+            for(var i=0; i < data.length; i++) {
+              var data_attrs = "data-url='"+ data[i].url + "' data-kind='" + data[i].kind +"' data-id='" + data[i].id + "'";
+              $('.results').append(
+                "<li class='result' "+ data_attrs +"'>" + data[i].name + "<span class='kind'>" + data[i].kind + "</li>"
+              );
+            }
+          } else {
+            $('.results').html(
+              '<li class="result">Most liked dish in<span> "' + locality + '"</span></li>' +
+              '<li class="result">Most liked restaurants in <span> "' + locality + '"</span></li>'
             );
           }
         }
+      );
+    });
+
+    $('.filter-params .btn-group .btn').click(function() {
+      $('.content .list').html(
+         jQuery.makeArray($('.content .list .list-item')).reverse()
       );
     });
 

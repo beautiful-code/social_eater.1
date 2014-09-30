@@ -15,12 +15,13 @@ class Item < ActiveRecord::Base
     item.seasonal = false unless item.seasonal
   end
 
-  delegate :latitude,:longitude, to: :place
+  delegate :latitude,:longitude,:locality_name, to: :place
 
   searchable do
     text :name, boost: 5
     #text :desc
     string :city
+    string :locality_name
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string :place_id
   end
@@ -37,7 +38,6 @@ class Item < ActiveRecord::Base
     cold_votes + votes_for.size
   end
 
-
   def set_default_category
     return if category.present?
     self.category = place.set_default_category
@@ -46,7 +46,6 @@ class Item < ActiveRecord::Base
   def kind
     self.class.name
   end
-
 
   def as_json(options={})
     options ||= {}
@@ -67,6 +66,21 @@ class Item < ActiveRecord::Base
 
   def city
     place.locality.city
+  end
+
+  def self.new_custom_search(lat, lon, extra)
+    extra ||= {}
+    city = extra[:city]
+    radius = extra[:radius] || 5
+    locality = extra[:locality]
+    item_name = extra[:item_name]
+
+    search do
+      with(:location).in_radius(lat, lon, radius) if (lat && lon && radius)
+      with(:city, city) if city.present?
+      with(:locality_name, locality.area_name) if locality.present?
+      fulltext item_name if item_name.present?
+    end
   end
 
 end

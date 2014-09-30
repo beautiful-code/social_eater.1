@@ -46,6 +46,7 @@ SocialEater::Application.routes.draw do
     collection do
       get :search
       get :places
+      get :items_places
     end
   end
 

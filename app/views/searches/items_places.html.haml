@@ -1,5 +1,7 @@
-.row-fluid.list
-  - places.each do |place|
+- if @results.present?
+  .row-fluid.list
+  - @results.each do |result|
+    - place = result[0]
     .col-xs-12.list-item{place: place.id}
       .col-xs-12
         .col-xs-10.place-name
@@ -35,7 +37,7 @@
       - top_items = place.top(4)
       - if top_items.present?
         .col-xs-12.top-item
-          - top_item = top_items.first
+          - top_item = result[1][0]
           %span.votes
             %span= top_item.total_votes
             Likes
@@ -46,8 +48,16 @@
               %span Also known for:
               = top_items.last(3).collect {|i| i.name }.join(', ').titleize
 
+- else
+  %ul.list-group
+    %li
+      .alert.alert-info
+        %p
+          %i.fa.fa-info-circle
+          Sorry. There are no places near by.
+          Please increase the radius of your search.
+
 :javascript
   $('.list .list-item').click(function() {
     window.location = '/places/'+ $(this).attr('place') ;
   });
-
