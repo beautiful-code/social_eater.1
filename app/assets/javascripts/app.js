@@ -15,7 +15,9 @@ EATER.GeoLocation = function() {
         }
       );
     } else {
-      console.log('This browser does not support HTML5 navigator API :( !');
+      console.log(
+        'This browser does not support HTML5 navigator API :( !'
+      );
     }
   };
 
@@ -38,13 +40,82 @@ EATER.GeoLocation = function() {
 };
 
 
-EATER.GeoView = function(container,options) {
+EATER.mainView = function(container,localities,options) {
   var self = this;
 
   this.container = container;
+  this.localities = localities;
   this.options = options;
 
-  this.geoLocation = new EATER.GeoLocation();
+  this.geoInfo = new EATER.GeoLocation();
+  this.geoCoder = new google.maps.Geocoder();
 
+  this.setLatLonCookie = function(latitude, longitude) {
+    $.cookie('_lat',latitude);
+    $.cookie('_lon',longitude);
+  };
+
+  this.computeLocation = function (latitude,longitude) {
+    var latlong = new google.maps.LatLng(latitude,longitude);
+
+    this.geoCoder.geocode(
+      {
+        'location': latlong
+      },
+      function(results,status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            this.setLatLonCookie(latitude,longitude);
+            this.geoInfo = {
+              address: results
+            };
+          } else {
+            this.manualLocation();
+          }
+        } else {
+          this.manualLocation();
+        }
+    });
+
+  };
+
+  this.manualLocation = function(msg) {
+    var msg = msg? msg : 'Select your Location';
+
+    self.container.find('#selectLocation .modal-title').html(msg);
+
+    self.container.find('#selectLocation').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+  };
+
+  this.matchLocality = function() {
+    var address = $.map(
+      this.geoInfo.address[1].formatted_address,
+      $.trim
+    );
+    var current_locality = null;
+
+    address.filter(function(area_name) {
+      return $.each(this.localities,function (index,locality) {
+        if(locality.area_name == area_name) {
+          current_locality = locality;
+          return true;
+        } else {
+          return false;
+        }
+      });
+    });
+
+    if(current_locality) {
+      return current_locality;
+    } else {
+      this.manualLocation(
+        'Unable to locate the correct address.' +
+        'Please select the location.'
+      );
+    }
+  };
 
 };
