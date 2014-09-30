@@ -31,6 +31,7 @@ class Place < ActiveRecord::Base
     text :short_address
     string :city
     string :locality_name
+    string :item_names, multiple: true
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     integer :cuisine_ids, multiple: true
   end
@@ -109,11 +110,14 @@ class Place < ActiveRecord::Base
     radius = extra[:radius] || 5
     locality = extra[:locality]
     cuisine_id = extra[:cuisine_id]
+    item = extra[:item]
+
     search do
       with(:location).in_radius(lat, lon, radius) if (lat && lon && radius)
       with(:city, city) if city.present?
       with(:locality_name, locality.area_name) if locality.present?
       with(:cuisine_ids, [cuisine_id]) if cuisine_id.present?
+      with(:item_names, [item]) if item.present?
       #paginate(:page=>1,:per_page=>6)
     end
   end
@@ -138,5 +142,12 @@ class Place < ActiveRecord::Base
     cuisines.collect { |c| c.name.upcase }.join(', ')
   end
 
+  def item_names
+    items.map(&:name)
+  end
+
+  def item_like name
+    items.where("name LIKE ?","%#{name}%").first
+  end
 
 end

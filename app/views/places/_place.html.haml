@@ -35,7 +35,7 @@
       - top_items = place.top(4)
       - if top_items.present?
         .col-xs-12.top-item
-          - top_item = top_items.first
+          - top_item = @item? place.item_like(@item) : top_items.first
           %span.votes
             %span= top_item.total_votes
             Likes

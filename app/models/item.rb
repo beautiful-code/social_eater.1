@@ -19,13 +19,14 @@ class Item < ActiveRecord::Base
 
   searchable do
     text :name, boost: 5
-    text :desc
+    #text :desc
     string :city
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string :place_id
   end
 
-  # To use facets : r = Item.search { with(:location).in_radius(17.3916,78.4658,0); facet(:place_id)}
+  # To use facets :
+  # r = Item.search { with(:location).in_radius(17.3916,78.4658,0); facet(:place_id)}
   # r.facet(:place_id).rows
 
   def voter_ids
