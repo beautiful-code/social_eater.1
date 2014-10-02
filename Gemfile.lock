@@ -187,7 +187,6 @@ GEM
     net-ssh (2.8.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
-    normalize-rails (3.0.1)
     oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -325,7 +324,6 @@ DEPENDENCIES
   jquery-ui-rails
   koala
   mysql2
-  normalize-rails
   omniauth
   omniauth-facebook
   progress_bar

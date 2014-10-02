@@ -97,12 +97,14 @@ ComputeLocation.matchLocality = function(addr) {
 
 ComputeLocation.updateAddress = function(locality) {
   $('.btn-loc span').html(locality.area_name);
+  $('.center-block p').html('Searching for yummy food');
   $('.results .result span').html('"'+locality.area_name+'"');
   $.cookie('_locality_id',locality.id);
   $.cookie('_locality_name',locality.area_name);
   var date = new Date();
   $.cookie('_updated_at',date.getTime());
   this.updatePlaces('','');
+  this.showContent();
 };
 
 ComputeLocation.updatePlaces = function(item_name,cuisine_id) {
@@ -129,6 +131,16 @@ ComputeLocation.setLocation = function(locality) {
   this.updateAddress(locality);
 };
 
+ComputeLocation.showContent = function() {
+  this.toggleCheck('.filter');
+  $('.first-time-user').hide();
+};
 
-
+ComputeLocation.toggleCheck = function(element) {
+  var state = $(element).css('display');
+  if (state == 'block') {
+  } else {
+    $(element).toggle();
+  }
+};
 

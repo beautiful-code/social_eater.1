@@ -5,21 +5,20 @@
 
   $(function() {
     var geo = Object.create(GeoLocation);
-    geo.init();
-
     var compute = Object.create(ComputeLocation);
     var updated_at = $.cookie('_updated_at');
 
     if(updated_at) {
+      compute.showContent();
       compute.updatePlaces();
+
       $('.btn-loc span').html($.cookie('_locality_name'));
       $('.results .result span').html('"'+$.cookie('_locality_name')+'"');
-    } else {
-      updateLocationInfo();
-      updateAddressInfo();
     }
 
     function updateLocationInfo() {
+      geo.init();
+
       setTimeout(function() {
         if(__geoLoc__.error) {
           compute.manualLocation(
@@ -65,7 +64,7 @@
 
     $('.update-loc').click(function() {
       $('.btn-loc span').html('<span> Updating your location... <i class="fa fa-spin fa-spinner"></i></span>');
-      $('#places .content').html('<div class="center-block"><p>Updating the list based on your location ...</p><i class="fa fa-spin fa-circle-o-notch"></i></div>');
+      $('.content').html('<div class="center-block"><p>Fetching current location</p><div class="preloader">'+ Array(6).join('<span></span>') +'</div></div>');
       updateLocationInfo();
       updateAddressInfo();
     });
@@ -150,6 +149,14 @@
       $('.content .list').html(
          jQuery.makeArray($('.content .list .list-item')).reverse()
       );
+    });
+
+    $('.got-it').click(function() {
+      $('.center-block p').html('Fetching current location');
+      $('.first-time-user').hide();
+
+      updateLocationInfo();
+      updateAddressInfo();
     });
 
   });

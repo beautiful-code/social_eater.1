@@ -66,9 +66,7 @@ EATER.mainView = function(container,localities,options) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[1]) {
             this.setLatLonCookie(latitude,longitude);
-            this.geoInfo = {
-              address: results
-            };
+            this.geoInfo.address = results;
           } else {
             this.manualLocation();
           }
@@ -92,13 +90,13 @@ EATER.mainView = function(container,localities,options) {
 
   this.matchLocality = function() {
     var address = $.map(
-      this.geoInfo.address[1].formatted_address,
+      self.geoInfo.address[1].formatted_address,
       $.trim
     );
     var current_locality = null;
 
     address.filter(function(area_name) {
-      return $.each(this.localities,function (index,locality) {
+      return $.each(self.localities,function (index,locality) {
         if(locality.area_name == area_name) {
           current_locality = locality;
           return true;

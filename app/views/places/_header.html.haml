@@ -1,0 +1,49 @@
+.header
+  .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+    .container
+      .navbar-header
+        .col-xs-2
+          %a.navbar-brand{:href => "/"}
+            = image_tag 'logo.png',alt: 'SocialEater logo'
+        .col-xs-8
+          %p.headline What's good around you ?
+        .col-xs-2
+          %div.userpic.dropdown
+            %a#Menu1{"data-toggle" => "dropdown"}
+              = image_tag current_user.provider_pic,alt: 'profile pic'
+              %span.caret
+            %ul.dropdown-menu{"aria-labelledby" => "Menu1", :role => "menu"}
+
+              %li{:role => "presentation"}
+                = link_to destroy_user_session_path, :method => :delete, :role => "menuitem", :tabindex => "-1" do
+                  %i.fa.fa-user
+                  Logout
+
+  = bootstrap_flash
+
+  .filter
+    .col-xs-12.btn-group.loc-group
+      .col-xs-11
+        %button.btn.btn-default.btn-block.btn-loc{:type => "button"}
+          %i.fa.fa-map-marker
+          %span
+            Updating your address...
+            %i.fa.fa-spin.fa-spinner
+      .col-xs-1
+        %button.btn.btn-default.btn-block.update-loc{:type => "button"}
+          %i.fa.fa-refresh
+
+    .col-xs-12
+      .col-xs-8
+        %label.form-control.fake-input Search for Dishes, Cuisines etc.
+        = render 'search_modal'
+
+      .col-xs-4.filter-params
+        .btn-group{"data-toggle" => "buttons"}
+          %label.btn.btn-default.active
+            %input#option1{:name => "options", :type => "radio"}
+              Relevance
+          %label.btn.btn-default
+            %input#option2{:name => "options", :type => "radio"}
+              %i.fa.fa-arrow-up
+              KMS
