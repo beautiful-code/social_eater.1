@@ -82,7 +82,7 @@ ComputeLocation.matchLocality = function(addr) {
       if (locality.area_name == n ){
         curr_locality = locality;
         return true;
-      } else { return false; }
+      }
     });
   });
 
